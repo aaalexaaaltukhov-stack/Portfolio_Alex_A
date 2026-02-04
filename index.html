@@ -1,0 +1,725 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Alex A (Александр Алтухов) — Short-form Video Editor (TikTok/Reels/Shorts), YouTube, Stream Clips. Captions, hooks, pacing, AI workflow." />
+  <title>Alex A — Video Editor Portfolio</title>
+  <style>
+    :root{
+      --bg:#0b0d10;
+      --panel:#0f1217;
+      --text:#eef2f6;
+      --muted:#a7b0bb;
+      --line:rgba(255,255,255,.10);
+      --accent:#e9ecef;
+      --chip:rgba(255,255,255,.06);
+      --good:rgba(80, 200, 120, .18);
+      --shadow: 0 12px 40px rgba(0,0,0,.45);
+      --radius:18px;
+      --radius2:26px;
+      --max:1120px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 800px at 20% 0%, rgba(255,255,255,.08), transparent 60%),
+                  radial-gradient(900px 600px at 90% 10%, rgba(255,255,255,.05), transparent 60%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.45;
+    }
+    a{color:inherit; text-decoration:none}
+    .container{max-width:var(--max); margin:0 auto; padding:0 20px}
+
+    /* Top bar */
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(11,13,16,.65);
+      border-bottom:1px solid var(--line);
+    }
+    .topbar-inner{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 0}
+    .brand{display:flex; align-items:center; gap:10px; min-width:220px}
+    .dot{width:10px; height:10px; border-radius:999px; background:var(--accent); box-shadow:0 0 0 6px rgba(233,236,239,.12)}
+    .brand-title{font-weight:700; letter-spacing:.3px}
+    .brand-sub{color:var(--muted); font-size:12px}
+
+    .nav{display:flex; gap:14px; flex-wrap:wrap; justify-content:center}
+    .nav a{color:var(--muted); font-size:13px; padding:8px 10px; border-radius:999px; border:1px solid transparent}
+    .nav a:hover{color:var(--text); border-color:var(--line); background:rgba(255,255,255,.03)}
+
+    .actions{display:flex; gap:10px; align-items:center; justify-content:flex-end; min-width:220px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      color:var(--text);
+      font-weight:600;
+      font-size:13px;
+      cursor:pointer;
+      transition: transform .08s ease, background .12s ease, border-color .12s ease;
+      user-select:none;
+    }
+    .btn:hover{background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.16)}
+    .btn:active{transform:translateY(1px)}
+    .btn.primary{background:rgba(233,236,239,.12); border-color:rgba(233,236,239,.24)}
+    .btn.primary:hover{background:rgba(233,236,239,.16)}
+    .btn.small{padding:8px 10px; font-size:12px}
+
+    .lang{
+      display:inline-flex; border:1px solid var(--line); border-radius:999px; overflow:hidden;
+      background:rgba(255,255,255,.02)
+    }
+    .lang button{
+      border:0; background:transparent; color:var(--muted); cursor:pointer;
+      padding:8px 10px; font-size:12px; font-weight:700; letter-spacing:.4px
+    }
+    .lang button.active{color:var(--text); background:rgba(255,255,255,.06)}
+
+    /* Sections */
+    section{padding:54px 0}
+    .hero{padding:64px 0 40px}
+    .grid-hero{display:grid; grid-template-columns: 1.35fr .65fr; gap:22px; align-items:stretch}
+    @media (max-width: 980px){.grid-hero{grid-template-columns:1fr}}
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      border-radius:var(--radius2);
+      box-shadow:var(--shadow);
+    }
+    .card-inner{padding:26px}
+
+    h1{margin:0 0 10px; font-size:42px; line-height:1.08; letter-spacing:-.6px}
+    @media (max-width: 520px){h1{font-size:34px}}
+    .lead{color:var(--muted); font-size:16px; margin:0 0 18px}
+
+    .chips{display:flex; flex-wrap:wrap; gap:10px; margin:18px 0 0}
+    .chip{border:1px solid var(--line); background:var(--chip); color:var(--text); border-radius:999px; padding:8px 10px; font-size:12px}
+    .chip b{font-weight:800}
+
+    .stats{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:14px}
+    .stat{border:1px solid var(--line); background:rgba(255,255,255,.03); border-radius:14px; padding:12px 12px}
+    .stat .k{color:var(--muted); font-size:12px}
+    .stat .v{font-weight:800; margin-top:2px}
+
+    .aside{
+      display:flex; flex-direction:column; gap:12px
+    }
+    .panel{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      border-radius:var(--radius2);
+      padding:16px;
+    }
+    .panel h3{margin:0 0 6px; font-size:13px; letter-spacing:.3px; text-transform:uppercase; color:var(--muted)}
+    .panel p{margin:0; color:var(--text); font-size:14px}
+
+    .section-title{display:flex; align-items:flex-end; justify-content:space-between; gap:16px; margin-bottom:18px}
+    .section-title h2{margin:0; font-size:20px; letter-spacing:.2px}
+    .section-title .hint{color:var(--muted); font-size:13px}
+
+    .divider{height:1px; background:var(--line)}
+
+    /* Video */
+    .video{
+      position:relative; border-radius:var(--radius2);
+      overflow:hidden; border:1px solid var(--line);
+      background: rgba(255,255,255,.02);
+      aspect-ratio: 16 / 9;
+    }
+    .video iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
+    .placeholder{
+      position:absolute; inset:0;
+      display:flex; align-items:center; justify-content:center;
+      color:var(--muted);
+      text-align:center;
+      padding:18px;
+    }
+    .placeholder b{color:var(--text)}
+
+    /* Works */
+    .works-grid{display:grid; grid-template-columns: repeat(3, 1fr); gap:14px}
+    @media (max-width: 980px){.works-grid{grid-template-columns:repeat(2, 1fr)}}
+    @media (max-width: 560px){.works-grid{grid-template-columns:1fr}}
+    .work{
+      border-radius:var(--radius);
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      overflow:hidden;
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+    }
+    .work:hover{transform: translateY(-2px); border-color:rgba(255,255,255,.18); background:rgba(255,255,255,.04)}
+    .work .thumb{aspect-ratio: 16/9; background:rgba(255,255,255,.02); display:flex; align-items:center; justify-content:center; color:var(--muted)}
+    .work .meta{padding:12px}
+    .work .title{font-weight:800; font-size:14px}
+    .work .tags{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
+    .tag{font-size:11px; color:var(--muted); border:1px solid var(--line); background:rgba(255,255,255,.02); border-radius:999px; padding:6px 8px}
+
+    /* Services */
+    .cards3{display:grid; grid-template-columns:repeat(3, 1fr); gap:14px}
+    @media (max-width: 980px){.cards3{grid-template-columns:1fr}}
+    .svc{padding:18px; border-radius:var(--radius2); border:1px solid var(--line); background:rgba(255,255,255,.03)}
+    .svc h3{margin:0 0 6px; font-size:16px}
+    .svc p{margin:0; color:var(--muted)}
+    .svc ul{margin:12px 0 0; padding-left:18px; color:var(--text)}
+    .svc li{margin:6px 0; color:var(--muted)}
+
+    /* Pricing */
+    .tabs{display:flex; gap:8px; align-items:center}
+    .tab{padding:8px 10px; border-radius:999px; border:1px solid var(--line); background:rgba(255,255,255,.02); color:var(--muted); cursor:pointer; font-weight:800; font-size:12px}
+    .tab.active{color:var(--text); background:rgba(255,255,255,.06)}
+    .pricing{
+      display:grid; grid-template-columns: 1.1fr .9fr; gap:14px
+    }
+    @media (max-width: 980px){.pricing{grid-template-columns:1fr}}
+    .pricebox{padding:20px; border-radius:var(--radius2); border:1px solid var(--line); background:rgba(255,255,255,.03)}
+    .pricebox .big{font-size:26px; font-weight:900; letter-spacing:-.4px}
+    .pricebox .sub{color:var(--muted); margin-top:6px}
+    .pricebox .note{margin-top:14px; border-top:1px solid var(--line); padding-top:12px; color:var(--muted); font-size:13px}
+
+    /* Before/After */
+    .ba{display:grid; grid-template-columns:repeat(3, 1fr); gap:14px}
+    @media (max-width: 980px){.ba{grid-template-columns:1fr}}
+    .ba-item{border-radius:var(--radius2); border:1px solid var(--line); background:rgba(255,255,255,.03); padding:14px}
+    .ba-item .row{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+    @media (max-width: 520px){.ba-item .row{grid-template-columns:1fr}}
+    .mini{
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.02);
+      aspect-ratio: 16/9;
+      display:flex; align-items:center; justify-content:center;
+      color:var(--muted);
+      font-size:12px;
+      text-align:center;
+      padding:10px;
+    }
+    .ba-item .desc{margin-top:10px; color:var(--muted); font-size:13px}
+
+    /* Results + Reviews */
+    .tiles{display:grid; grid-template-columns:repeat(4, 1fr); gap:12px}
+    @media (max-width: 980px){.tiles{grid-template-columns:repeat(2, 1fr)}}
+    .tile{border-radius:var(--radius2); border:1px solid var(--line); background:rgba(255,255,255,.03); padding:14px}
+    .tile .k{color:var(--muted); font-size:12px}
+    .tile .v{font-weight:900; margin-top:8px; font-size:14px}
+    .tile .ph{margin-top:10px; color:var(--muted); font-size:12px; border-top:1px dashed rgba(255,255,255,.18); padding-top:10px}
+
+    .reviews{display:grid; grid-template-columns:repeat(3, 1fr); gap:12px}
+    @media (max-width: 980px){.reviews{grid-template-columns:1fr}}
+    .review{border-radius:var(--radius2); border:1px solid var(--line); background:rgba(255,255,255,.03); padding:14px}
+    .review .img{border-radius:14px; border:1px solid var(--line); background:rgba(255,255,255,.02); aspect-ratio: 4/3; display:flex; align-items:center; justify-content:center; color:var(--muted); font-size:12px; text-align:center; padding:12px}
+    .review .who{margin-top:10px; color:var(--muted); font-size:12px}
+
+    /* About */
+    .about{display:grid; grid-template-columns: 1.2fr .8fr; gap:14px}
+    @media (max-width: 980px){.about{grid-template-columns:1fr}}
+
+    /* Footer */
+    footer{padding:34px 0 50px; border-top:1px solid var(--line); color:var(--muted)}
+
+    /* Language switching */
+    [data-lang]{display:none}
+    body.lang-en [data-lang="en"],
+    body.lang-ru [data-lang="ru"]{display:block}
+
+    /* Smooth anchor offset */
+    [id]{scroll-margin-top:80px}
+
+    .row-actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px}
+  </style>
+</head>
+<body class="lang-en">
+  <header class="topbar">
+    <div class="container">
+      <div class="topbar-inner">
+        <div class="brand">
+          <div class="dot" aria-hidden="true"></div>
+          <div>
+            <div class="brand-title">Alex A</div>
+            <div class="brand-sub">Short-form • YouTube • Stream clips</div>
+          </div>
+        </div>
+
+        <nav class="nav" aria-label="Sections">
+          <a href="#showreel">Showreel</a>
+          <a href="#works">Works</a>
+          <a href="#services">Services</a>
+          <a href="#before-after">Before/After</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="actions">
+          <div class="lang" role="group" aria-label="Language">
+            <button class="active" id="btnEN" type="button">EN</button>
+            <button id="btnRU" type="button">RU</button>
+          </div>
+          <a class="btn primary" href="https://t.me/tebyaebetdm" target="_blank" rel="noreferrer">Telegram</a>
+          <a class="btn" href="mailto:alex.altukhov.s@gmail.com">Email</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="container">
+      <div class="grid-hero">
+        <div class="card">
+          <div class="card-inner">
+            <div data-lang="en">
+              <h1>Short‑form Video Editor<br/>for TikTok / Reels / Shorts</h1>
+              <p class="lead">Fast pacing, clean captions, strong hooks — built for retention. I also edit YouTube videos and stream highlights. AI‑enhanced workflow for speed and quality.</p>
+              <div class="row-actions">
+                <a class="btn primary" href="https://t.me/tebyaebetdm" target="_blank" rel="noreferrer">Get a test edit</a>
+                <a class="btn" href="#works">See 10 works</a>
+              </div>
+              <div class="chips" aria-label="Highlights">
+                <div class="chip"><b>Speed:</b> 1 min final ≈ 20–30 min edit</div>
+                <div class="chip"><b>Capacity:</b> up to 6 shorts/day</div>
+                <div class="chip"><b>Tools:</b> CapCut • Premiere • AE • DaVinci</div>
+              </div>
+              <div class="stats">
+                <div class="stat"><div class="k">Best for</div><div class="v">Hooks • Captions • Tempo</div></div>
+                <div class="stat"><div class="k">Deliverables</div><div class="v">Shorts + subtitles + cover</div></div>
+              </div>
+            </div>
+
+            <div data-lang="ru">
+              <h1>Монтажёр коротких видео<br/>TikTok / Reels / Shorts</h1>
+              <p class="lead">Динамика, читаемые субтитры, мощные хуки — для удержания с первых секунд. Также монтирую YouTube и хайлайты со стримов. Использую AI‑инструменты для скорости и качества.</p>
+              <div class="row-actions">
+                <a class="btn primary" href="https://t.me/tebyaebetdm" target="_blank" rel="noreferrer">Сделать тестовый монтаж</a>
+                <a class="btn" href="#works">Посмотреть 10 работ</a>
+              </div>
+              <div class="chips" aria-label="Highlights">
+                <div class="chip"><b>Скорость:</b> 1 мин финала ≈ 20–30 мин монтажа</div>
+                <div class="chip"><b>Объём:</b> до 6 shorts/день</div>
+                <div class="chip"><b>Инструменты:</b> CapCut • Premiere • AE • DaVinci</div>
+              </div>
+              <div class="stats">
+                <div class="stat"><div class="k">Сильное</div><div class="v">Хуки • Сабы • Темп</div></div>
+                <div class="stat"><div class="k">Выдаю</div><div class="v">Шортсы + субтитры + обложка</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="aside">
+          <div class="panel">
+            <h3 data-lang="en">Availability</h3>
+            <h3 data-lang="ru">Доступность</h3>
+            <p data-lang="en">Open for clients and full‑time roles. Typical turnaround: same day / next day (depending on volume).</p>
+            <p data-lang="ru">Открыт для клиентов и найма. Обычно делаю в тот же день / на следующий (зависит от объёма).</p>
+          </div>
+          <div class="panel">
+            <h3 data-lang="en">Pricing</h3>
+            <h3 data-lang="ru">Цены</h3>
+            <p data-lang="en"><b>2,000 ₽</b> per premium short (client). Full‑time: <b>80,000 ₽</b>/month.</p>
+            <p data-lang="ru"><b>2 000 ₽</b> за хороший short (клиент). Найм: <b>80 000 ₽</b>/мес.</p>
+          </div>
+          <div class="panel">
+            <h3 data-lang="en">What I need from you</h3>
+            <h3 data-lang="ru">Что нужно от вас</h3>
+            <p data-lang="en">Reference clips + brief + deadline. I can propose hook variants and caption style.</p>
+            <p data-lang="ru">Референсы + ТЗ + дедлайн. Могу предложить варианты хука и стиля субтитров.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SHOWREEL -->
+  <section id="showreel">
+    <div class="container">
+      <div class="section-title">
+        <h2 data-lang="en">Showreel (30s)</h2>
+        <h2 data-lang="ru">Шоурил (30 сек)</h2>
+        <div class="hint" data-lang="en">Paste a YouTube/Vimeo link here later — I’ll cut it into a 30s highlight reel.</div>
+        <div class="hint" data-lang="ru">Позже вставь ссылку YouTube/Vimeo — и я соберу 30‑сек шоурил.</div>
+      </div>
+      <div class="video" aria-label="Showreel video">
+        <!-- Replace placeholder with an iframe. Example:
+          <iframe src="https://www.youtube.com/embed/VIDEO_ID" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        -->
+        <div class="placeholder">
+          <div>
+            <div style="font-size:14px; margin-bottom:6px"><b data-lang="en">Showreel placeholder</b><b data-lang="ru">Заглушка шоурила</b></div>
+            <div data-lang="en">Upload your clips or share a public link, then replace this block with an embedded player.</div>
+            <div data-lang="ru">Загрузи клипы или дай публичную ссылку — потом заменим этот блок на встроенное видео.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORKS -->
+  <section id="works">
+    <div class="container">
+      <div class="section-title">
+        <h2 data-lang="en">Works (10)</h2>
+        <h2 data-lang="ru">Работы (10)</h2>
+        <div class="hint" data-lang="en">Replace thumbnails with embeds or links to your videos.</div>
+        <div class="hint" data-lang="ru">Заменишь превью на вставки/ссылки на твои видео.</div>
+      </div>
+
+      <div class="works-grid">
+        <!-- 10 cards. Replace “Link” with your public video URL -->
+        <a class="work" href="#" onclick="return false;">
+          <div class="thumb">Video #1 (paste link)</div>
+          <div class="meta">
+            <div class="title">Short Edit #1</div>
+            <div class="tags"><span class="tag">Hook</span><span class="tag">Captions</span><span class="tag">Pace</span></div>
+          </div>
+        </a>
+        <a class="work" href="#" onclick="return false;"><div class="thumb">Video #2 (paste link)</div><div class="meta"><div class="title">Short Edit #2</div><div class="tags"><span class="tag">Subtitles</span><span class="tag">Rhythm</span></div></div></a>
+        <a class="work" href="#" onclick="return false;"><div class="thumb">Video #3 (paste link)</div><div class="meta"><div class="title">Short Edit #3</div><div class="tags"><span class="tag">Zoom</span><span class="tag">SFX</span></div></div></a>
+        <a class="work" href="#" onclick="return false;"><div class="thumb">Video #4 (paste link)</div><div class="meta"><div class="title">Short Edit #4</div><div class="tags"><span class="tag">Hook</span><span class="tag">Timing</span></div></div></a>
+        <a class="work" href="#" onclick="return false;"><div class="thumb">Video #5 (paste link)</div><div class="meta"><div class="title">Short Edit #5</div><div class="tags"><span class="tag">Captions</span><span class="tag">Beat</span></div></div></a>
+        <a class="work" href="#" onclick="return false;"><div class="thumb">Video #6 (paste link)</div><div class="meta"><div class="title">Short Edit #6</div><div class="tags"><span class="tag">Story</span><span class="tag">Pace</span></div></div></a>
+        <a class="work" href="#" onclick="return false;"><div class="thumb">Video #7 (paste link)</div><div class="meta"><div class="title">YouTube / Stream Clip #7</div><div class="tags"><span class="tag">Highlights</span><span class="tag">Cuts</span></div></div></a>
+        <a class="work" href="#" onclick="return false;"><div class="thumb">Video #8 (paste link)</div><div class="meta"><div class="title">YouTube / Stream Clip #8</div><div class="tags"><span class="tag">Captions</span><span class="tag">Flow</span></div></div></a>
+        <a class="work" href="#" onclick="return false;"><div class="thumb">Video #9 (paste link)</div><div class="meta"><div class="title">Short Edit #9</div><div class="tags"><span class="tag">AI cleanup</span><span class="tag">Audio</span></div></div></a>
+        <a class="work" href="#" onclick="return false;"><div class="thumb">Video #10 (paste link)</div><div class="meta"><div class="title">Short Edit #10</div><div class="tags"><span class="tag">Hook</span><span class="tag">Captions</span><span class="tag">Tempo</span></div></div></a>
+      </div>
+
+      <div style="margin-top:16px" class="panel">
+        <p data-lang="en"><b>Tip:</b> If your videos are in Telegram, export them and upload to YouTube (unlisted) or Google Drive, then paste links here. Tilda embeds work best with YouTube/Vimeo.</p>
+        <p data-lang="ru"><b>Совет:</b> Если видео сейчас в Telegram — экспортируй и залей на YouTube (доступ по ссылке) или Google Drive, затем вставь ссылки сюда. В Tilda лучше всего работают YouTube/Vimeo.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="container">
+      <div class="section-title">
+        <h2 data-lang="en">Services</h2>
+        <h2 data-lang="ru">Услуги</h2>
+        <div class="hint" data-lang="en">Shorts that feel fast, clean, and watchable.</div>
+        <div class="hint" data-lang="ru">Шортсы, которые смотрятся быстро, чисто и до конца.</div>
+      </div>
+
+      <div class="cards3">
+        <div class="svc">
+          <h3 data-lang="en">Short‑form editing</h3>
+          <h3 data-lang="ru">Монтаж коротких видео</h3>
+          <p data-lang="en">TikTok / Reels / Shorts built around hooks and retention.</p>
+          <p data-lang="ru">TikTok / Reels / Shorts с упором на хук и удержание.</p>
+          <ul>
+            <li data-lang="en">Hook in first 1–2 seconds</li>
+            <li data-lang="ru">Хук в первые 1–2 секунды</li>
+            <li data-lang="en">Pacing + rhythm + sound</li>
+            <li data-lang="ru">Темп + ритм + звук</li>
+            <li data-lang="en">Clean cuts, zooms, highlights</li>
+            <li data-lang="ru">Чистые склейки, зумы, акценты</li>
+          </ul>
+        </div>
+
+        <div class="svc">
+          <h3 data-lang="en">Captions & retention</h3>
+          <h3 data-lang="ru">Субтитры и удержание</h3>
+          <p data-lang="en">Readable subtitles, emphasis, structure — made to keep viewers.</p>
+          <p data-lang="ru">Читаемые субтитры, акценты, структура — чтобы досматривали.</p>
+          <ul>
+            <li data-lang="en">Style presets (brand‑ready)</li>
+            <li data-lang="ru">Стиль‑пресеты (под бренд)</li>
+            <li data-lang="en">Keyword emphasis and timing</li>
+            <li data-lang="ru">Выделение ключевых слов и тайминг</li>
+            <li data-lang="en">Hook variants if needed</li>
+            <li data-lang="ru">Варианты хука при необходимости</li>
+          </ul>
+        </div>
+
+        <div class="svc">
+          <h3 data-lang="en">AI‑enhanced workflow</h3>
+          <h3 data-lang="ru">AI‑технологии</h3>
+          <p data-lang="en">Speed + quality: cleanup, enhancement, automation.</p>
+          <p data-lang="ru">Скорость + качество: чистка, улучшение, автоматизация.</p>
+          <ul>
+            <li data-lang="en">Audio cleanup / denoise</li>
+            <li data-lang="ru">Чистка звука / шумодав</li>
+            <li data-lang="en">Auto‑captions + proofreading</li>
+            <li data-lang="ru">Авто‑сабы + вычитка</li>
+            <li data-lang="en">Upscale / sharpening (when needed)</li>
+            <li data-lang="ru">Улучшение качества (когда нужно)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="margin-top:14px" class="pricing">
+        <div class="pricebox" id="pricingBox">
+          <div class="tabs" aria-label="Pricing tabs">
+            <button class="tab active" id="tabClient" type="button">Client</button>
+            <button class="tab" id="tabHiring" type="button">Hiring</button>
+          </div>
+          <div style="margin-top:14px" id="pricingClient">
+            <div class="big" data-lang="en">2,000 ₽ per premium short</div>
+            <div class="big" data-lang="ru">2 000 ₽ за хороший short</div>
+            <div class="sub" data-lang="en">Final price depends on complexity & volume. Fast turnaround available.</div>
+            <div class="sub" data-lang="ru">Финальная цена зависит от сложности и объёма. Возможна срочность.</div>
+            <div class="note" data-lang="en">To start: send a reference + raw footage + deadline. I’ll propose hook/caption style.</div>
+            <div class="note" data-lang="ru">Для старта: референс + исходники + дедлайн. Предложу хук/стиль сабов.</div>
+          </div>
+          <div style="margin-top:14px; display:none" id="pricingHiring">
+            <div class="big" data-lang="en">Full‑time: 80,000 ₽ / month</div>
+            <div class="big" data-lang="ru">Найм: 80 000 ₽ / месяц</div>
+            <div class="sub" data-lang="en">Open to content editor roles (short‑form + YouTube + design support).</div>
+            <div class="sub" data-lang="ru">Открыт к роли монтажёра/контент‑менеджера (shorts + YouTube + дизайн).</div>
+            <div class="note" data-lang="en">I can do a paid test task. Tools: CapCut / Premiere / AE / DaVinci.</div>
+            <div class="note" data-lang="ru">Могу выполнить оплачиваемое тестовое. Инструменты: CapCut / Premiere / AE / DaVinci.</div>
+          </div>
+        </div>
+
+        <div class="pricebox">
+          <div class="big" data-lang="en">Workflow</div>
+          <div class="big" data-lang="ru">Процесс</div>
+          <div class="sub" data-lang="en">Brief → first cut → revisions → final delivery</div>
+          <div class="sub" data-lang="ru">ТЗ → первый монтаж → правки → финал</div>
+          <div class="note" data-lang="en">Typical speed: 1 minute final video ≈ 20–30 minutes editing. Capacity: up to 6 shorts/day.</div>
+          <div class="note" data-lang="ru">Скорость: 1 мин финала ≈ 20–30 мин монтажа. Объём: до 6 shorts/день.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEFORE / AFTER -->
+  <section id="before-after">
+    <div class="container">
+      <div class="section-title">
+        <h2 data-lang="en">Before / After</h2>
+        <h2 data-lang="ru">До / После</h2>
+        <div class="hint" data-lang="en">Replace placeholders with your “raw vs edited” examples.</div>
+        <div class="hint" data-lang="ru">Заменишь заглушки на примеры “сырьё vs финал”.</div>
+      </div>
+
+      <div class="ba">
+        <div class="ba-item">
+          <div class="row">
+            <div class="mini">BEFORE (video)</div>
+            <div class="mini">AFTER (video)</div>
+          </div>
+          <div class="desc" data-lang="en">Improved hook, pacing, captions, and sound balance.</div>
+          <div class="desc" data-lang="ru">Улучшил хук, темп, субтитры и баланс звука.</div>
+        </div>
+        <div class="ba-item">
+          <div class="row">
+            <div class="mini">BEFORE (video)</div>
+            <div class="mini">AFTER (video)</div>
+          </div>
+          <div class="desc" data-lang="en">Cleaner cuts + emphasis on key phrases.</div>
+          <div class="desc" data-lang="ru">Чище склейки + акцент на ключевых фразах.</div>
+        </div>
+        <div class="ba-item">
+          <div class="row">
+            <div class="mini">BEFORE (video)</div>
+            <div class="mini">AFTER (video)</div>
+          </div>
+          <div class="desc" data-lang="en">Retention‑focused structure: setup → payoff.</div>
+          <div class="desc" data-lang="ru">Структура под удержание: сетап → выплата.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <section id="results">
+    <div class="container">
+      <div class="section-title">
+        <h2 data-lang="en">Results (placeholders)</h2>
+        <h2 data-lang="ru">Результаты (место под скрины)</h2>
+        <div class="hint" data-lang="en">Drop your screenshots here later.</div>
+        <div class="hint" data-lang="ru">Позже вставишь свои скриншоты.</div>
+      </div>
+
+      <div class="tiles">
+        <div class="tile"><div class="k">Views</div><div class="v">—</div><div class="ph">Add screenshot</div></div>
+        <div class="tile"><div class="k">Retention</div><div class="v">—</div><div class="ph">Add screenshot</div></div>
+        <div class="tile"><div class="k">CTR</div><div class="v">—</div><div class="ph">Add screenshot</div></div>
+        <div class="tile"><div class="k">Subscribers</div><div class="v">—</div><div class="ph">Add screenshot</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section id="reviews">
+    <div class="container">
+      <div class="section-title">
+        <h2 data-lang="en">Reviews (placeholders)</h2>
+        <h2 data-lang="ru">Отзывы (место под скрины)</h2>
+        <div class="hint" data-lang="en">Add 3–6 screenshots of client feedback.</div>
+        <div class="hint" data-lang="ru">Добавь 3–6 скриншотов отзывов.</div>
+      </div>
+
+      <div class="reviews">
+        <div class="review">
+          <div class="img">Screenshot #1</div>
+          <div class="who" data-lang="en">Client / Company</div>
+          <div class="who" data-lang="ru">Клиент / Компания</div>
+        </div>
+        <div class="review">
+          <div class="img">Screenshot #2</div>
+          <div class="who" data-lang="en">Client / Company</div>
+          <div class="who" data-lang="ru">Клиент / Компания</div>
+        </div>
+        <div class="review">
+          <div class="img">Screenshot #3</div>
+          <div class="who" data-lang="en">Client / Company</div>
+          <div class="who" data-lang="ru">Клиент / Компания</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="section-title">
+        <h2 data-lang="en">About</h2>
+        <h2 data-lang="ru">Обо мне</h2>
+        <div class="hint" data-lang="en">Short, clear, professional.</div>
+        <div class="hint" data-lang="ru">Коротко, ясно, профессионально.</div>
+      </div>
+
+      <div class="about">
+        <div class="pricebox">
+          <p data-lang="en" style="margin:0; color:var(--muted)">
+            I’m Alex A (Alexander Altukhov) — a video editor focused on short‑form content.
+            My priority is retention: hook, pacing, readable captions, and clean sound.
+            I work fast and deliver consistent quality.
+          </p>
+          <p data-lang="ru" style="margin:0; color:var(--muted)">
+            Я Alex A (Александр Алтухов) — монтажёр, который делает упор на короткий формат.
+            Мой приоритет — удержание: хук, темп, читаемые субтитры и чистый звук.
+            Работаю быстро и стабильно по качеству.
+          </p>
+          <div class="chips" style="margin-top:14px">
+            <div class="chip">CapCut</div>
+            <div class="chip">Adobe Premiere</div>
+            <div class="chip">After Effects</div>
+            <div class="chip">DaVinci Resolve</div>
+          </div>
+        </div>
+        <div class="pricebox">
+          <div class="big" data-lang="en">Deliverables</div>
+          <div class="big" data-lang="ru">Что получаете</div>
+          <div class="note" data-lang="en">
+            • Edited video (short / long)
+            <br/>• Captions (style presets)
+            <br/>• Hook + pacing improvements
+            <br/>• Optional cover / thumbnail
+          </div>
+          <div class="note" data-lang="ru">
+            • Смонтированное видео (короткое/длинное)
+            <br/>• Субтитры (стиль‑пресеты)
+            <br/>• Улучшение хука и темпа
+            <br/>• Опционально обложка/превью
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-title">
+        <h2 data-lang="en">Contact</h2>
+        <h2 data-lang="ru">Контакты</h2>
+        <div class="hint" data-lang="en">Fastest: Telegram.</div>
+        <div class="hint" data-lang="ru">Быстрее всего — Telegram.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-inner">
+          <div style="display:flex; gap:14px; flex-wrap:wrap; align-items:center; justify-content:space-between">
+            <div>
+              <div style="font-weight:900; font-size:18px">Alex A</div>
+              <div style="color:var(--muted); margin-top:4px" data-lang="en">Short‑form video editor • captions • AI workflow</div>
+              <div style="color:var(--muted); margin-top:4px" data-lang="ru">Монтаж shorts • субтитры • AI‑процесс</div>
+            </div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap">
+              <a class="btn primary" href="https://t.me/tebyaebetdm" target="_blank" rel="noreferrer" data-lang="en">Message on Telegram</a>
+              <a class="btn primary" href="https://t.me/tebyaebetdm" target="_blank" rel="noreferrer" data-lang="ru">Написать в Telegram</a>
+              <a class="btn" href="mailto:alex.altukhov.s@gmail.com" data-lang="en">Email</a>
+              <a class="btn" href="mailto:alex.altukhov.s@gmail.com" data-lang="ru">Почта</a>
+            </div>
+          </div>
+
+          <div class="divider" style="margin:18px 0"></div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px">
+            <div class="panel" style="margin:0">
+              <h3 data-lang="en">Send this brief</h3>
+              <h3 data-lang="ru">Скинь это ТЗ</h3>
+              <p data-lang="en">1) Reference link  2) Raw footage  3) Deadline  4) Style (captions / music)</p>
+              <p data-lang="ru">1) Референс  2) Исходники  3) Дедлайн  4) Стиль (сабы/музыка)</p>
+            </div>
+            <div class="panel" style="margin:0">
+              <h3 data-lang="en">Optional</h3>
+              <h3 data-lang="ru">Опционально</h3>
+              <p data-lang="en">I can propose hook variants and caption style presets for your brand.</p>
+              <p data-lang="ru">Могу предложить варианты хука и стиль субтитров под твой бренд.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="container" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between">
+      <div>© <span id="year"></span> Alex A</div>
+      <div style="display:flex; gap:10px; align-items:center">
+        <a href="#top">↑ Top</a>
+        <span style="opacity:.5">•</span>
+        <a href="https://t.me/tebyaebetdm" target="_blank" rel="noreferrer">Telegram</a>
+        <span style="opacity:.5">•</span>
+        <a href="mailto:alex.altukhov.s@gmail.com">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Language toggle
+    const btnEN = document.getElementById('btnEN');
+    const btnRU = document.getElementById('btnRU');
+    function setLang(lang){
+      document.body.classList.toggle('lang-en', lang === 'en');
+      document.body.classList.toggle('lang-ru', lang === 'ru');
+      btnEN.classList.toggle('active', lang === 'en');
+      btnRU.classList.toggle('active', lang === 'ru');
+      localStorage.setItem('lang', lang);
+    }
+    btnEN.addEventListener('click', () => setLang('en'));
+    btnRU.addEventListener('click', () => setLang('ru'));
+    const saved = localStorage.getItem('lang');
+    if(saved === 'ru' || saved === 'en') setLang(saved);
+
+    // Pricing tabs
+    const tabClient = document.getElementById('tabClient');
+    const tabHiring = document.getElementById('tabHiring');
+    const pricingClient = document.getElementById('pricingClient');
+    const pricingHiring = document.getElementById('pricingHiring');
+    function setPricing(mode){
+      tabClient.classList.toggle('active', mode === 'client');
+      tabHiring.classList.toggle('active', mode === 'hiring');
+      pricingClient.style.display = mode === 'client' ? 'block' : 'none';
+      pricingHiring.style.display = mode === 'hiring' ? 'block' : 'none';
+    }
+    tabClient.addEventListener('click', () => setPricing('client'));
+    tabHiring.addEventListener('click', () => setPricing('hiring'));
+  </script>
+</body>
+</html>
