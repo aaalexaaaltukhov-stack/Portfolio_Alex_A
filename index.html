@@ -2,528 +2,1241 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Alex A (Александр Алтухов) — Short-form Video Editor (TikTok/Reels/Shorts), YouTube, Stream Clips. Captions, hooks, pacing, AI workflow." />
-  <title>Alex A — Video Editor Portfolio</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Alex A — Video Editor (Shorts / Reels / TikTok)</title>
+  <meta name="description" content="Premium short-form video editor. Hooks, pacing, captions, retention. TikTok/Reels/Shorts, YouTube, stream clips." />
+
+  <!-- Open Graph (placeholder) -->
+  <meta property="og:title" content="Alex A — Video Editor Portfolio" />
+  <meta property="og:description" content="Premium dark ultra-minimal portfolio. Shorts / Reels / TikTok, YouTube, stream clips." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="og-image-placeholder.png" />
+  <meta name="theme-color" content="#0b0d10" />
+
+  <!-- favicon placeholder (optional) -->
+  <!-- <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='10' fill='%23e9ecef'/%3E%3C/svg%3E"> -->
+
   <style>
     :root{
       --bg:#0b0d10;
-      --text:#eef2f6;
-      --muted:#a7b0bb;
+      --bg2:#0f1217;
+      --text:#e9ecef;
+      --muted:rgba(233,236,239,.72);
+      --muted2:rgba(233,236,239,.56);
       --line:rgba(255,255,255,.10);
-      --accent:#e9ecef;
-      --chip:rgba(255,255,255,.06);
-      --shadow: 0 12px 40px rgba(0,0,0,.45);
-      --radius:18px;
-      --radius2:26px;
-      --max:1120px;
+      --line2:rgba(255,255,255,.16);
+
+      --cardA:rgba(255,255,255,.08);
+      --cardB:rgba(255,255,255,.02);
+      --cardC:rgba(255,255,255,.03);
+
+      --shadow:0 20px 60px rgba(0,0,0,.50);
+      --shadow2:0 12px 34px rgba(0,0,0,.42);
+
+      --r:22px;
+      --r2:16px;
+      --max:1180px;
+
+      --ease:cubic-bezier(.2,.8,.2,1);
+      --t:140ms var(--ease);
     }
+
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      background: radial-gradient(1200px 800px at 20% 0%, rgba(255,255,255,.08), transparent 60%),
-                  radial-gradient(900px 600px at 90% 10%, rgba(255,255,255,.05), transparent 60%),
-                  var(--bg);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       color:var(--text);
-      line-height:1.45;
+      background:
+        radial-gradient(1200px 900px at 18% -10%, rgba(233,236,239,.06), transparent 60%),
+        radial-gradient(1000px 700px at 86% 16%, rgba(233,236,239,.05), transparent 62%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      letter-spacing:.12px;
     }
-    a{color:inherit; text-decoration:none}
-    .container{max-width:var(--max); margin:0 auto; padding:0 20px}
+
+    a{color:inherit;text-decoration:none}
+    .container{max-width:var(--max);margin:0 auto;padding:0 18px}
+    .muted{color:var(--muted)}
+    .muted2{color:var(--muted2)}
+    .mono{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+
+    /* ===== Header ===== */
+    header{
+      position:sticky;top:0;z-index:50;
+      background:rgba(11,13,16,.72);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(255,255,255,.08);
+      transform:translateY(0);
+      transition:transform var(--t);
+    }
+    header.hide{transform:translateY(-110%)}
 
     .topbar{
-      position:sticky; top:0; z-index:50;
-      backdrop-filter: blur(10px);
-      background: rgba(11,13,16,.65);
-      border-bottom:1px solid var(--line);
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      padding:12px 0;
     }
-    .topbar-inner{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 0}
-    .brand{display:flex; align-items:center; gap:10px; min-width:220px}
-    .dot{width:10px; height:10px; border-radius:999px; background:var(--accent); box-shadow:0 0 0 6px rgba(233,236,239,.12)}
-    .brand-title{font-weight:700; letter-spacing:.3px}
-    .brand-sub{color:var(--muted); font-size:12px}
+    .brand{display:flex;align-items:center;gap:10px;min-width:220px}
+    .dot{
+      width:9px;height:9px;border-radius:50%;
+      background:rgba(233,236,239,.95);
+      box-shadow:0 0 0 7px rgba(233,236,239,.09);
+      flex:0 0 auto;
+    }
+    .brand .t{display:flex;flex-direction:column;line-height:1.1}
+    .brand .name{font-weight:950;font-size:13px}
+    .brand .role{font-size:11px;color:var(--muted2);margin-top:3px}
 
-    .nav{display:flex; gap:14px; flex-wrap:wrap; justify-content:center}
-    .nav a{color:var(--muted); font-size:13px; padding:8px 10px; border-radius:999px; border:1px solid transparent}
-    .nav a:hover{color:var(--text); border-color:var(--line); background:rgba(255,255,255,.03)}
+    nav{
+      display:flex;gap:14px;align-items:center;
+    }
+    nav a{
+      font-size:12px;font-weight:900;color:var(--muted);
+      padding:6px 4px;border-radius:10px;
+      transition:color var(--t), background var(--t);
+    }
+    nav a:hover{color:var(--text)}
 
-    .actions{display:flex; gap:10px; align-items:center; justify-content:flex-end; min-width:220px}
+    .actions{display:flex;gap:10px;align-items:center}
     .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:10px;
-      padding:10px 14px;
-      border-radius:999px;
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:10px 12px;border-radius:999px;
       border:1px solid var(--line);
       background:rgba(255,255,255,.03);
       color:var(--text);
-      font-weight:600;
-      font-size:13px;
-      cursor:pointer;
-      transition: transform .08s ease, background .12s ease, border-color .12s ease;
-      user-select:none;
+      font-weight:950;font-size:12px;
+      transition:transform var(--t), background var(--t), border-color var(--t);
+      cursor:pointer;white-space:nowrap;
     }
-    .btn:hover{background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.16)}
+    .btn:hover{background:rgba(255,255,255,.05);border-color:var(--line2)}
     .btn:active{transform:translateY(1px)}
-    .btn.primary{background:rgba(233,236,239,.12); border-color:rgba(233,236,239,.24)}
-    .btn.primary:hover{background:rgba(233,236,239,.16)}
+    .btn.primary{background:rgba(233,236,239,.14);border-color:rgba(233,236,239,.26)}
+    .btn.ghost{background:transparent}
 
     .lang{
-      display:inline-flex; border:1px solid var(--line); border-radius:999px; overflow:hidden;
-      background:rgba(255,255,255,.02)
-    }
-    .lang button{
-      border:0; background:transparent; color:var(--muted); cursor:pointer;
-      padding:8px 10px; font-size:12px; font-weight:700; letter-spacing:.4px
-    }
-    .lang button.active{color:var(--text); background:rgba(255,255,255,.06)}
-
-    section{padding:54px 0}
-    .hero{padding:64px 0 40px}
-    .grid-hero{display:grid; grid-template-columns: 1.35fr .65fr; gap:22px; align-items:stretch}
-    @media (max-width: 980px){.grid-hero{grid-template-columns:1fr}}
-
-    .card{
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      border:1px solid var(--line);
-      border-radius:var(--radius2);
-      box-shadow:var(--shadow);
-    }
-    .card-inner{padding:26px}
-
-    h1{margin:0 0 10px; font-size:42px; line-height:1.08; letter-spacing:-.6px}
-    @media (max-width: 520px){h1{font-size:34px}}
-    .lead{color:var(--muted); font-size:16px; margin:0 0 18px}
-
-    .chips{display:flex; flex-wrap:wrap; gap:10px; margin:18px 0 0}
-    .chip{border:1px solid var(--line); background:var(--chip); color:var(--text); border-radius:999px; padding:8px 10px; font-size:12px}
-    .chip b{font-weight:800}
-
-    .stats{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:14px}
-    .stat{border:1px solid var(--line); background:rgba(255,255,255,.03); border-radius:14px; padding:12px 12px}
-    .stat .k{color:var(--muted); font-size:12px}
-    .stat .v{font-weight:800; margin-top:2px}
-
-    .aside{display:flex; flex-direction:column; gap:12px}
-    .panel{
+      display:flex;gap:6px;align-items:center;
       border:1px solid var(--line);
       background:rgba(255,255,255,.03);
-      border-radius:var(--radius2);
-      padding:16px;
+      border-radius:999px;
+      padding:4px;
     }
-    .panel h3{margin:0 0 6px; font-size:13px; letter-spacing:.3px; text-transform:uppercase; color:var(--muted)}
-    .panel p{margin:0; color:var(--text); font-size:14px}
-
-    .section-title{display:flex; align-items:flex-end; justify-content:space-between; gap:16px; margin-bottom:18px}
-    .section-title h2{margin:0; font-size:20px; letter-spacing:.2px}
-    .section-title .hint{color:var(--muted); font-size:13px}
-
-    .video{
-      position:relative; border-radius:var(--radius2);
-      overflow:hidden; border:1px solid var(--line);
-      background: rgba(255,255,255,.02);
-      aspect-ratio: 16 / 9;
+    .lang button{
+      border:0;background:transparent;color:var(--muted);
+      font-weight:950;font-size:12px;
+      padding:7px 10px;border-radius:999px;cursor:pointer;
+      transition:background var(--t), color var(--t);
     }
-    .video video{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block}
-    .video .overlay{
-      position:absolute; inset:auto 14px 14px 14px;
-      display:flex; justify-content:space-between; align-items:flex-end; gap:10px;
+    .lang button.active{background:rgba(233,236,239,.12);color:var(--text)}
+
+    .menuBtn{
+      display:none;
+      width:40px;height:38px;border-radius:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      color:var(--text);
+      font-weight:950;
+      cursor:pointer;
+    }
+    .mobileNav{
+      display:none;
+      border-top:1px solid rgba(255,255,255,.08);
+      padding:10px 0 14px;
+    }
+    .mobileNav a{
+      display:block;padding:10px 6px;
+      color:var(--muted);font-weight:950;font-size:12px;
+    }
+    .mobileNav a:hover{color:var(--text)}
+
+    /* ===== Sections ===== */
+    section{padding:56px 0;border-top:1px solid rgba(255,255,255,.08)}
+    section.hero{border-top:0;padding:52px 0 34px}
+
+    .kicker{
+      font-size:12px;
+      color:var(--muted2);
+      font-weight:950;
+      letter-spacing:.04em;
+      margin:0 0 14px;
+    }
+
+    /* ===== Hero layout (editorial premium) ===== */
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.55fr .9fr;
+      gap:14px;
+      align-items:start;
+    }
+    .card{
+      border:1px solid rgba(255,255,255,.14);
+      background:linear-gradient(180deg, var(--cardA), var(--cardB));
+      border-radius:var(--r);
+      box-shadow:var(--shadow);
+    }
+    .heroMain{padding:22px;overflow:hidden}
+    .h1{
+      margin:0;
+      font-size:44px;
+      line-height:1.06;
+      letter-spacing:-.8px;
+      font-weight:980;
+    }
+    .lead{
+      margin:14px 0 0;
+      color:var(--muted);
+      font-size:14px;
+      max-width:78ch;
+    }
+    .heroRow{
+      display:flex;gap:10px;flex-wrap:wrap;
+      margin-top:18px;
+    }
+    .heroFacts{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+      margin-top:16px;
+    }
+    .pill{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      border-radius:16px;
+      padding:12px;
+      transition:background var(--t), border-color var(--t), transform var(--t);
+    }
+    .pill:hover{background:rgba(255,255,255,.05);border-color:var(--line2)}
+    .pill .k{font-size:11px;color:var(--muted2);font-weight:950;letter-spacing:.02em}
+    .pill .v{margin-top:5px;font-size:12px;font-weight:950}
+
+    .pricingSnap{
+      margin-top:14px;
+      display:flex;flex-wrap:wrap;gap:10px;
+      color:var(--muted2);
+      font-size:12px;
+      font-weight:950;
+    }
+    .pricingSnap b{color:var(--text)}
+    .dotSep{opacity:.7;padding:0 2px}
+
+    .sideStack{display:grid;gap:12px}
+    .sideBox{
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.03);
+      border-radius:18px;
+      padding:14px;
+      box-shadow:var(--shadow2);
+    }
+    .sideTitle{
+      font-size:10px;
+      letter-spacing:.18em;
+      font-weight:950;
+      color:var(--muted2);
+    }
+    .sideText{
+      margin-top:10px;
+      color:var(--text);
+      font-size:12px;
+      line-height:1.5;
+    }
+    .sideText .muted{color:var(--muted)}
+    .sideText b{font-weight:980}
+
+    /* ===== Section headings ===== */
+    .head{
+      display:flex;align-items:flex-end;justify-content:space-between;gap:16px;
+      padding-bottom:12px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      margin-bottom:18px;
+    }
+    .head h2{margin:0;font-size:13px;font-weight:980;letter-spacing:.18em;text-transform:uppercase}
+    .head p{margin:0;color:var(--muted);font-size:11px;text-align:right;max-width:70ch}
+
+    /* ===== Featured (showreel) ===== */
+    .featuredWrap{max-width:980px;margin:0 auto}
+    .featured{
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.02);
+      border-radius:var(--r);
+      overflow:hidden;
+      box-shadow:var(--shadow);
+    }
+    .featuredTop{
+      padding:14px 16px;
+      display:flex;align-items:center;justify-content:space-between;gap:10px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      font-weight:950;
+      font-size:12px;
+      color:var(--muted);
+    }
+    .featuredTop b{color:var(--text)}
+    .featured video{
+      width:100%;
+      display:block;
+      background:#000;
+      aspect-ratio:16/9;
+    }
+
+    /* ===== Filters ===== */
+    .filters{
+      display:flex;gap:8px;flex-wrap:wrap;
+      margin:0 0 14px;
+    }
+    .chip{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.02);
+      color:var(--muted);
+      font-weight:980;
+      font-size:12px;
+      padding:9px 12px;
+      border-radius:999px;
+      cursor:pointer;
+      transition:background var(--t), border-color var(--t), color var(--t), transform var(--t);
+    }
+    .chip:hover{border-color:var(--line2);background:rgba(255,255,255,.04);color:var(--text)}
+    .chip.active{background:rgba(233,236,239,.14);border-color:rgba(233,236,239,.26);color:var(--text)}
+
+    /* ===== Cards grid (editorial feed) ===== */
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(12,1fr);
+      gap:12px;
+    }
+    .work{
+      grid-column:span 4;
+      border:1px solid rgba(255,255,255,.14);
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border-radius:18px;
+      overflow:hidden;
+      position:relative;
+      box-shadow:var(--shadow2);
+      transition:transform var(--t), border-color var(--t), background var(--t);
+      cursor:pointer;
+    }
+    .work:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.22)}
+    .work .media{
+      position:relative;
+      background:#000;
+    }
+    .work video{
+      width:100%;
+      display:block;
+      aspect-ratio:16/9;
+      background:#000;
+    }
+    .play{
+      position:absolute;left:12px;top:12px;
+      width:36px;height:36px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(11,13,16,.45);
+      backdrop-filter: blur(8px);
+      display:flex;align-items:center;justify-content:center;
+      font-weight:980;
+      color:var(--text);
       pointer-events:none;
     }
-    .overlay .badge{
+    .work .meta{
+      padding:12px 12px 14px;
+      display:flex;flex-direction:column;gap:8px;
+    }
+    .titleRow{
+      display:flex;align-items:center;justify-content:space-between;gap:10px;
+    }
+    .work .name{font-weight:980;font-size:13px}
+    .work .desc{color:var(--muted);font-size:12px;line-height:1.45}
+    .tags{display:flex;gap:6px;flex-wrap:wrap}
+    .tag{
+      font-size:10px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      font-weight:980;
+      color:var(--muted2);
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.02);
+      padding:6px 8px;border-radius:999px;
+    }
+
+    /* ===== Simple blocks for placeholders ===== */
+    .cols3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .block{
       border:1px solid rgba(255,255,255,.14);
-      background:rgba(0,0,0,.35);
+      background:rgba(255,255,255,.03);
+      border-radius:18px;
+      padding:14px;
+      box-shadow:var(--shadow2);
+    }
+    .block .t{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted2);font-weight:980}
+    .block .b{margin-top:10px;color:var(--muted);font-size:12px;line-height:1.5}
+
+    /* ===== Modal (lightbox) ===== */
+    .modal{
+      position:fixed;inset:0;z-index:100;
+      display:none;
+      align-items:center;justify-content:center;
+      background:rgba(0,0,0,.72);
       backdrop-filter: blur(6px);
-      color:var(--text);
-      border-radius:999px;
-      padding:8px 10px;
+      padding:20px;
+    }
+    .modal.open{display:flex}
+    .modalBox{
+      width:min(980px, 96vw);
+      border-radius:22px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(15,18,23,.92);
+      box-shadow:var(--shadow);
+    }
+    .modalTop{
+      display:flex;align-items:center;justify-content:space-between;gap:10px;
+      padding:12px 14px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      color:var(--muted);
+      font-weight:980;
       font-size:12px;
-      font-weight:800;
+    }
+    .modalTop b{color:var(--text)}
+    .xbtn{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      color:var(--text);
+      font-weight:980;
+      border-radius:12px;
+      padding:8px 10px;
+      cursor:pointer;
+    }
+    .modal video{
+      width:100%;
+      display:block;
+      background:#000;
+      aspect-ratio:16/9;
     }
 
-    .works-grid{display:grid; grid-template-columns: repeat(3, 1fr); gap:14px}
-    @media (max-width: 980px){.works-grid{grid-template-columns:repeat(2, 1fr)}}
-    @media (max-width: 560px){.works-grid{grid-template-columns:1fr}}
-    .work{border-radius:var(--radius); border:1px solid var(--line); background:rgba(255,255,255,.03); overflow:hidden}
-    .work .thumb{aspect-ratio:16/9; background:rgba(255,255,255,.02); overflow:hidden}
-    .work .thumb video{width:100%; height:100%; object-fit:cover; display:block}
-    .work .meta{padding:12px}
-    .work .title{font-weight:800; font-size:14px}
-    .work .tags{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
-    .tag{font-size:11px; color:var(--muted); border:1px solid var(--line); background:rgba(255,255,255,.02); border-radius:999px; padding:6px 8px}
-
-    .cards3{display:grid; grid-template-columns:repeat(3, 1fr); gap:14px}
-    @media (max-width: 980px){.cards3{grid-template-columns:1fr}}
-    .svc{padding:18px; border-radius:var(--radius2); border:1px solid var(--line); background:rgba(255,255,255,.03)}
-    .svc h3{margin:0 0 6px; font-size:16px}
-    .svc p{margin:0; color:var(--muted)}
-
-    .tabs{display:flex; gap:8px; align-items:center}
-    .tab{padding:8px 10px; border-radius:999px; border:1px solid var(--line); background:rgba(255,255,255,.02); color:var(--muted); cursor:pointer; font-weight:800; font-size:12px}
-    .tab.active{color:var(--text); background:rgba(255,255,255,.06)}
-    .pricing{display:grid; grid-template-columns: 1.1fr .9fr; gap:14px}
-    @media (max-width: 980px){.pricing{grid-template-columns:1fr}}
-    .pricebox{padding:20px; border-radius:var(--radius2); border:1px solid var(--line); background:rgba(255,255,255,.03)}
-    .pricebox .big{font-size:26px; font-weight:900; letter-spacing:-.4px}
-    .pricebox .sub{color:var(--muted); margin-top:6px}
-    .pricebox .note{margin-top:14px; border-top:1px solid var(--line); padding-top:12px; color:var(--muted); font-size:13px}
-
-    .ba{display:grid; grid-template-columns:repeat(3, 1fr); gap:14px}
-    @media (max-width: 980px){.ba{grid-template-columns:1fr}}
-    .ba-item{border-radius:var(--radius2); border:1px solid var(--line); background:rgba(255,255,255,.03); padding:14px}
-    .ba-item .row{display:grid; grid-template-columns:1fr 1fr; gap:10px}
-    @media (max-width: 520px){.ba-item .row{grid-template-columns:1fr}}
-    .mini{
-      border-radius:14px; border:1px solid var(--line); background:rgba(255,255,255,.02);
-      aspect-ratio: 16/9; display:flex; align-items:center; justify-content:center;
-      color:var(--muted); font-size:12px; text-align:center; padding:10px;
+    /* ===== Floating CTA (mobile) ===== */
+    .floatCta{
+      position:fixed;
+      left:12px;right:12px;bottom:12px;
+      z-index:60;
+      display:none;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      padding:10px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(11,13,16,.72);
+      backdrop-filter:blur(10px);
+      box-shadow:var(--shadow2);
     }
+    .floatCta .txt{
+      display:flex;flex-direction:column;gap:2px;
+      min-width:0;
+    }
+    .floatCta .txt .a{font-size:12px;font-weight:980}
+    .floatCta .txt .b{font-size:11px;color:var(--muted2)}
+    .floatCta .ctaBtns{display:flex;gap:8px;flex:0 0 auto}
+    .floatCta .ctaBtns a{padding:10px 12px}
 
-    .tiles{display:grid; grid-template-columns:repeat(4, 1fr); gap:12px}
-    @media (max-width: 980px){.tiles{grid-template-columns:repeat(2, 1fr)}}
-    .tile{border-radius:var(--radius2); border:1px solid var(--line); background:rgba(255,255,255,.03); padding:14px}
-    .tile .k{color:var(--muted); font-size:12px}
-    .tile .v{font-weight:900; margin-top:8px; font-size:14px}
-    .tile .ph{margin-top:10px; color:var(--muted); font-size:12px; border-top:1px dashed rgba(255,255,255,.18); padding-top:10px}
+    /* ===== Footer ===== */
+    footer{
+      padding:22px 0 42px;
+      border-top:1px solid rgba(255,255,255,.08);
+      color:var(--muted2);
+      font-size:12px;
+    }
+    footer .row{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
 
-    .reviews{display:grid; grid-template-columns:repeat(3, 1fr); gap:12px}
-    @media (max-width: 980px){.reviews{grid-template-columns:1fr}}
-    .review{border-radius:var(--radius2); border:1px solid var(--line); background:rgba(255,255,255,.03); padding:14px}
-    .review .img{border-radius:14px; border:1px solid var(--line); background:rgba(255,255,255,.02); aspect-ratio: 4/3; display:flex; align-items:center; justify-content:center; color:var(--muted); font-size:12px; text-align:center; padding:12px}
-
-    footer{padding:34px 0 50px; border-top:1px solid var(--line); color:var(--muted)}
-    [data-lang]{display:none}
-    body.lang-en [data-lang="en"], body.lang-ru [data-lang="ru"]{display:block}
-    [id]{scroll-margin-top:80px}
-    .row-actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px}
+    /* ===== Responsive ===== */
+    @media (max-width: 1060px){
+      .heroGrid{grid-template-columns:1fr}
+      nav{display:none}
+      .menuBtn{display:inline-flex;align-items:center;justify-content:center}
+      .heroFacts{grid-template-columns:1fr}
+      .work{grid-column:span 6}
+      .featuredWrap{max-width:100%}
+      .cols3{grid-template-columns:1fr}
+    }
+    @media (max-width: 760px){
+      .topbar{padding:8px 0}
+      .brand .role{display:none}
+      section.hero{padding:44px 0 26px}
+      section{padding:44px 0}
+      .h1{font-size:34px}
+      .head p{display:none}
+      .work{grid-column:span 12}
+      .floatCta{display:flex}
+      body{padding-bottom:86px;} /* leave room for floating bar */
+    }
   </style>
 </head>
-<body class="lang-en">
-  <header class="topbar">
-    <div class="container">
-      <div class="topbar-inner">
-        <div class="brand">
-          <div class="dot" aria-hidden="true"></div>
-          <div>
-            <div class="brand-title">Alex A</div>
-            <div class="brand-sub">Short-form • YouTube • Stream clips</div>
-          </div>
-        </div>
 
-        <nav class="nav" aria-label="Sections">
-          <a href="#showreel">Showreel</a>
-          <a href="#works">Works</a>
-          <a href="#services">Services</a>
-          <a href="#before-after">Before/After</a>
-          <a href="#reviews">Reviews</a>
-          <a href="#contact">Contact</a>
-        </nav>
+<body>
 
-        <div class="actions">
-          <div class="lang" role="group" aria-label="Language">
-            <button class="active" id="btnEN" type="button">EN</button>
-            <button id="btnRU" type="button">RU</button>
-          </div>
-          <a class="btn primary" href="https://t.me/tebyaebetdm" target="_blank" rel="noreferrer">Telegram</a>
-          <a class="btn" href="mailto:alex.altukhov.s@gmail.com">Email</a>
+<header id="header">
+  <div class="container">
+    <div class="topbar">
+      <a class="brand" href="#top" aria-label="Home">
+        <span class="dot" aria-hidden="true"></span>
+        <span class="t">
+          <span class="name">Alex A</span>
+          <span class="role" data-i18n="role">Short-form • YouTube • Stream clips</span>
+        </span>
+      </a>
+
+      <nav aria-label="Sections">
+        <a href="#featured" data-i18n="navFeatured">Featured</a>
+        <a href="#best" data-i18n="navBest">Best 3</a>
+        <a href="#latest" data-i18n="navLatest">Latest</a>
+        <a href="#services" data-i18n="navServices">Services</a>
+        <a href="#beforeafter" data-i18n="navBA">Before/After</a>
+        <a href="#proof" data-i18n="navProof">Proof</a>
+        <a href="#reviews" data-i18n="navReviews">Reviews</a>
+        <a href="#contact" data-i18n="navContact">Contact</a>
+      </nav>
+
+      <div class="actions">
+        <div class="lang" aria-label="Language switch">
+          <button id="langEN" class="active" type="button">EN</button>
+          <button id="langRU" type="button">RU</button>
         </div>
+        <button class="menuBtn" id="menuBtn" type="button" aria-label="Menu">☰</button>
+        <a class="btn ghost" href="https://t.me/tebyaebetdm" target="_blank" rel="noreferrer">Telegram</a>
+        <a class="btn" href="mailto:alex.altukhov.s@gmail.com">Email</a>
       </div>
     </div>
-  </header>
 
-  <section class="hero" id="top">
+    <div class="mobileNav" id="mobileNav">
+      <a href="#featured" data-i18n="navFeatured">Featured</a>
+      <a href="#best" data-i18n="navBest">Best 3</a>
+      <a href="#latest" data-i18n="navLatest">Latest</a>
+      <a href="#services" data-i18n="navServices">Services</a>
+      <a href="#beforeafter" data-i18n="navBA">Before/After</a>
+      <a href="#proof" data-i18n="navProof">Proof</a>
+      <a href="#reviews" data-i18n="navReviews">Reviews</a>
+      <a href="#contact" data-i18n="navContact">Contact</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
     <div class="container">
-      <div class="grid-hero">
-        <div class="card">
-          <div class="card-inner">
-            <div data-lang="en">
-              <h1>Short-form Video Editor<br/>for TikTok / Reels / Shorts</h1>
-              <p class="lead">Fast pacing, clean captions, strong hooks — built for retention. I also edit YouTube videos and stream highlights. AI-enhanced workflow for speed and quality.</p>
-              <div class="row-actions">
-                <a class="btn primary" href="https://t.me/tebyaebetdm" target="_blank" rel="noreferrer">Get a test edit</a>
-                <a class="btn" href="#works">See works</a>
-              </div>
-              <div class="chips" aria-label="Highlights">
-                <div class="chip"><b>Speed:</b> 1 min final ≈ 20–30 min edit</div>
-                <div class="chip"><b>Capacity:</b> up to 6 shorts/day</div>
-                <div class="chip"><b>Tools:</b> CapCut • Premiere • AE • DaVinci</div>
-              </div>
-              <div class="stats">
-                <div class="stat"><div class="k">Best for</div><div class="v">Hooks • Captions • Tempo</div></div>
-                <div class="stat"><div class="k">Deliverables</div><div class="v">Shorts + subtitles + cover</div></div>
-              </div>
+      <p class="kicker" data-i18n="kicker">Editor / Portfolio —</p>
+
+      <div class="heroGrid">
+        <div class="card heroMain">
+          <h1 class="h1" data-i18n-html="heroTitle">
+            Short-form Video Editor<br/>for TikTok / Reels / Shorts
+          </h1>
+
+          <p class="lead" data-i18n="heroLead">
+            Hooks, pacing, captions — designed for retention. I also edit YouTube videos and stream highlights. AI-enhanced workflow for speed and quality.
+          </p>
+
+          <div class="heroRow">
+            <a class="btn primary" href="https://t.me/tebyaebetdm" target="_blank" rel="noreferrer" data-i18n="ctaTest">Get a test edit</a>
+            <a class="btn" href="#latest" data-i18n="ctaWorks">See works</a>
+          </div>
+
+          <div class="heroFacts">
+            <div class="pill">
+              <div class="k" data-i18n="speedK">Speed</div>
+              <div class="v" data-i18n="speedV">1 min final ≈ 20–30 min edit</div>
             </div>
+            <div class="pill">
+              <div class="k" data-i18n="capK">Capacity</div>
+              <div class="v" data-i18n="capV">Min 6 clips/day</div>
+            </div>
+            <div class="pill">
+              <div class="k" data-i18n="toolsK">Tools</div>
+              <div class="v">CapCut • Premiere • After Effects • DaVinci</div>
+            </div>
+          </div>
 
-            <div data-lang="ru">
-              <h1>Монтажёр коротких видео<br/>TikTok / Reels / Shorts</h1>
-              <p class="lead">Динамика, читаемые субтитры, мощные хуки — для удержания с первых секунд. Также монтирую YouTube и хайлайты со стримов. Использую AI-инструменты для скорости и качества.</p>
-              <div class="row-actions">
-                <a class="btn primary" href="https://t.me/tebyaebetdm" target="_blank" rel="noreferrer">Сделать тестовый монтаж</a>
-                <a class="btn" href="#works">Посмотреть работы</a>
-              </div>
-              <div class="chips" aria-label="Highlights">
-                <div class="chip"><b>Скорость:</b> 1 мин финала ≈ 20–30 мин монтажа</div>
-                <div class="chip"><b>Объём:</b> до 6 shorts/день</div>
-                <div class="chip"><b>Инструменты:</b> CapCut • Premiere • AE • DaVinci</div>
-              </div>
-              <div class="stats">
-                <div class="stat"><div class="k">Сильное</div><div class="v">Хуки • Сабы • Темп</div></div>
-                <div class="stat"><div class="k">Выдаю</div><div class="v">Шортсы + субтитры + обложка</div></div>
-              </div>
+          <div class="pricingSnap">
+            <span><b class="mono" data-i18n="p1">2,000 ₽</b> <span class="muted2" data-i18n="p1s">/ premium short</span></span>
+            <span class="dotSep">•</span>
+            <span><b class="mono" data-i18n="p2">80,000 ₽</b> <span class="muted2" data-i18n="p2s">/ month (full-time)</span></span>
+          </div>
+        </div>
+
+        <div class="sideStack">
+          <div class="sideBox">
+            <div class="sideTitle" data-i18n="availT">AVAILABILITY</div>
+            <div class="sideText" data-i18n-html="availD">
+              <b>Open</b> for clients and full-time roles. Turnaround: <span class="muted">same day / next day</span> (depends on volume).
+            </div>
+          </div>
+
+          <div class="sideBox">
+            <div class="sideTitle" data-i18n="priceT">PRICING</div>
+            <div class="sideText" data-i18n-html="priceD">
+              <b class="mono">2,000 ₽</b> per short. Full-time: <b class="mono">80,000 ₽</b>/month.
+            </div>
+          </div>
+
+          <div class="sideBox">
+            <div class="sideTitle" data-i18n="needT">WHAT I NEED FROM YOU</div>
+            <div class="sideText" data-i18n="needD">
+              Reference clips + brief + deadline. I can propose hook variants and caption style.
             </div>
           </div>
         </div>
-
-        <div class="aside">
-          <div class="panel">
-            <h3 data-lang="en">Availability</h3>
-            <h3 data-lang="ru">Доступность</h3>
-            <p data-lang="en">Open for clients and full-time roles. Typical turnaround: same day / next day (depending on volume).</p>
-            <p data-lang="ru">Открыт для клиентов и найма. Обычно делаю в тот же день / на следующий (зависит от объёма).</p>
-          </div>
-          <div class="panel">
-            <h3 data-lang="en">Pricing</h3>
-            <h3 data-lang="ru">Цены</h3>
-            <p data-lang="en"><b>2,000 ₽</b> per premium short (client). Full-time: <b>80,000 ₽</b>/month.</p>
-            <p data-lang="ru"><b>2 000 ₽</b> за хороший short (клиент). Найм: <b>80 000 ₽</b>/мес.</p>
-          </div>
-          <div class="panel">
-            <h3 data-lang="en">What I need from you</h3>
-            <h3 data-lang="ru">Что нужно от вас</h3>
-            <p data-lang="en">Reference clips + brief + deadline. I can propose hook variants and caption style.</p>
-            <p data-lang="ru">Референсы + ТЗ + дедлайн. Могу предложить варианты хука и стиля субтитров.</p>
-          </div>
-        </div>
-
       </div>
     </div>
   </section>
 
-  <section id="showreel">
+  <!-- FEATURED / SHOWREEL -->
+  <section id="featured">
     <div class="container">
-      <div class="section-title">
-        <h2 data-lang="en">Showreel (temporary)</h2>
-        <h2 data-lang="ru">Шоурил (временно)</h2>
-        <div class="hint" data-lang="en">For now, your first clip is here. When you have a 30s reel, replace the video file.</div>
-        <div class="hint" data-lang="ru">Пока тут первый клип. Когда будет 30-сек шоурил — просто заменишь файл.</div>
+      <div class="head">
+        <h2 data-i18n="featH">Featured Reel</h2>
+        <p data-i18n="featP">Tap play — this is your “temporary showreel”. Replace later with a 30s reel if needed.</p>
       </div>
 
-      <div class="video" aria-label="Showreel video">
-        <video src="assets/videos/koktl.mp4" controls playsinline preload="metadata"></video>
-        <div class="overlay">
-          <div class="badge" data-lang="en">Showreel placeholder</div>
-          <div class="badge" data-lang="ru">Заглушка шоурила</div>
+      <div class="featuredWrap">
+        <div class="featured">
+          <div class="featuredTop">
+            <span><b data-i18n="featLabel">Showreel</b> <span class="muted2" data-i18n="featSub">preload metadata • inline playback</span></span>
+            <span class="muted2 mono">16:9</span>
+          </div>
+          <video
+            class="v"
+            controls
+            playsinline
+            preload="metadata"
+            data-src="assets/videos/koktl.mp4"
+          ></video>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="works">
+  <!-- BEST 3 -->
+  <section id="best">
     <div class="container">
-      <div class="section-title">
-        <h2 data-lang="en">Works</h2>
-        <h2 data-lang="ru">Работы</h2>
-        <div class="hint" data-lang="en">Click a card to open video in full (new tab).</div>
-        <div class="hint" data-lang="ru">Нажми на карточку — видео откроется полностью (в новой вкладке).</div>
+      <div class="head">
+        <h2 data-i18n="bestH">Best 3 Clips</h2>
+        <p data-i18n="bestP">Top proof first. Click (desktop) to open lightbox, or play inline.</p>
       </div>
 
-      <div class="works-grid">
-        <a class="work" href="assets/videos/koktl.mp4" target="_blank" rel="noreferrer">
-          <div class="thumb"><video src="assets/videos/koktl.mp4" muted playsinline preload="metadata"></video></div>
-          <div class="meta"><div class="title">koktl</div><div class="tags"><span class="tag">Hook</span><span class="tag">Captions</span><span class="tag">Pace</span></div></div>
-        </a>
+      <div class="grid" id="bestGrid">
+        <!-- Work cards -->
+        <article class="work" data-cat="shorts" data-title="koktl">
+          <div class="media">
+            <span class="play">▶</span>
+            <video playsinline preload="metadata" data-src="assets/videos/koktl.mp4"></video>
+          </div>
+          <div class="meta">
+            <div class="titleRow">
+              <div class="name">koktl</div>
+              <div class="muted2 mono">Shorts</div>
+            </div>
+            <div class="tags">
+              <span class="tag">HOOK</span><span class="tag">CAPTIONS</span><span class="tag">PACE</span>
+            </div>
+            <div class="desc" data-i18n="d1">Tight pacing + readable captions for retention.</div>
+          </div>
+        </article>
 
-        <a class="work" href="assets/videos/inst4.mp4" target="_blank" rel="noreferrer">
-          <div class="thumb"><video src="assets/videos/inst4.mp4" muted playsinline preload="metadata"></video></div>
-          <div class="meta"><div class="title">inst4</div><div class="tags"><span class="tag">Subtitles</span><span class="tag">Rhythm</span></div></div>
-        </a>
+        <article class="work" data-cat="shorts" data-title="inst4">
+          <div class="media">
+            <span class="play">▶</span>
+            <video playsinline preload="metadata" data-src="assets/videos/inst4.mp4"></video>
+          </div>
+          <div class="meta">
+            <div class="titleRow">
+              <div class="name">inst4</div>
+              <div class="muted2 mono">Shorts</div>
+            </div>
+            <div class="tags">
+              <span class="tag">SUBS</span><span class="tag">RHYTHM</span><span class="tag">CUTS</span>
+            </div>
+            <div class="desc" data-i18n="d2">Subtitle styling + rhythm — designed for watch time.</div>
+          </div>
+        </article>
 
-        <a class="work" href="assets/videos/diz.mp4" target="_blank" rel="noreferrer">
-          <div class="thumb"><video src="assets/videos/diz.mp4" muted playsinline preload="metadata"></video></div>
-          <div class="meta"><div class="title">diz</div><div class="tags"><span class="tag">SFX</span><span class="tag">Timing</span></div></div>
-        </a>
-
-        <a class="work" href="assets/videos/norm.mp4" target="_blank" rel="noreferrer">
-          <div class="thumb"><video src="assets/videos/norm.mp4" muted playsinline preload="metadata"></video></div>
-          <div class="meta"><div class="title">norm</div><div class="tags"><span class="tag">Tempo</span><span class="tag">Flow</span></div></div>
-        </a>
-
-        <a class="work" href="assets/videos/LOVE.mp4" target="_blank" rel="noreferrer">
-          <div class="thumb"><video src="assets/videos/LOVE.mp4" muted playsinline preload="metadata"></video></div>
-          <div class="meta"><div class="title">LOVE</div><div class="tags"><span class="tag">Highlights</span><span class="tag">Cuts</span></div></div>
-        </a>
-
-        <a class="work" href="assets/videos/pizza_tt.mp4" target="_blank" rel="noreferrer">
-          <div class="thumb"><video src="assets/videos/pizza_tt.mp4" muted playsinline preload="metadata"></video></div>
-          <div class="meta"><div class="title">pizza_tt</div><div class="tags"><span class="tag">Audio</span><span class="tag">Clean</span></div></div>
-        </a>
-
-        <a class="work" href="#" onclick="return false;">
-          <div class="thumb" style="display:flex;align-items:center;justify-content:center;color:var(--muted)">Add video #7</div>
-          <div class="meta"><div class="title">Work #7</div><div class="tags"><span class="tag">Add tags</span></div></div>
-        </a>
-        <a class="work" href="#" onclick="return false;">
-          <div class="thumb" style="display:flex;align-items:center;justify-content:center;color:var(--muted)">Add video #8</div>
-          <div class="meta"><div class="title">Work #8</div><div class="tags"><span class="tag">Add tags</span></div></div>
-        </a>
-        <a class="work" href="#" onclick="return false;">
-          <div class="thumb" style="display:flex;align-items:center;justify-content:center;color:var(--muted)">Add video #9</div>
-          <div class="meta"><div class="title">Work #9</div><div class="tags"><span class="tag">Add tags</span></div></div>
-        </a>
-        <a class="work" href="#" onclick="return false;">
-          <div class="thumb" style="display:flex;align-items:center;justify-content:center;color:var(--muted)">Add video #10</div>
-          <div class="meta"><div class="title">Work #10</div><div class="tags"><span class="tag">Add tags</span></div></div>
-        </a>
+        <article class="work" data-cat="stream" data-title="diz">
+          <div class="media">
+            <span class="play">▶</span>
+            <video playsinline preload="metadata" data-src="assets/videos/diz.mp4"></video>
+          </div>
+          <div class="meta">
+            <div class="titleRow">
+              <div class="name">diz</div>
+              <div class="muted2 mono">Stream</div>
+            </div>
+            <div class="tags">
+              <span class="tag">HIGHLIGHTS</span><span class="tag">TIMING</span><span class="tag">SFX</span>
+            </div>
+            <div class="desc" data-i18n="d3">Stream highlight cuts with emphasis and timing.</div>
+          </div>
+        </article>
       </div>
     </div>
   </section>
 
+  <!-- LATEST WORKS -->
+  <section id="latest">
+    <div class="container">
+      <div class="head">
+        <h2 data-i18n="latestH">Latest Works</h2>
+        <p data-i18n="latestP">Filter by format. Videos load lazily as you scroll.</p>
+      </div>
+
+      <div class="filters" role="tablist" aria-label="Work filters">
+        <button class="chip active" data-filter="all" type="button" data-i18n="fAll">All</button>
+        <button class="chip" data-filter="shorts" type="button">Shorts</button>
+        <button class="chip" data-filter="stream" type="button" data-i18n="fStream">Stream clips</button>
+        <button class="chip" data-filter="youtube" type="button">YouTube</button>
+      </div>
+
+      <div class="grid" id="latestGrid">
+        <article class="work" data-cat="shorts" data-title="koktl">
+          <div class="media"><span class="play">▶</span>
+            <video playsinline preload="metadata" data-src="assets/videos/koktl.mp4"></video>
+          </div>
+          <div class="meta">
+            <div class="titleRow"><div class="name">koktl</div><div class="muted2 mono">Shorts</div></div>
+            <div class="tags"><span class="tag">HOOK</span><span class="tag">CAPTIONS</span></div>
+            <div class="desc" data-i18n="l1">Optimized pacing for retention + clean subtitle hierarchy.</div>
+          </div>
+        </article>
+
+        <article class="work" data-cat="shorts" data-title="inst4">
+          <div class="media"><span class="play">▶</span>
+            <video playsinline preload="metadata" data-src="assets/videos/inst4.mp4"></video>
+          </div>
+          <div class="meta">
+            <div class="titleRow"><div class="name">inst4</div><div class="muted2 mono">Shorts</div></div>
+            <div class="tags"><span class="tag">SUBS</span><span class="tag">CUTS</span></div>
+            <div class="desc" data-i18n="l2">Captions + timing, built for fast scrolling feeds.</div>
+          </div>
+        </article>
+
+        <article class="work" data-cat="stream" data-title="diz">
+          <div class="media"><span class="play">▶</span>
+            <video playsinline preload="metadata" data-src="assets/videos/diz.mp4"></video>
+          </div>
+          <div class="meta">
+            <div class="titleRow"><div class="name">diz</div><div class="muted2 mono">Stream</div></div>
+            <div class="tags"><span class="tag">HIGHLIGHTS</span><span class="tag">SFX</span></div>
+            <div class="desc" data-i18n="l3">Highlight storytelling: setup → payoff, trimmed cleanly.</div>
+          </div>
+        </article>
+
+        <article class="work" data-cat="youtube" data-title="norm">
+          <div class="media"><span class="play">▶</span>
+            <video playsinline preload="metadata" data-src="assets/videos/norm.mp4"></video>
+          </div>
+          <div class="meta">
+            <div class="titleRow"><div class="name">norm</div><div class="muted2 mono">YouTube</div></div>
+            <div class="tags"><span class="tag">FLOW</span><span class="tag">STRUCTURE</span></div>
+            <div class="desc" data-i18n="l4">Cleaner flow and structure to reduce drop-off.</div>
+          </div>
+        </article>
+
+        <article class="work" data-cat="shorts" data-title="LOVE">
+          <div class="media"><span class="play">▶</span>
+            <video playsinline preload="metadata" data-src="assets/videos/LOVE.mp4"></video>
+          </div>
+          <div class="meta">
+            <div class="titleRow"><div class="name">LOVE</div><div class="muted2 mono">Shorts</div></div>
+            <div class="tags"><span class="tag">CUTS</span><span class="tag">BEATS</span></div>
+            <div class="desc" data-i18n="l5">Beat-matched edits + emphasis for key moments.</div>
+          </div>
+        </article>
+
+        <article class="work" data-cat="shorts" data-title="pizza_tt">
+          <div class="media"><span class="play">▶</span>
+            <video playsinline preload="metadata" data-src="assets/videos/pizza_tt.mp4"></video>
+          </div>
+          <div class="meta">
+            <div class="titleRow"><div class="name">pizza_tt</div><div class="muted2 mono">Shorts</div></div>
+            <div class="tags"><span class="tag">AUDIO</span><span class="tag">CAPTIONS</span></div>
+            <div class="desc" data-i18n="l6">Clean subtitles + sound shaping for clarity.</div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES / PRICING -->
   <section id="services">
     <div class="container">
-      <div class="section-title">
-        <h2 data-lang="en">Services</h2>
-        <h2 data-lang="ru">Услуги</h2>
-        <div class="hint" data-lang="en">Shorts that feel fast, clean, and watchable.</div>
-        <div class="hint" data-lang="ru">Шортсы, которые смотрятся быстро, чисто и до конца.</div>
+      <div class="head">
+        <h2 data-i18n="srvH">Services / Pricing</h2>
+        <p data-i18n="srvP">Clear packages, fast workflow, premium output.</p>
       </div>
 
-      <div class="cards3">
-        <div class="svc">
-          <h3 data-lang="en">Short-form editing</h3>
-          <h3 data-lang="ru">Монтаж коротких видео</h3>
-          <p data-lang="en">TikTok / Reels / Shorts built around hooks and retention.</p>
-          <p data-lang="ru">TikTok / Reels / Shorts с упором на хук и удержание.</p>
+      <div class="cols3">
+        <div class="block">
+          <div class="t" data-i18n="s1t">SHORT-FORM EDITING</div>
+          <div class="b" data-i18n="s1b">TikTok/Reels/Shorts: hooks, pacing, captions, emphasis. Designed for retention.</div>
         </div>
-
-        <div class="svc">
-          <h3 data-lang="en">Captions & retention</h3>
-          <h3 data-lang="ru">Субтитры и удержание</h3>
-          <p data-lang="en">Readable subtitles, emphasis, structure — made to keep viewers.</p>
-          <p data-lang="ru">Читаемые субтитры, акценты, структура — чтобы досматривали.</p>
+        <div class="block">
+          <div class="t" data-i18n="s2t">CAPTIONS</div>
+          <div class="b" data-i18n="s2b">Readable subtitles with hierarchy (keywords, timing, safe margins) for mobile viewing.</div>
         </div>
-
-        <div class="svc">
-          <h3 data-lang="en">AI-enhanced workflow</h3>
-          <h3 data-lang="ru">AI-технологии</h3>
-          <p data-lang="en">Speed + quality: cleanup, enhancement, automation.</p>
-          <p data-lang="ru">Скорость + качество: чистка, улучшение, автоматизация.</p>
+        <div class="block">
+          <div class="t" data-i18n="s3t">AI WORKFLOW</div>
+          <div class="b" data-i18n="s3b">AI-assisted cleanup, automation, faster iterations — without “cheap” look.</div>
         </div>
       </div>
 
-      <div style="margin-top:14px" class="pricing">
-        <div class="pricebox">
-          <div class="tabs" aria-label="Pricing tabs">
-            <button class="tab active" id="tabClient" type="button">Client</button>
-            <button class="tab" id="tabHiring" type="button">Hiring</button>
-          </div>
-          <div style="margin-top:14px" id="pricingClient">
-            <div class="big" data-lang="en">2,000 ₽ per premium short</div>
-            <div class="big" data-lang="ru">2 000 ₽ за хороший short</div>
-            <div class="sub" data-lang="en">Final price depends on complexity & volume.</div>
-            <div class="sub" data-lang="ru">Цена зависит от сложности и объёма.</div>
-          </div>
-          <div style="margin-top:14px; display:none" id="pricingHiring">
-            <div class="big" data-lang="en">Full-time: 80,000 ₽ / month</div>
-            <div class="big" data-lang="ru">Найм: 80 000 ₽ / месяц</div>
-            <div class="sub" data-lang="en">Open to roles (short-form + YouTube).</div>
-            <div class="sub" data-lang="ru">Открыт к ролям (shorts + YouTube).</div>
-          </div>
-        </div>
-
-        <div class="pricebox">
-          <div class="big" data-lang="en">Contact</div>
-          <div class="big" data-lang="ru">Контакты</div>
-          <div class="note"><a class="btn primary" href="https://t.me/tebyaebetdm" target="_blank" rel="noreferrer">Telegram</a> <a class="btn" href="mailto:alex.altukhov.s@gmail.com">Email</a></div>
+      <div style="margin-top:12px" class="block">
+        <div class="t" data-i18n="priceBoxT">PRICING SNAPSHOT</div>
+        <div class="b">
+          <span class="mono"><b>2,000 ₽</b></span> <span class="muted2" data-i18n="priceLine1">per premium short</span><br/>
+          <span class="mono"><b>80,000 ₽</b></span> <span class="muted2" data-i18n="priceLine2">per month (full-time)</span><br/><br/>
+          <span class="muted2" data-i18n="howStart">To start: send a clip + references + deadline. I can suggest hook variants and caption style.</span>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="before-after">
+  <!-- BEFORE/AFTER -->
+  <section id="beforeafter">
     <div class="container">
-      <div class="section-title">
-        <h2 data-lang="en">Before / After</h2>
-        <h2 data-lang="ru">До / После</h2>
-        <div class="hint" data-lang="en">Replace placeholders with your “raw vs edited” examples.</div>
-        <div class="hint" data-lang="ru">Заменишь заглушки на примеры “сырьё vs финал”.</div>
+      <div class="head">
+        <h2 data-i18n="baH">Before / After</h2>
+        <p data-i18n="baP">Placeholders — add pairs later (raw → final).</p>
       </div>
-      <div class="ba">
-        <div class="ba-item"><div class="row"><div class="mini">BEFORE (video)</div><div class="mini">AFTER (video)</div></div></div>
-        <div class="ba-item"><div class="row"><div class="mini">BEFORE (video)</div><div class="mini">AFTER (video)</div></div></div>
-        <div class="ba-item"><div class="row"><div class="mini">BEFORE (video)</div><div class="mini">AFTER (video)</div></div></div>
+
+      <div class="cols3">
+        <div class="block"><div class="t">PAIR #1</div><div class="b muted2">(add later)</div></div>
+        <div class="block"><div class="t">PAIR #2</div><div class="b muted2">(add later)</div></div>
+        <div class="block"><div class="t">PAIR #3</div><div class="b muted2">(add later)</div></div>
       </div>
     </div>
   </section>
 
+  <!-- PROOF / RESULTS -->
+  <section id="proof">
+    <div class="container">
+      <div class="head">
+        <h2 data-i18n="prH">Proof / Results</h2>
+        <p data-i18n="prP">Add screenshots of analytics: views, retention, CTR, watch time.</p>
+      </div>
+
+      <div class="cols3">
+        <div class="block"><div class="t">METRICS #1</div><div class="b muted2">(add later)</div></div>
+        <div class="block"><div class="t">RETENTION GRAPH</div><div class="b muted2">(add later)</div></div>
+        <div class="block"><div class="t">CLIENT RESULT</div><div class="b muted2">(add later)</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
   <section id="reviews">
     <div class="container">
-      <div class="section-title">
-        <h2 data-lang="en">Reviews</h2>
-        <h2 data-lang="ru">Отзывы</h2>
+      <div class="head">
+        <h2 data-i18n="rvH">Reviews</h2>
+        <p data-i18n="rvP">Add screenshots of testimonials later.</p>
       </div>
-      <div class="reviews">
-        <div class="review"><div class="img">Screenshot #1</div></div>
-        <div class="review"><div class="img">Screenshot #2</div></div>
-        <div class="review"><div class="img">Screenshot #3</div></div>
+
+      <div class="cols3">
+        <div class="block"><div class="t">REVIEW #1</div><div class="b muted2">(add later)</div></div>
+        <div class="block"><div class="t">REVIEW #2</div><div class="b muted2">(add later)</div></div>
+        <div class="block"><div class="t">REVIEW #3</div><div class="b muted2">(add later)</div></div>
       </div>
     </div>
   </section>
 
+  <!-- CONTACT -->
   <section id="contact">
     <div class="container">
-      <div class="section-title">
-        <h2 data-lang="en">Contact</h2>
-        <h2 data-lang="ru">Контакты</h2>
+      <div class="head">
+        <h2 data-i18n="ctH">Contact</h2>
+        <p data-i18n="ctP">Fastest: Telegram. Email works too.</p>
       </div>
-      <div class="card"><div class="card-inner">
-        <a class="btn primary" href="https://t.me/tebyaebetdm" target="_blank" rel="noreferrer">Telegram</a>
-        <a class="btn" href="mailto:alex.altukhov.s@gmail.com">Email</a>
-      </div></div>
+
+      <div class="block">
+        <div class="t" data-i18n="ctT">LET’S WORK</div>
+        <div class="b">
+          <span data-i18n="ctB1">Send a clip + references + deadline — I’ll propose hooks and caption style.</span><br/><br/>
+          <b>Telegram:</b> <a href="https://t.me/tebyaebetdm" target="_blank" rel="noreferrer">@tebyaebetdm</a><br/>
+          <b>Email:</b> <a href="mailto:alex.altukhov.s@gmail.com">alex.altukhov.s@gmail.com</a><br/><br/>
+          <a class="btn primary" href="https://t.me/tebyaebetdm" target="_blank" rel="noreferrer" data-i18n="ctaFinal">Hire me / Get a test edit</a>
+        </div>
+      </div>
     </div>
   </section>
 
   <footer>
-    <div class="container" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between">
-      <div>© <span id="year"></span> Alex A</div>
-      <div style="display:flex; gap:10px; align-items:center">
-        <a href="#top">↑ Top</a>
+    <div class="container">
+      <div class="row">
+        <div>© <span id="year"></span> Alex A</div>
+        <div class="muted2">Dark premium • Editorial feed • GitHub Pages</div>
       </div>
     </div>
   </footer>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+</main>
 
-    const btnEN = document.getElementById('btnEN');
-    const btnRU = document.getElementById('btnRU');
-    function setLang(lang){
-      document.body.classList.toggle('lang-en', lang === 'en');
-      document.body.classList.toggle('lang-ru', lang === 'ru');
-      btnEN.classList.toggle('active', lang === 'en');
-      btnRU.classList.toggle('active', lang === 'ru');
-      localStorage.setItem('lang', lang);
-    }
-    btnEN.addEventListener('click', () => setLang('en'));
-    btnRU.addEventListener('click', () => setLang('ru'));
-    const saved = localStorage.getItem('lang');
-    if(saved === 'ru' || saved === 'en') setLang(saved);
+<!-- Modal -->
+<div class="modal" id="modal" aria-hidden="true" role="dialog" aria-label="Video preview">
+  <div class="modalBox">
+    <div class="modalTop">
+      <span><b id="modalTitle">Preview</b> <span class="muted2" id="modalSub">—</span></span>
+      <button class="xbtn" id="modalClose" type="button" aria-label="Close">✕</button>
+    </div>
+    <video id="modalVideo" controls playsinline preload="metadata"></video>
+  </div>
+</div>
 
-    const tabClient = document.getElementById('tabClient');
-    const tabHiring = document.getElementById('tabHiring');
-    const pricingClient = document.getElementById('pricingClient');
-    const pricingHiring = document.getElementById('pricingHiring');
-    function setPricing(mode){
-      tabClient.classList.toggle('active', mode === 'client');
-      tabHiring.classList.toggle('active', mode === 'hiring');
-      pricingClient.style.display = mode === 'client' ? 'block' : 'none';
-      pricingHiring.style.display = mode === 'hiring' ? 'block' : 'none';
-    }
-    tabClient.addEventListener('click', () => setPricing('client'));
-    tabHiring.addEventListener('click', () => setPricing('hiring'));
+<!-- Floating CTA (mobile) -->
+<div class="floatCta" id="floatCta">
+  <div class="txt">
+    <div class="a" data-i18n="floatA">Ready to edit?</div>
+    <div class="b" data-i18n="floatB">Get a test edit today</div>
+  </div>
+  <div class="ctaBtns">
+    <a class="btn primary" href="https://t.me/tebyaebetdm" target="_blank" rel="noreferrer" data-i18n="floatBtn">Hire me</a>
+  </div>
+</div>
 
-    document.querySelectorAll('.work video').forEach(v => {
-      v.addEventListener('mouseenter', () => { try { v.play(); } catch(e){} });
-      v.addEventListener('mouseleave', () => { try { v.pause(); v.currentTime = 0; } catch(e){} });
+<script>
+  // ===== Year =====
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // ===== Mobile menu =====
+  const menuBtn = document.getElementById("menuBtn");
+  const mobileNav = document.getElementById("mobileNav");
+  menuBtn?.addEventListener("click", () => {
+    const open = mobileNav.style.display === "block";
+    mobileNav.style.display = open ? "none" : "block";
+    menuBtn.textContent = open ? "☰" : "✕";
+  });
+  mobileNav?.querySelectorAll("a").forEach(a => {
+    a.addEventListener("click", () => {
+      mobileNav.style.display = "none";
+      menuBtn.textContent = "☰";
     });
-  </script>
+  });
+
+  // ===== Hide header on scroll down (mobile-friendly) =====
+  const header = document.getElementById("header");
+  let lastY = window.scrollY;
+  window.addEventListener("scroll", () => {
+    const y = window.scrollY;
+    const goingDown = y > lastY;
+    const farEnough = y > 120;
+
+    if (window.innerWidth <= 760 && farEnough) {
+      header.classList.toggle("hide", goingDown);
+    } else {
+      header.classList.remove("hide");
+    }
+    lastY = y;
+  }, { passive: true });
+
+  // ===== Language (RU/EN) =====
+  const dict = {
+    en: {
+      role: "Short-form • YouTube • Stream clips",
+      navFeatured:"Featured", navBest:"Best 3", navLatest:"Latest", navServices:"Services", navBA:"Before/After", navProof:"Proof", navReviews:"Reviews", navContact:"Contact",
+      kicker:"Editor / Portfolio —",
+      heroTitle:"Short-form Video Editor<br/>for TikTok / Reels / Shorts",
+      heroLead:"Hooks, pacing, captions — designed for retention. I also edit YouTube videos and stream highlights. AI-enhanced workflow for speed and quality.",
+      ctaTest:"Get a test edit", ctaWorks:"See works",
+      speedK:"Speed", speedV:"1 min final ≈ 20–30 min edit",
+      capK:"Capacity", capV:"Min 6 clips/day",
+      toolsK:"Tools",
+      p1:"2,000 ₽", p1s:"/ premium short",
+      p2:"80,000 ₽", p2s:"/ month (full-time)",
+      availT:"AVAILABILITY",
+      availD:"<b>Open</b> for clients and full-time roles. Turnaround: <span class='muted'>same day / next day</span> (depends on volume).",
+      priceT:"PRICING",
+      priceD:"<b class='mono'>2,000 ₽</b> per short. Full-time: <b class='mono'>80,000 ₽</b>/month.",
+      needT:"WHAT I NEED FROM YOU",
+      needD:"Reference clips + brief + deadline. I can propose hook variants and caption style.",
+      featH:"Featured Reel",
+      featP:"Tap play — this is your “temporary showreel”. Replace later with a 30s reel if needed.",
+      featLabel:"Showreel",
+      featSub:"preload metadata • inline playback",
+      bestH:"Best 3 Clips",
+      bestP:"Top proof first. Click (desktop) to open lightbox, or play inline.",
+      latestH:"Latest Works",
+      latestP:"Filter by format. Videos load lazily as you scroll.",
+      fAll:"All", fStream:"Stream clips",
+      srvH:"Services / Pricing",
+      srvP:"Clear packages, fast workflow, premium output.",
+      s1t:"SHORT-FORM EDITING",
+      s1b:"TikTok/Reels/Shorts: hooks, pacing, captions, emphasis. Designed for retention.",
+      s2t:"CAPTIONS",
+      s2b:"Readable subtitles with hierarchy (keywords, timing, safe margins) for mobile viewing.",
+      s3t:"AI WORKFLOW",
+      s3b:"AI-assisted cleanup, automation, faster iterations — without “cheap” look.",
+      priceBoxT:"PRICING SNAPSHOT",
+      priceLine1:"per premium short",
+      priceLine2:"per month (full-time)",
+      howStart:"To start: send a clip + references + deadline. I can suggest hook variants and caption style.",
+      baH:"Before / After",
+      baP:"Placeholders — add pairs later (raw → final).",
+      prH:"Proof / Results",
+      prP:"Add screenshots of analytics: views, retention, CTR, watch time.",
+      rvH:"Reviews",
+      rvP:"Add screenshots of testimonials later.",
+      ctH:"Contact",
+      ctP:"Fastest: Telegram. Email works too.",
+      ctT:"LET’S WORK",
+      ctB1:"Send a clip + references + deadline — I’ll propose hooks and caption style.",
+      ctaFinal:"Hire me / Get a test edit",
+      floatA:"Ready to edit?",
+      floatB:"Get a test edit today",
+      floatBtn:"Hire me",
+      d1:"Tight pacing + readable captions for retention.",
+      d2:"Subtitle styling + rhythm — designed for watch time.",
+      d3:"Stream highlight cuts with emphasis and timing.",
+      l1:"Optimized pacing for retention + clean subtitle hierarchy.",
+      l2:"Captions + timing, built for fast scrolling feeds.",
+      l3:"Highlight storytelling: setup → payoff, trimmed cleanly.",
+      l4:"Cleaner flow and structure to reduce drop-off.",
+      l5:"Beat-matched edits + emphasis for key moments.",
+      l6:"Clean subtitles + sound shaping for clarity."
+    },
+    ru: {
+      role:"Shorts • YouTube • Нарезки со стримов",
+      navFeatured:"Шоурил", navBest:"Топ 3", navLatest:"Работы", navServices:"Услуги", navBA:"До/После", navProof:"Результаты", navReviews:"Отзывы", navContact:"Контакты",
+      kicker:"Монтажёр / Портфолио —",
+      heroTitle:"Монтажёр коротких видео<br/>TikTok / Reels / Shorts",
+      heroLead:"Хуки, темп, субтитры — под удержание. Также монтирую YouTube и хайлайты со стримов. AI-воркфлоу для скорости и качества.",
+      ctaTest:"Тестовый монтаж", ctaWorks:"Смотреть работы",
+      speedK:"Скорость", speedV:"1 мин финала ≈ 20–30 мин монтажа",
+      capK:"Объём", capV:"Мин. 6 роликов/день",
+      toolsK:"Инструменты",
+      p1:"2 000 ₽", p1s:"/ premium short",
+      p2:"80 000 ₽", p2s:"/ месяц (найм)",
+      availT:"ДОСТУПНОСТЬ",
+      availD:"<b>Открыт</b> для клиентов и найма. Срок: <span class='muted'>сегодня / завтра</span> (зависит от объёма).",
+      priceT:"ЦЕНЫ",
+      priceD:"<b class='mono'>2 000 ₽</b> за short. Найм: <b class='mono'>80 000 ₽</b>/мес.",
+      needT:"ЧТО НУЖНО ОТ ТЕБЯ",
+      needD:"Референсы + ТЗ + дедлайн. Могу предложить варианты хука и стиль субтитров.",
+      featH:"Шоурил",
+      featP:"Нажми play — это временный “шоурил”. Позже можно заменить на 30 секундный reel.",
+      featLabel:"Шоурил",
+      featSub:"preload metadata • inline playback",
+      bestH:"Топ 3 ролика",
+      bestP:"Самые сильные доказательства сверху. На ПК клик открывает модалку, либо смотри прямо в карточке.",
+      latestH:"Последние работы",
+      latestP:"Фильтруй по формату. Видео подгружаются лениво при скролле.",
+      fAll:"Все", fStream:"Нарезки",
+      srvH:"Услуги / Цены",
+      srvP:"Пакеты понятные, монтаж быстрый, результат премиальный.",
+      s1t:"МОНТАЖ SHORTS",
+      s1b:"TikTok/Reels/Shorts: хуки, темп, субтитры, акценты. Под удержание.",
+      s2t:"СУБТИТРЫ",
+      s2b:"Читаемые сабы с иерархией (ключевые слова, тайминг, safe-margins) под мобилу.",
+      s3t:"AI ВОРКФЛОУ",
+      s3b:"AI-помощь для чистки/ускорения/итераций — без “дешёвого” вида.",
+      priceBoxT:"ЦЕНЫ КОРОТКО",
+      priceLine1:"за premium short",
+      priceLine2:"в месяц (найм)",
+      howStart:"Для старта: клип + референсы + дедлайн. Я предложу варианты хука и стиль сабов.",
+      baH:"До / После",
+      baP:"Заглушки — потом добавишь пары (сырьё → финал).",
+      prH:"Результаты",
+      prP:"Добавь скриншоты аналитики: просмотры, удержание, CTR, watch time.",
+      rvH:"Отзывы",
+      rvP:"Позже добавь скриншоты отзывов.",
+      ctH:"Контакты",
+      ctP:"Быстрее всего — Telegram. Email тоже ок.",
+      ctT:"СВЯЗАТЬСЯ",
+      ctB1:"Отправь клип + референсы + дедлайн — предложу хуки и стиль субтитров.",
+      ctaFinal:"Нанять / Тестовый монтаж",
+      floatA:"Готов к монтажу?",
+      floatB:"Сделаю тест сегодня",
+      floatBtn:"Написать",
+      d1:"Темп + читаемые субтитры под удержание.",
+      d2:"Стиль сабов + ритм — под время просмотра.",
+      d3:"Нарезка хайлайтов со стримов: акценты и тайминг.",
+      l1:"Темп под удержание + чистая иерархия субтитров.",
+      l2:"Сабы + тайминг для быстрого скролла.",
+      l3:"История хайлайта: сетап → панчлайн.",
+      l4:"Чище структура и флоу — меньше отвалов.",
+      l5:"Монтаж по биту + акценты в ключевых местах.",
+      l6:"Чистые сабы + звук для читаемости."
+    }
+  };
+
+  const enBtn = document.getElementById("langEN");
+  const ruBtn = document.getElementById("langRU");
+
+  function applyLang(lang){
+    localStorage.setItem("lang", lang);
+    enBtn.classList.toggle("active", lang === "en");
+    ruBtn.classList.toggle("active", lang === "ru");
+
+    const t = dict[lang];
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      const key = el.getAttribute("data-i18n");
+      if (t[key] !== undefined) el.textContent = t[key];
+    });
+    document.querySelectorAll("[data-i18n-html]").forEach(el => {
+      const key = el.getAttribute("data-i18n-html");
+      if (t[key] !== undefined) el.innerHTML = t[key];
+    });
+    document.querySelectorAll("[data-i18n-html]").forEach(()=>{});
+    document.querySelectorAll("[data-i18n-html]").forEach(()=>{});
+
+    // allow html fields
+    document.querySelectorAll("[data-i18n-html]").forEach(el => {
+      const key = el.getAttribute("data-i18n-html");
+      if (t[key] !== undefined) el.innerHTML = t[key];
+    });
+    // html keys stored in data-i18n-html OR we also use data-i18n-html only for heroTitle
+    document.querySelectorAll("[data-i18n-html], [data-i18n]").forEach(el => {
+      const key = el.getAttribute("data-i18n-html") || el.getAttribute("data-i18n");
+      if (!key) return;
+      if (t[key] === undefined) return;
+      if (el.hasAttribute("data-i18n-html")) el.innerHTML = t[key];
+      else el.textContent = t[key];
+    });
+
+    // special html fields (avail/price)
+    document.querySelectorAll("[data-i18n-html]").forEach(el => {
+      const key = el.getAttribute("data-i18n-html");
+      if (t[key] !== undefined) el.innerHTML = t[key];
+    });
+    document.querySelectorAll("[data-i18n-html]").forEach(()=>{});
+    document.querySelectorAll("[data-i18n-html]").forEach(()=>{});
+
+    // apply html for specific elements that use data-i18n-html via attribute
+    document.querySelectorAll("[data-i18n-html]").forEach(el => {
+      const key = el.getAttribute("data-i18n-html");
+      if (t[key] !== undefined) el.innerHTML = t[key];
+    });
+  }
+
+  // We used data-i18n-html in some places but also set via data-i18n-html programmatically.
+  // To ensure those fields update, map their attributes:
+  document.querySelectorAll("[data-i18n-html]").forEach(el => {
+    // no-op (keeps attribute)
+  });
+
+  // Bind buttons
+  enBtn.addEventListener("click", () => applyLang("en"));
+  ruBtn.addEventListener("click", () => applyLang("ru"));
+
+  // Load saved language
+  applyLang(localStorage.getItem("lang") || "en");
+
+  // ===== Filters (Latest Works) =====
+  const chips = Array.from(document.querySelectorAll(".chip"));
+  const latestGrid = document.getElementById("latestGrid");
+
+  function setFilter(filter){
+    chips.forEach(c => c.classList.toggle("active", c.dataset.filter === filter));
+    latestGrid.querySelectorAll(".work").forEach(card => {
+      const ok = (filter === "all") || (card.dataset.cat === filter);
+      card.style.display = ok ? "" : "none";
+    });
+  }
+  chips.forEach(c => c.addEventListener("click", () => setFilter(c.dataset.filter)));
+  setFilter("all");
+
+  // ===== Lazy video loading (IntersectionObserver) =====
+  const allVideos = Array.from(document.querySelectorAll("video[data-src]"));
+  function loadVideo(v){
+    if (v.dataset.loaded) return;
+    v.src = v.dataset.src;
+    v.dataset.loaded = "1";
+  }
+  const io = ("IntersectionObserver" in window) ? new IntersectionObserver((entries)=>{
+    for (const e of entries){
+      if (e.isIntersecting){
+        loadVideo(e.target);
+        io.unobserve(e.target);
+      }
+    }
+  }, { rootMargin: "240px" }) : null;
+
+  allVideos.forEach(v => {
+    // featured showreel should load immediately
+    if (v.closest(".featured")) {
+      loadVideo(v);
+      return;
+    }
+    if (io) io.observe(v);
+    else loadVideo(v);
+  });
+
+  // ===== Pause other videos when one plays =====
+  function pauseOthers(current){
+    document.querySelectorAll("video").forEach(v => {
+      if (v !== current && !v.paused) v.pause();
+    });
+  }
+  document.addEventListener("play", (e) => {
+    const v = e.target;
+    if (v && v.tagName === "VIDEO") pauseOthers(v);
+  }, true);
+
+  // ===== Modal (desktop click) =====
+  const modal = document.getElementById("modal");
+  const modalVideo = document.getElementById("modalVideo");
+  const modalTitle = document.getElementById("modalTitle");
+  const modalSub = document.getElementById("modalSub");
+  const modalClose = document.getElementById("modalClose");
+
+  function openModal(src, title, cat){
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden", "false");
+    modalTitle.textContent = title || "Preview";
+    modalSub.textContent = cat ? ("— " + cat) : "—";
+    modalVideo.src = src;
+    modalVideo.currentTime = 0;
+    modalVideo.play().catch(()=>{});
+    document.body.style.overflow = "hidden";
+  }
+  function closeModal(){
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden", "true");
+    modalVideo.pause();
+    modalVideo.removeAttribute("src");
+    modalVideo.load();
+    document.body.style.overflow = "";
+  }
+
+  modalClose.addEventListener("click", closeModal);
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) closeModal();
+  });
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.classList.contains("open")) closeModal();
+  });
+
+  // Click on cards: desktop open modal, mobile just scroll/inline
+  function isDesktop(){ return window.matchMedia("(min-width: 900px)").matches; }
+
+  document.querySelectorAll(".work").forEach(card => {
+    card.addEventListener("click", (e) => {
+      // If user clicked controls, don't hijack
+      const isControl = e.target && (e.target.tagName === "VIDEO" || e.target.closest("video"));
+      if (isControl) return;
+
+      if (!isDesktop()) return;
+
+      const v = card.querySelector("video");
+      if (!v) return;
+      // ensure src loaded
+      if (v.dataset.src && !v.src) loadVideo(v);
+
+      const title = card.dataset.title || "Preview";
+      const cat = card.dataset.cat || "";
+      openModal(v.currentSrc || v.src, title, cat);
+    });
+  });
+
+  // ===== Floating CTA show/hide (mobile) =====
+  const floatCta = document.getElementById("floatCta");
+  function updateFloat(){
+    floatCta.style.display = (window.innerWidth <= 760) ? "flex" : "none";
+  }
+  window.addEventListener("resize", updateFloat);
+  updateFloat();
+</script>
+
 </body>
 </html>
