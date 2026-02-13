@@ -1,15 +1,15 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<meta content="Alex A (Александр Алтухов) — Video Editor &amp; Designer. Shorts/Reels/TikTok, YouTube, stream highlights, captions, thumbnails &amp; banners." name="description"/>
-<meta content="Alex A — Video Editor &amp; Designer (Shorts / YouTube / Design)" property="og:title"/>
-<meta content="Short-form editor + design: hooks, pacing, captions, thumbnails, banners. TikTok/Reels/Shorts, YouTube, stream highlights." property="og:description"/>
-<meta content="website" property="og:type"/>
-<meta content="#0b0d10" name="theme-color"/>
-<title>Alex A — Video Editor &amp; Designer Portfolio</title>
-<style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Alex A (Александр Алтухов) — Short-form Video Editor (TikTok/Reels/Shorts), YouTube, Stream Clips. Captions, hooks, pacing, AI workflow." />
+  <meta property="og:title" content="Alex A — Video Editor (Shorts / Reels / TikTok)" />
+  <meta property="og:description" content="Short-form video editor. Hooks, captions, pacing. TikTok/Reels/Shorts, YouTube, stream highlights." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0b0d10" />
+  <title>Alex A — Video Editor Portfolio</title>
+  <style>
     :root{
       --bg:#0b0d10;
       --text:#eef2f6;
@@ -407,503 +407,444 @@
     }
 
   
+    /* Video fallback links (if something doesn't play in-page) */
+    .open-link{
+      position:absolute; top:12px; left:12px;
+      z-index:5;
+      display:inline-flex; align-items:center; gap:6px;
+      padding:8px 10px;
+      border-radius:999px;
+      background:rgba(0,0,0,.55);
+      border:1px solid rgba(255,255,255,.15);
+      color:#fff;
+      font-size:12px;
+      text-decoration:none;
+      opacity:0;
+      transform:translateY(-4px);
+      transition:opacity .18s ease, transform .18s ease;
+      pointer-events:none;
+      backdrop-filter: blur(8px);
+    }
+    .thumb{ position:relative; }
+    .best-card{ position:relative; }
+    .video{ position:relative; }
+    .showreel-link{ opacity:1; pointer-events:auto; transform:none; }
+    .work:hover .open-link,
+    .best-card:hover .open-link{
+      opacity:1;
+      transform:none;
+      pointer-events:auto;
+    }
 
-    /* ---------- Works filters ---------- */
-    .filterbar{margin-top:12px; display:flex; gap:10px; flex-wrap:wrap}
-    .chip-btn{cursor:pointer; user-select:none}
-    .chip-btn:focus{outline:2px solid rgba(255,255,255,.35); outline-offset:2px}
-    .chip-btn.active{background:rgba(255,255,255,.10)}
-    .work[hidden]{display:none !important}
-
-    /* ---------- FAQ ---------- */
-    .faq{display:grid; grid-template-columns:1fr; gap:10px}
-    .faq-item{border:1px solid var(--line); border-radius:var(--radius2); background:rgba(255,255,255,.03); overflow:hidden}
-    .faq-item summary{list-style:none; cursor:pointer; padding:14px 16px; font-weight:900; display:flex; align-items:center; justify-content:space-between; gap:12px}
-    .faq-item summary::-webkit-details-marker{display:none}
-    .faq-item summary:after{content:"+"; color:var(--muted); font-weight:900}
-    .faq-item[open] summary:after{content:"–"}
-    .faq-body{padding:0 16px 14px 16px}
-    .faq-body p{margin:8px 0 0 0; color:var(--muted)}
-
-
-    /* data-lang spans should be inline in nav/buttons/summary */
-    body.lang-en .nav a [data-lang="en"],
-    body.lang-ru .nav a [data-lang="ru"],
-    body.lang-en .drawer a [data-lang="en"],
-    body.lang-ru .drawer a [data-lang="ru"],
-    body.lang-en .chip-btn [data-lang="en"],
-    body.lang-ru .chip-btn [data-lang="ru"],
-    body.lang-en summary [data-lang="en"],
-    body.lang-ru summary [data-lang="ru"]{display:inline}
-</style>
+  </style>
 </head>
 <body class="lang-en">
-<header class="topbar">
-<div class="container">
-<div class="topbar-inner">
-<div class="brand">
-<div aria-hidden="true" class="dot"></div>
-<div>
-<div class="brand-title">Alex A</div>
-<div class="brand-sub">Short-form • YouTube • Design</div>
-</div>
-</div>
-<nav aria-label="Sections" class="nav"><a href="#showreel"><span data-lang="en">Featured</span><span data-lang="ru">Шоурил</span></a><a href="#best3"><span data-lang="en">Best 3</span><span data-lang="ru">Топ 3</span></a><a href="#works"><span data-lang="en">Latest</span><span data-lang="ru">Работы</span></a><a href="#services"><span data-lang="en">Services</span><span data-lang="ru">Услуги</span></a><a href="#proof"><span data-lang="en">Proof</span><span data-lang="ru">Результаты</span></a><a href="#faq"><span data-lang="en">FAQ</span><span data-lang="ru">FAQ</span></a><a href="#contact"><span data-lang="en">Contact</span><span data-lang="ru">Контакты</span></a></nav>
-<div class="actions">
-<button aria-label="Menu" class="btn small" id="menuBtn" type="button">☰</button><div aria-label="Language" class="lang" role="group">
-<button class="active" id="btnEN" type="button">EN</button>
-<button id="btnRU" type="button">RU</button>
-</div>
-<a class="btn primary" href="https://t.me/tebyaebetdm" rel="noreferrer" target="_blank">Telegram</a>
-<a class="btn" href="mailto:alex.altukhov.s@gmail.com">Email</a>
-</div>
-</div>
-</div>
-</header>
-<!-- Mobile drawer -->
-<div aria-hidden="true" class="drawer" id="drawer">
-<div class="drawer-inner">
-<div class="drawer-top">
-<div class="drawer-title">Menu</div>
-<button aria-label="Close" class="btn small" id="menuClose" type="button">✕</button>
-</div>
-<div class="drawer-links"><a class="drawer-link" href="#showreel"><span data-lang="en">Featured</span><span data-lang="ru">Шоурил</span></a><a class="drawer-link" href="#best3"><span data-lang="en">Best 3</span><span data-lang="ru">Топ 3</span></a><a class="drawer-link" href="#works"><span data-lang="en">Latest works</span><span data-lang="ru">Работы</span></a><a class="drawer-link" href="#services"><span data-lang="en">Services</span><span data-lang="ru">Услуги</span></a><a class="drawer-link" href="#before-after"><span data-lang="en">Before/After</span><span data-lang="ru">До/После</span></a><a class="drawer-link" href="#proof"><span data-lang="en">Proof</span><span data-lang="ru">Результаты</span></a><a class="drawer-link" href="#reviews"><span data-lang="en">Reviews</span><span data-lang="ru">Отзывы</span></a><a class="drawer-link" href="#faq"><span data-lang="en">FAQ</span><span data-lang="ru">FAQ</span></a><a class="drawer-link" href="#contact"><span data-lang="en">Contact</span><span data-lang="ru">Контакты</span></a></div>
-<div class="drawer-cta">
-<a class="btn primary" href="https://t.me/tebyaebetdm" rel="noreferrer" target="_blank">Telegram</a>
-<a class="btn" href="mailto:alex.altukhov.s@gmail.com">Email</a>
-</div>
-</div>
-</div>
-<section class="hero" id="top">
-<div class="container">
-<div class="grid-hero">
-<div class="card">
-<div class="card-inner">
-<div data-lang="en">
-<h1>Short-form Video Editor<br/>for TikTok / Reels / Shorts</h1>
-<p class="lead">Fast pacing, clean captions, strong hooks — built for retention. I also edit YouTube videos and stream highlights. AI-enhanced workflow for speed and quality.</p>
-<div class="row-actions">
-<a class="btn primary" href="https://t.me/tebyaebetdm" rel="noreferrer" target="_blank">Get a test edit</a>
-<a class="btn" href="#works">See works</a>
-</div>
-<div aria-label="Highlights" class="chips">
-<div class="chip"><b>Speed:</b> 1 min final ≈ 20–30 min edit</div>
-<div class="chip"><b>Capacity:</b> up to 6 shorts/day</div>
-<div class="chip"><b>Tools:</b> CapCut • Premiere • AE • DaVinci</div>
-</div>
-<div class="stats">
-<div class="stat"><div class="k">Best for</div><div class="v">Hooks • Captions • Tempo</div></div>
-<div class="stat"><div class="k">Deliverables</div><div class="v">Shorts + subtitles + cover</div></div>
-</div>
-</div>
-<div data-lang="ru">
-<h1>Монтажёр коротких видео<br/>TikTok / Reels / Shorts</h1>
-<p class="lead">Динамика, читаемые субтитры, мощные хуки — для удержания с первых секунд. Также монтирую YouTube и хайлайты со стримов. Использую AI-инструменты для скорости и качества.</p>
-<div class="row-actions">
-<a class="btn primary" href="https://t.me/tebyaebetdm" rel="noreferrer" target="_blank">Сделать тестовый монтаж</a>
-<a class="btn" href="#works">Посмотреть работы</a>
-</div>
-<div aria-label="Highlights" class="chips">
-<div class="chip"><b>Скорость:</b> 1 мин финала ≈ 20–30 мин монтажа</div>
-<div class="chip"><b>Объём:</b> до 6 shorts/день</div>
-<div class="chip"><b>Инструменты:</b> CapCut • Premiere • AE • DaVinci</div>
-</div>
-<div class="stats">
-<div class="stat"><div class="k">Сильное</div><div class="v">Хуки • Сабы • Темп</div></div>
-<div class="stat"><div class="k">Выдаю</div><div class="v">Шортсы + субтитры + обложка</div></div>
-</div>
-</div>
-</div>
-</div>
-<div class="aside">
-<div class="panel">
-<h3 data-lang="en">Availability</h3>
-<h3 data-lang="ru">Доступность</h3>
-<p data-lang="en">Open for clients and full-time roles. Typical turnaround: same day / next day (depending on volume).</p>
-<p data-lang="ru">Открыт для клиентов и найма. Обычно делаю в тот же день / на следующий (зависит от объёма).</p>
-</div>
-<div class="panel">
-<h3 data-lang="en">Pricing</h3>
-<h3 data-lang="ru">Цены</h3>
-<p data-lang="en"><b>2,000 ₽</b> per premium short (client). Full-time: <b>80,000 ₽</b>/month.</p>
-<p data-lang="ru"><b>2 000 ₽</b> за хороший short (клиент). Найм: <b>80 000 ₽</b>/мес.</p>
-</div>
-<div class="panel">
-<h3 data-lang="en">What I need from you</h3>
-<h3 data-lang="ru">Что нужно от вас</h3>
-<p data-lang="en">Reference clips + brief + deadline. I can propose hook variants and caption style.</p>
-<p data-lang="ru">Референсы + ТЗ + дедлайн. Могу предложить варианты хука и стиля субтитров.</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="showreel">
-<div class="container">
-<div class="section-title">
-<h2 data-lang="en">Showreel (temporary)</h2>
-<h2 data-lang="ru">Шоурил (временно)</h2>
-<div class="hint" data-lang="en">For now, your first clip is here. When you have a 30s reel, replace the video file.</div>
-<div class="hint" data-lang="ru">Пока тут первый клип. Когда будет 30-сек шоурил — просто заменишь файл.</div>
-</div>
-<div aria-label="Showreel video" class="video">
-<video controls="" playsinline="" preload="metadata" src="assets/koktl.mp4"></video>
-<div class="overlay">
-<div class="badge" data-lang="en">Showreel placeholder</div>
-<div class="badge" data-lang="ru">Заглушка шоурила</div>
-</div>
-</div>
-</div>
-<!-- Best 3 clips (mobile-first) -->
-<div aria-label="Best clips" class="best3" id="best3">
-<div class="best3-head">
-<h3 data-lang="en">Best clips</h3>
-<h3 data-lang="ru">Лучшие клипы</h3>
-<div class="best3-hint" data-lang="en">Tap to play. Built for retention: hook → pacing → captions.</div>
-<div class="best3-hint" data-lang="ru">Нажми чтобы проиграть. Удержание: хук → темп → сабы.</div>
-</div>
-<div class="best3-grid">
-<div class="best-card">
-<div class="best-thumb">
-<video class="best-video" muted="" playsinline="" preload="metadata" src="assets/koktl.mp4"></video>
-<button aria-label="Play" class="playbtn" type="button">▶</button>
-</div>
-<div class="best-meta">
-<div class="best-title">koktl</div>
-<div class="best-tags"><span class="tag">Hook</span><span class="tag">Captions</span><span class="tag">Pace</span></div>
-</div>
-</div>
-<div class="best-card">
-<div class="best-thumb">
-<video class="best-video" muted="" playsinline="" preload="metadata" src="assets/inst4.mp4"></video>
-<button aria-label="Play" class="playbtn" type="button">▶</button>
-</div>
-<div class="best-meta">
-<div class="best-title">inst4</div>
-<div class="best-tags"><span class="tag">Subtitles</span><span class="tag">Rhythm</span></div>
-</div>
-</div>
-<div class="best-card">
-<div class="best-thumb">
-<video class="best-video" muted="" playsinline="" preload="metadata" src="assets/diz.mp4"></video>
-<button aria-label="Play" class="playbtn" type="button">▶</button>
-</div>
-<div class="best-meta">
-<div class="best-title">diz</div>
-<div class="best-tags"><span class="tag">SFX</span><span class="tag">Timing</span></div>
-</div>
-</div>
-</div>
-<div class="best3-note panel" style="margin-top:12px">
-<p data-lang="en"><b>Mobile tip:</b> If playback starts muted, tap the speaker in the player controls.</p>
-<p data-lang="ru"><b>Совет:</b> Если звук не слышно — включи его в контролах плеера.</p>
-</div>
-</div>
-</section>
-<section id="works">
-<div class="container">
-<div class="section-title">
-<h2 data-lang="en">Works</h2>
-<h2 data-lang="ru">Работы</h2>
-<div class="hint" data-lang="en">Filter by format. Mobile: tap to play • Desktop: click for preview.</div>
-<div class="hint" data-lang="ru">Фильтры по формату. Телефон: тап — проигрывание • ПК: клик — предпросмотр.</div>
-</div><div aria-label="Works filters" class="filterbar" role="group"><button aria-pressed="true" class="chip chip-btn active" data-filter="all" type="button"><span data-lang="en">All</span><span data-lang="ru">Все</span></button><button aria-pressed="false" class="chip chip-btn" data-filter="shorts" type="button"><span data-lang="en">Shorts</span><span data-lang="ru">Шортсы</span></button><button aria-pressed="false" class="chip chip-btn" data-filter="stream" type="button"><span data-lang="en">Stream clips</span><span data-lang="ru">Клипы со стримов</span></button><button aria-pressed="false" class="chip chip-btn" data-filter="youtube" type="button"><span data-lang="en">YouTube</span><span data-lang="ru">YouTube</span></button><button aria-pressed="false" class="chip chip-btn" data-filter="design" type="button"><span data-lang="en">Design</span><span data-lang="ru">Дизайн</span></button></div>
-<div class="works-grid">
-<div class="work" data-cat="shorts" data-src="assets/koktl.mp4">
-<div class="thumb"><video muted="" playsinline="" preload="metadata" src="assets/koktl.mp4"></video></div>
-<div class="meta"><div class="title">koktl</div><div class="tags"><span class="tag">Shorts</span><span class="tag">Hook</span><span class="tag">Captions</span><span class="tag">Pace</span></div></div>
-</div>
-<div class="work" data-cat="shorts" data-src="assets/inst4.mp4">
-<div class="thumb"><video muted="" playsinline="" preload="metadata" src="assets/inst4.mp4"></video></div>
-<div class="meta"><div class="title">inst4</div><div class="tags"><span class="tag">Shorts</span><span class="tag">Subtitles</span><span class="tag">Rhythm</span></div></div>
-</div>
-<div class="work" data-cat="stream" data-src="assets/diz.mp4">
-<div class="thumb"><video muted="" playsinline="" preload="metadata" src="assets/diz.mp4"></video></div>
-<div class="meta"><div class="title">diz</div><div class="tags"><span class="tag">Stream</span><span class="tag">SFX</span><span class="tag">Timing</span></div></div>
-</div>
-<div class="work" data-cat="youtube" data-src="assets/norm.mp4">
-<div class="thumb"><video muted="" playsinline="" preload="metadata" src="assets/norm.mp4"></video></div>
-<div class="meta"><div class="title">norm</div><div class="tags"><span class="tag">YouTube</span><span class="tag">Tempo</span><span class="tag">Flow</span></div></div>
-</div>
-<div class="work" data-cat="shorts" data-src="assets/LOVE.mp4">
-<div class="thumb"><video muted="" playsinline="" preload="metadata" src="assets/LOVE.mp4"></video></div>
-<div class="meta"><div class="title">LOVE</div><div class="tags"><span class="tag">Shorts</span><span class="tag">Highlights</span><span class="tag">Cuts</span></div></div>
-</div>
-<div class="work" data-cat="shorts" data-src="assets/pizza_tt.mp4">
-<div class="thumb"><video muted="" playsinline="" preload="metadata" src="assets/pizza_tt.mp4"></video></div>
-<div class="meta"><div class="title">pizza_tt</div><div class="tags"><span class="tag">Shorts</span><span class="tag">Audio</span><span class="tag">Clean</span></div></div>
-</div>
-<a class="work" data-cat="design" href="#" onclick="return false;">
-<div class="thumb" style="display:flex;align-items:center;justify-content:center;color:var(--muted)">Add design #1</div>
-<div class="meta"><div class="title">Design sample #1</div><div class="tags"><span class="tag">Design</span><span class="tag">Add tags</span></div></div>
-</a>
-<a class="work" data-cat="design" href="#" onclick="return false;">
-<div class="thumb" style="display:flex;align-items:center;justify-content:center;color:var(--muted)">Add design #2</div>
-<div class="meta"><div class="title">Design sample #2</div><div class="tags"><span class="tag">Design</span><span class="tag">Add tags</span></div></div>
-</a>
-<a class="work" data-cat="design" href="#" onclick="return false;">
-<div class="thumb" style="display:flex;align-items:center;justify-content:center;color:var(--muted)">Add design #3</div>
-<div class="meta"><div class="title">Design sample #3</div><div class="tags"><span class="tag">Design</span><span class="tag">Add tags</span></div></div>
-</a>
-<a class="work" data-cat="design" href="#" onclick="return false;">
-<div class="thumb" style="display:flex;align-items:center;justify-content:center;color:var(--muted)">Add design #4</div>
-<div class="meta"><div class="title">Design sample #4</div><div class="tags"><span class="tag">Design</span><span class="tag">Add tags</span></div></div>
-</a>
-</div>
-</div>
-</section>
-<section id="services">
-<div class="container">
-<div class="section-title">
-<h2 data-lang="en">Services</h2>
-<h2 data-lang="ru">Услуги</h2>
-<div class="hint" data-lang="en">Clear packages, fast workflow, premium output.</div>
-<div class="hint" data-lang="ru">Понятные пакеты, быстрый процесс, премиальный результат.</div>
-</div>
-<div class="cards3"><div class="svc"><h3 data-lang="en">Short-form editing</h3><h3 data-lang="ru">Монтаж коротких видео</h3><p data-lang="en">TikTok/Reels/Shorts: hooks, pacing, captions. Designed for retention.</p><p data-lang="ru">TikTok/Reels/Shorts: хук, темп, субтитры. Для удержания.</p></div><div class="svc"><h3 data-lang="en">YouTube editing</h3><h3 data-lang="ru">Монтаж YouTube</h3><p data-lang="en">Structure, pacing, clean audio, b-roll, chapters. Reduce drop-off.</p><p data-lang="ru">Структура, темп, чистый звук, вставки, главы. Чтобы не уходили.</p></div><div class="svc"><h3 data-lang="en">Captions &amp; subtitles</h3><h3 data-lang="ru">Субтитры и читаемость</h3><p data-lang="en">Readable subtitles with hierarchy: keywords, timing, safe margins.</p><p data-lang="ru">Читаемые сабы с иерархией: ключевые слова, тайминг, безопасные поля.</p></div><div class="svc"><h3 data-lang="en">Thumbnails &amp; banners</h3><h3 data-lang="ru">Превью и баннеры</h3><p data-lang="en">YouTube thumbnails, channel banners, social covers — clear, clickable.</p><p data-lang="ru">Превью YouTube, баннеры, обложки — чисто и кликабельно.</p></div><div class="svc"><h3 data-lang="en">Ad creatives (static)</h3><h3 data-lang="ru">Рекламные креативы</h3><p data-lang="en">Banners for ads/social: packs, A/B variants, fast iterations in Canva/Figma.</p><p data-lang="ru">Баннеры для рекламы/соцсетей: пакеты, A/B варианты, быстро в Canva/Figma.</p></div><div class="svc"><h3 data-lang="en">Telegram channel support</h3><h3 data-lang="ru">Поддержка Telegram-каналов</h3><p data-lang="en">Content plan, posting, basic analytics, ad placements (by agreement).</p><p data-lang="ru">Контент-план, постинг, базовая аналитика, размещения (по договорённости).</p></div></div>
-<div class="pricing" style="margin-top:14px">
-<div class="pricebox">
-<div aria-label="Pricing tabs" class="tabs"><button class="tab active" id="tabVideo" type="button">Video</button><button class="tab" id="tabDesign" type="button">Design</button><button class="tab" id="tabTelegram" type="button">Telegram</button><button class="tab" id="tabHiring" type="button">Hiring</button></div>
-<div id="pricingVideo" style="margin-top:14px"><div class="big" data-lang="en">2,000 ₽ per premium short</div><div class="big" data-lang="ru">2 000 ₽ за премиум short</div><div class="sub" data-lang="en">Shorts/Reels/TikTok. Price depends on complexity &amp; volume.</div><div class="sub" data-lang="ru">Shorts/Reels/TikTok. Цена зависит от сложности и объёма.</div><ul class="list"><li><span data-lang="en">Includes: subtitles + sound cleanup + export 1080×1920.</span><span data-lang="ru">Входит: субтитры + чистка звука + экспорт 1080×1920.</span></li><li><span data-lang="en">Turnaround: same day / next day.</span><span data-lang="ru">Срок: сегодня / завтра.</span></li><li><span data-lang="en">Optional: thumbnail/cover.</span><span data-lang="ru">Опционально: превью/обложка.</span></li></ul></div><div id="pricingDesign" style="margin-top:14px; display:none"><div class="big" data-lang="en">500 ₽ — thumbnail / banner (from)</div><div class="big" data-lang="ru">от 500 ₽ — превью / баннер</div><div class="sub" data-lang="en">YouTube thumbnails, covers, ad banners. Packs available.</div><div class="sub" data-lang="ru">Превью YouTube, обложки, баннеры. Есть пакеты.</div><ul class="list"><li><span data-lang="en">1–3 variants + source file (PSD/FIG/PNG).</span><span data-lang="ru">1–3 варианта + исходник (PSD/FIG/PNG).</span></li><li><span data-lang="en">Fast: within 24h for simple tasks.</span><span data-lang="ru">Быстро: до 24ч для простых задач.</span></li><li><span data-lang="en">Style: minimal / meme / blogger (your choice).</span><span data-lang="ru">Стиль: минимал / мем / блогерский (как надо).</span></li></ul></div><div id="pricingTelegram" style="margin-top:14px; display:none"><div class="big" data-lang="en">2,000 ₽ / day (channel support)</div><div class="big" data-lang="ru">2 000 ₽ / день (поддержка канала)</div><div class="sub" data-lang="en">Content plan + posting + basic analytics. 30-day packages.</div><div class="sub" data-lang="ru">Контент-план + постинг + базовая аналитика. Пакеты на 30 дней.</div><ul class="list"><li><span data-lang="en">Daily posting according to plan (agreed style).</span><span data-lang="ru">Ежедневные посты по плану (согласованный стиль).</span></li><li><span data-lang="en">Weekly report: growth, reach, best posts.</span><span data-lang="ru">Еженедельный отчёт: рост, охваты, топ посты.</span></li><li><span data-lang="en">Ad placements: by agreement (no shady schemes).</span><span data-lang="ru">Размещения: по договорённости (без серых схем).</span></li></ul></div><div id="pricingHiring" style="margin-top:14px; display:none"><div class="big" data-lang="en">Full-time: 80,000 ₽ / month</div><div class="big" data-lang="ru">Найм: 80 000 ₽ / месяц</div><div class="sub" data-lang="en">Open to roles (short-form + YouTube + design).</div><div class="sub" data-lang="ru">Открыт к ролям (shorts + YouTube + дизайн).</div></div>
-</div>
-<div class="pricebox">
-<div class="big" data-lang="en">Contact</div>
-<div class="big" data-lang="ru">Контакты</div>
-<div class="note"><a class="btn primary" href="https://t.me/tebyaebetdm" rel="noreferrer" target="_blank">Telegram</a> <a class="btn" href="mailto:alex.altukhov.s@gmail.com">Email</a></div>
-</div>
-</div>
-</div>
-</section>
-<section id="process">
-<div class="container">
-<div class="section-title">
-<h2 data-lang="en">Process</h2>
-<h2 data-lang="ru">Процесс</h2>
-<div class="hint" data-lang="en">Predictable workflow: you know what happens next.</div>
-<div class="hint" data-lang="ru">Предсказуемо: вы всегда понимаете, что дальше.</div>
-</div>
-<div class="cards3">
-<div class="svc">
-<h3 data-lang="en">1) Brief &amp; references (10 min)</h3>
-<h3 data-lang="ru">1) ТЗ и референсы (10 мин)</h3>
-<p data-lang="en">You send a clip + 2–3 references + deadline. I confirm style and deliverables.</p>
-<p data-lang="ru">Вы присылаете исходник + 2–3 референса + дедлайн. Я фиксирую стиль и выдачу.</p>
-</div>
-<div class="svc">
-<h3 data-lang="en">2) Hook &amp; structure</h3>
-<h3 data-lang="ru">2) Хук и структура</h3>
-<p data-lang="en">I propose 1–3 hook options (first 1–2 sec) and a pacing plan.</p>
-<p data-lang="ru">Предлагаю 1–3 варианта хука (первые 1–2 сек) и план темпа.</p>
-</div>
-<div class="svc">
-<h3 data-lang="en">3) Edit → captions → polish</h3>
-<h3 data-lang="ru">3) Монтаж → сабы → полировка</h3>
-<p data-lang="en">Clean cuts, sound, subtitles, emphasis, export for platform.</p>
-<p data-lang="ru">Чистые склейки, звук, субтитры, акценты, экспорт под площадку.</p>
-</div>
-<div class="svc">
-<h3 data-lang="en">4) Delivery + 1 revision</h3>
-<h3 data-lang="ru">4) Сдача + 1 правка</h3>
-<p data-lang="en">You get the final files + sources if needed. One revision included.</p>
-<p data-lang="ru">Отдаю финалы + исходники при необходимости. 1 правка включена.</p>
-</div>
-<div class="svc">
-<h3 data-lang="en">5) Pack for consistency</h3>
-<h3 data-lang="ru">5) Пакет для стабильности</h3>
-<p data-lang="en">For channels: weekly/monthly packs to keep style consistent.</p>
-<p data-lang="ru">Для каналов: недельные/месячные пакеты, чтобы стиль был единым.</p>
-</div>
-<div class="svc">
-<h3 data-lang="en">6) Optional: design &amp; Telegram</h3>
-<h3 data-lang="ru">6) Опция: дизайн и Telegram</h3>
-<p data-lang="en">Thumbnails/banners and channel posting/analytics — in one workflow.</p>
-<p data-lang="ru">Превью/баннеры и постинг/аналитика канала — в одном процессе.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="before-after">
-<div class="container">
-<div class="section-title">
-<h2 data-lang="en">Before / After</h2>
-<h2 data-lang="ru">До / После</h2>
-<div class="hint" data-lang="en">Replace placeholders with your “raw vs edited” examples.</div>
-<div class="hint" data-lang="ru">Заменишь заглушки на примеры “сырьё vs финал”.</div>
-</div>
-<div class="ba">
-<div class="ba-item"><div class="row"><div class="mini">BEFORE (video)</div><div class="mini">AFTER (video)</div></div></div>
-<div class="ba-item"><div class="row"><div class="mini">BEFORE (video)</div><div class="mini">AFTER (video)</div></div></div>
-<div class="ba-item"><div class="row"><div class="mini">BEFORE (video)</div><div class="mini">AFTER (video)</div></div></div>
-</div>
-</div>
-</section>
-<section id="proof">
-<div class="container">
-<div class="section-title">
-<h2 data-lang="en">Proof / Results</h2>
-<h2 data-lang="ru">Доказательства / Результаты</h2>
-<div class="hint" data-lang="en">Add screenshots of analytics: views, retention, CTR, watch time.</div>
-<div class="hint" data-lang="ru">Добавь скрины статистики: просмотры, удержание, CTR, watch time.</div>
-</div>
-<div aria-label="Proof grid" class="proof">
-<div class="proof-item">
-<div class="proof-k" data-lang="en">Metrics #1</div>
-<div class="proof-k" data-lang="ru">Метрики #1</div>
-<div class="proof-v" data-lang="en">(add later)</div>
-<div class="proof-v" data-lang="ru">(добавить)</div>
-<div class="tile ph" data-lang="en" style="margin-top:10px">Drop image 1080×1920</div>
-<div class="tile ph" data-lang="ru" style="margin-top:10px">Сюда картинку 1080×1920</div>
-</div>
-<div class="proof-item">
-<div class="proof-k" data-lang="en">Retention graph</div>
-<div class="proof-k" data-lang="ru">График удержания</div>
-<div class="proof-v" data-lang="en">(add later)</div>
-<div class="proof-v" data-lang="ru">(добавить)</div>
-<div class="tile ph" data-lang="en" style="margin-top:10px">Drop image 1080×1920</div>
-<div class="tile ph" data-lang="ru" style="margin-top:10px">Сюда картинку 1080×1920</div>
-</div>
-<div class="proof-item">
-<div class="proof-k" data-lang="en">Client result</div>
-<div class="proof-k" data-lang="ru">Результат клиента</div>
-<div class="proof-v" data-lang="en">(add later)</div>
-<div class="proof-v" data-lang="ru">(добавить)</div>
-<div class="tile ph" data-lang="en" style="margin-top:10px">Drop image 1080×1920</div>
-<div class="tile ph" data-lang="ru" style="margin-top:10px">Сюда картинку 1080×1920</div>
-</div>
-</div>
-</div>
-</section>
-<section id="reviews">
-<div class="container">
-<div class="section-title">
-<h2 data-lang="en">Reviews</h2>
-<h2 data-lang="ru">Отзывы</h2>
-</div>
-<div class="reviews">
-<div class="review"><div class="img">Screenshot #1</div></div>
-<div class="review"><div class="img">Screenshot #2</div></div>
-<div class="review"><div class="img">Screenshot #3</div></div>
-</div>
-</div>
-</section>
-<section id="faq">
-<div class="container">
-<div class="section-title">
-<h2 data-lang="en">FAQ</h2>
-<h2 data-lang="ru">Вопросы</h2>
-<div class="hint" data-lang="en">Quick answers to the common “how does it work?” questions.</div>
-<div class="hint" data-lang="ru">Коротко отвечаю на самые частые вопросы.</div>
-</div>
-<div aria-label="FAQ list" class="faq">
-<details class="faq-item">
-<summary>
-<span data-lang="en">Do you do a test edit?</span>
-<span data-lang="ru">Делаешь тестовый монтаж?</span>
-</summary>
-<div class="faq-body">
-<p data-lang="en">Yes. Send one clip + references + deadline — I’ll do a short test edit to confirm style.</p>
-<p data-lang="ru">Да. Пришлите один клип + референсы + дедлайн — сделаю короткий тест, чтобы согласовать стиль.</p>
-</div>
-</details>
-<details class="faq-item">
-<summary>
-<span data-lang="en">What do you need from me to start?</span>
-<span data-lang="ru">Что нужно от меня для старта?</span>
-</summary>
-<div class="faq-body">
-<p data-lang="en">Source clip(s), platform (TikTok/Shorts/Reels/YouTube), 2–3 references, and target length.</p>
-<p data-lang="ru">Исходники, площадка (TikTok/Shorts/Reels/YouTube), 2–3 референса и нужная длительность.</p>
-</div>
-</details>
-<details class="faq-item">
-<summary>
-<span data-lang="en">How fast is delivery?</span>
-<span data-lang="ru">Как быстро сдаёшь?</span>
-</summary>
-<div class="faq-body">
-<p data-lang="en">Shorts are usually same day / next day (depends on queue and complexity).</p>
-<p data-lang="ru">Шортсы обычно в тот же день / на следующий (зависит от очереди и сложности).</p>
-</div>
-</details>
-<details class="faq-item">
-<summary>
-<span data-lang="en">Do you do thumbnails / banners too?</span>
-<span data-lang="ru">Делаешь превью / баннеры?</span>
-</summary>
-<div class="faq-body">
-<p data-lang="en">Yes. I can deliver thumbnail packs and A/B variants in the same style as your channel.</p>
-<p data-lang="ru">Да. Могу делать пакеты превью и A/B варианты в стиле вашего канала.</p>
-</div>
-</details>
-<details class="faq-item">
-<summary>
-<span data-lang="en">Payment &amp; receipts?</span>
-<span data-lang="ru">Оплата и чеки?</span>
-</summary>
-<div class="faq-body">
-<p data-lang="en">Card / SBP / crypto. If needed — self-employed receipt (I can send a чек).</p>
-<p data-lang="ru">Карта / СБП / крипта. Если нужно — чек самозанятого (могу выдавать чек).</p>
-</div>
-</details>
-<details class="faq-item">
-<summary>
-<span data-lang="en">Will you work with copyrighted content?</span>
-<span data-lang="ru">Работаешь с контентом и правами?</span>
-</summary>
-<div class="faq-body">
-<p data-lang="en">I edit your materials or materials you have rights to use. If something is risky — I’ll suggest a safer approach.</p>
-<p data-lang="ru">Работаю с вашими материалами или тем, на что у вас есть права. Если риск — предложу безопасный вариант.</p>
-</div>
-</details>
-</div>
-</div>
-</section>
-<section id="contact">
-<div class="container">
-<div class="section-title">
-<h2 data-lang="en">Contact</h2>
-<h2 data-lang="ru">Контакты</h2>
-</div>
-<div class="card"><div class="card-inner">
-<a class="btn primary" href="https://t.me/tebyaebetdm" rel="noreferrer" target="_blank">Telegram</a>
-<a class="btn" href="mailto:alex.altukhov.s@gmail.com">Email</a>
-</div></div>
-</div>
-</section>
-<footer>
-<div class="container" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between">
-<div>© <span id="year"></span> Alex A</div>
-<div style="display:flex; gap:10px; align-items:center">
-<a href="#top">↑ Top</a>
-</div>
-</div>
-</footer>
-<!-- Video modal (desktop preview) -->
-<div aria-hidden="true" class="vmodal" id="vModal">
-<div class="vmodal-backdrop" id="vModalBackdrop"></div>
-<div aria-label="Video preview" class="vmodal-inner" role="dialog">
-<div class="vmodal-top">
-<div class="vmodal-title" id="vModalTitle">Preview</div>
-<button aria-label="Close" class="btn small" id="vModalClose" type="button">✕</button>
-</div>
-<div class="vmodal-video">
-<video controls="" id="vModalVideo" playsinline="" preload="metadata"></video>
-</div>
-</div>
-</div>
-<!-- Mobile floating CTA -->
-<div aria-label="Quick contact" class="float-cta" id="floatCta">
-<a class="float-btn primary" href="https://t.me/tebyaebetdm" rel="noreferrer" target="_blank">
-<span data-lang="en">Get a test edit</span>
-<span data-lang="ru">Тестовый монтаж</span>
-</a>
-<a class="float-btn" href="#contact">
-<span data-lang="en">Hire me</span>
-<span data-lang="ru">Нанять</span>
-</a>
-</div>
+  <header class="topbar">
+    <div class="container">
+      <div class="topbar-inner">
+        <div class="brand">
+          <div class="dot" aria-hidden="true"></div>
+          <div>
+            <div class="brand-title">Alex A</div>
+            <div class="brand-sub">Short-form • YouTube • Stream clips</div>
+          </div>
+        </div>
+
+        <nav class="nav" aria-label="Sections">
+          <a href="#showreel">Showreel</a>
+          <a href="#works">Works</a>
+          <a href="#services">Services</a>
+          <a href="#before-after">Before/After</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="actions">
+          
+          <button class="btn small" id="menuBtn" type="button" aria-label="Menu">☰</button><div class="lang" role="group" aria-label="Language">
+            <button class="active" id="btnEN" type="button">EN</button>
+            <button id="btnRU" type="button">RU</button>
+          </div>
+          <a class="btn primary" href="https://t.me/tebyaebetdm" target="_blank" rel="noreferrer">Telegram</a>
+          <a class="btn" href="mailto:alex.altukhov.s@gmail.com">Email</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile drawer -->
+  <div class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawer-inner">
+      <div class="drawer-top">
+        <div class="drawer-title">Menu</div>
+        <button class="btn small" id="menuClose" type="button" aria-label="Close">✕</button>
+      </div>
+      <div class="drawer-links">
+        <a href="#showreel" class="drawer-link">Showreel</a>
+        <a href="#works" class="drawer-link">Works</a>
+        <a href="#services" class="drawer-link">Services</a>
+        <a href="#before-after" class="drawer-link">Before/After</a>
+        <a href="#reviews" class="drawer-link">Reviews</a>
+        <a href="#contact" class="drawer-link">Contact</a>
+      </div>
+      <div class="drawer-cta">
+        <a class="btn primary" href="https://t.me/tebyaebetdm" target="_blank" rel="noreferrer">Telegram</a>
+        <a class="btn" href="mailto:alex.altukhov.s@gmail.com">Email</a>
+      </div>
+    </div>
+  </div>
+
+
+  <section class="hero" id="top">
+    <div class="container">
+      <div class="grid-hero">
+        <div class="card">
+          <div class="card-inner">
+            <div data-lang="en">
+              <h1>Short-form Video Editor<br/>for TikTok / Reels / Shorts</h1>
+              <p class="lead">Fast pacing, clean captions, strong hooks — built for retention. I also edit YouTube videos and stream highlights. AI-enhanced workflow for speed and quality.</p>
+              <div class="row-actions">
+                <a class="btn primary" href="https://t.me/tebyaebetdm" target="_blank" rel="noreferrer">Get a test edit</a>
+                <a class="btn" href="#works">See works</a>
+              </div>
+              <div class="chips" aria-label="Highlights">
+                <div class="chip"><b>Speed:</b> 1 min final ≈ 20–30 min edit</div>
+                <div class="chip"><b>Capacity:</b> up to 6 shorts/day</div>
+                <div class="chip"><b>Tools:</b> CapCut • Premiere • AE • DaVinci</div>
+              </div>
+              <div class="stats">
+                <div class="stat"><div class="k">Best for</div><div class="v">Hooks • Captions • Tempo</div></div>
+                <div class="stat"><div class="k">Deliverables</div><div class="v">Shorts + subtitles + cover</div></div>
+              </div>
+            </div>
+
+            <div data-lang="ru">
+              <h1>Монтажёр коротких видео<br/>TikTok / Reels / Shorts</h1>
+              <p class="lead">Динамика, читаемые субтитры, мощные хуки — для удержания с первых секунд. Также монтирую YouTube и хайлайты со стримов. Использую AI-инструменты для скорости и качества.</p>
+              <div class="row-actions">
+                <a class="btn primary" href="https://t.me/tebyaebetdm" target="_blank" rel="noreferrer">Сделать тестовый монтаж</a>
+                <a class="btn" href="#works">Посмотреть работы</a>
+              </div>
+              <div class="chips" aria-label="Highlights">
+                <div class="chip"><b>Скорость:</b> 1 мин финала ≈ 20–30 мин монтажа</div>
+                <div class="chip"><b>Объём:</b> до 6 shorts/день</div>
+                <div class="chip"><b>Инструменты:</b> CapCut • Premiere • AE • DaVinci</div>
+              </div>
+              <div class="stats">
+                <div class="stat"><div class="k">Сильное</div><div class="v">Хуки • Сабы • Темп</div></div>
+                <div class="stat"><div class="k">Выдаю</div><div class="v">Шортсы + субтитры + обложка</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="aside">
+          <div class="panel">
+            <h3 data-lang="en">Availability</h3>
+            <h3 data-lang="ru">Доступность</h3>
+            <p data-lang="en">Open for clients and full-time roles. Typical turnaround: same day / next day (depending on volume).</p>
+            <p data-lang="ru">Открыт для клиентов и найма. Обычно делаю в тот же день / на следующий (зависит от объёма).</p>
+          </div>
+          <div class="panel">
+            <h3 data-lang="en">Pricing</h3>
+            <h3 data-lang="ru">Цены</h3>
+            <p data-lang="en"><b>2,000 ₽</b> per premium short (client). Full-time: <b>80,000 ₽</b>/month.</p>
+            <p data-lang="ru"><b>2 000 ₽</b> за хороший short (клиент). Найм: <b>80 000 ₽</b>/мес.</p>
+          </div>
+          <div class="panel">
+            <h3 data-lang="en">What I need from you</h3>
+            <h3 data-lang="ru">Что нужно от вас</h3>
+            <p data-lang="en">Reference clips + brief + deadline. I can propose hook variants and caption style.</p>
+            <p data-lang="ru">Референсы + ТЗ + дедлайн. Могу предложить варианты хука и стиля субтитров.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="showreel">
+    <div class="container">
+      <div class="section-title">
+        <h2 data-lang="en">Showreel (temporary)</h2>
+        <h2 data-lang="ru">Шоурил (временно)</h2>
+        <div class="hint" data-lang="en">For now, your first clip is here. When you have a 30s reel, replace the video file.</div>
+        <div class="hint" data-lang="ru">Пока тут первый клип. Когда будет 30-сек шоурил — просто заменишь файл.</div>
+      </div>
+
+      <div class="video" aria-label="Showreel video">
+        <a class="open-link showreel-link" href="assets/videos/koktl.mp4?v=20260213" target="_blank" rel="noopener">Открыть шоурил</a>
+        <video src="assets/videos/koktl.mp4?v=20260213" controls playsinline preload="metadata"></video>
+        <div class="overlay">
+          <div class="badge" data-lang="en">Showreel placeholder</div>
+          <div class="badge" data-lang="ru">Заглушка шоурила</div>
+        </div>
+      </div>
+    </div>
+      <!-- Best 3 clips (mobile-first) -->
+      <div class="best3" aria-label="Best clips">
+        <div class="best3-head">
+          <h3 data-lang="en">Best clips</h3>
+          <h3 data-lang="ru">Лучшие клипы</h3>
+          <div class="best3-hint" data-lang="en">Tap to play. Built for retention: hook → pacing → captions.</div>
+          <div class="best3-hint" data-lang="ru">Нажми чтобы проиграть. Удержание: хук → темп → сабы.</div>
+        </div>
+
+        <div class="best3-grid">
+          <div class="best-card">
+            <div class="best-thumb">
+              <video class="best-video" src="assets/videos/koktl.mp4?v=20260213" playsinline preload="metadata" muted></video>
+              <button class="playbtn" type="button" aria-label="Play">▶</button>
+            </div>
+            <div class="best-meta">
+              <div class="best-title">koktl</div>
+              <div class="best-tags"><span class="tag">Hook</span><span class="tag">Captions</span><span class="tag">Pace</span></div>
+            </div>
+          </div>
+
+          <div class="best-card">
+            <div class="best-thumb">
+              <video class="best-video" src="assets/videos/inst4.mp4?v=20260213" playsinline preload="metadata" muted></video>
+              <button class="playbtn" type="button" aria-label="Play">▶</button>
+            </div>
+            <div class="best-meta">
+              <div class="best-title">inst4</div>
+              <div class="best-tags"><span class="tag">Subtitles</span><span class="tag">Rhythm</span></div>
+            </div>
+          </div>
+
+          <div class="best-card">
+            <div class="best-thumb">
+              <video class="best-video" src="assets/videos/diz.mp4?v=20260213" playsinline preload="metadata" muted></video>
+              <button class="playbtn" type="button" aria-label="Play">▶</button>
+            </div>
+            <div class="best-meta">
+              <div class="best-title">diz</div>
+              <div class="best-tags"><span class="tag">SFX</span><span class="tag">Timing</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="best3-note panel" style="margin-top:12px">
+          <p data-lang="en"><b>Mobile tip:</b> If playback starts muted, tap the speaker in the player controls.</p>
+          <p data-lang="ru"><b>Совет:</b> Если звук не слышно — включи его в контролах плеера.</p>
+        </div>
+      </div>
+
+  </section>
+
+  <section id="works">
+    <div class="container">
+      <div class="section-title">
+        <h2 data-lang="en">Works</h2>
+        <h2 data-lang="ru">Работы</h2>
+        <div class="hint" data-lang="en">Tap to play (mobile) • Click to preview (desktop).</div>
+        <div class="hint" data-lang="ru">На телефоне — тап и проигрывание • На ПК — клик для предпросмотра.</div>
+      </div>
+
+      <div class="works-grid">
+        <div class="work" data-src="assets/videos/koktl.mp4?v=20260213">
+          <div class="thumb"><a class="open-link" href="assets/videos/koktl.mp4?v=20260213" target="_blank" rel="noopener">Открыть видео</a>
+          <video src="assets/videos/koktl.mp4?v=20260213" muted playsinline preload="metadata"></video></div>
+          <div class="meta"><div class="title">koktl</div><div class="tags"><span class="tag">Hook</span><span class="tag">Captions</span><span class="tag">Pace</span></div></div>
+        </div>
+
+        <div class="work" data-src="assets/videos/inst4.mp4?v=20260213">
+          <div class="thumb"><a class="open-link" href="assets/videos/inst4.mp4?v=20260213" target="_blank" rel="noopener">Открыть видео</a>
+          <video src="assets/videos/inst4.mp4?v=20260213" muted playsinline preload="metadata"></video></div>
+          <div class="meta"><div class="title">inst4</div><div class="tags"><span class="tag">Subtitles</span><span class="tag">Rhythm</span></div></div>
+        </div>
+
+        <div class="work" data-src="assets/videos/diz.mp4?v=20260213">
+          <div class="thumb"><a class="open-link" href="assets/videos/diz.mp4?v=20260213" target="_blank" rel="noopener">Открыть видео</a>
+          <video src="assets/videos/diz.mp4?v=20260213" muted playsinline preload="metadata"></video></div>
+          <div class="meta"><div class="title">diz</div><div class="tags"><span class="tag">SFX</span><span class="tag">Timing</span></div></div>
+        </div>
+
+        <div class="work" data-src="assets/videos/norm.mp4?v=20260213">
+          <div class="thumb"><a class="open-link" href="assets/videos/norm.mp4?v=20260213" target="_blank" rel="noopener">Открыть видео</a>
+          <video src="assets/videos/norm.mp4?v=20260213" muted playsinline preload="metadata"></video></div>
+          <div class="meta"><div class="title">norm</div><div class="tags"><span class="tag">Tempo</span><span class="tag">Flow</span></div></div>
+        </div>
+
+        <div class="work" data-src="assets/videos/LOVE.mp4?v=20260213">
+          <div class="thumb"><a class="open-link" href="assets/videos/LOVE.mp4?v=20260213" target="_blank" rel="noopener">Открыть видео</a>
+          <video src="assets/videos/LOVE.mp4?v=20260213" muted playsinline preload="metadata"></video></div>
+          <div class="meta"><div class="title">LOVE</div><div class="tags"><span class="tag">Highlights</span><span class="tag">Cuts</span></div></div>
+        </div>
+
+        <div class="work" data-src="assets/videos/pizza_tt.mp4?v=20260213">
+          <div class="thumb"><a class="open-link" href="assets/videos/pizza_tt.mp4?v=20260213" target="_blank" rel="noopener">Открыть видео</a>
+          <video src="assets/videos/pizza_tt.mp4?v=20260213" muted playsinline preload="metadata"></video></div>
+          <div class="meta"><div class="title">pizza_tt</div><div class="tags"><span class="tag">Audio</span><span class="tag">Clean</span></div></div>
+        </div>
+
+        <a class="work" href="#" onclick="return false;">
+          <div class="thumb" style="display:flex;align-items:center;justify-content:center;color:var(--muted)">Add video #7</div>
+          <div class="meta"><div class="title">Work #7</div><div class="tags"><span class="tag">Add tags</span></div></div>
+        </a>
+        <a class="work" href="#" onclick="return false;">
+          <div class="thumb" style="display:flex;align-items:center;justify-content:center;color:var(--muted)">Add video #8</div>
+          <div class="meta"><div class="title">Work #8</div><div class="tags"><span class="tag">Add tags</span></div></div>
+        </a>
+        <a class="work" href="#" onclick="return false;">
+          <div class="thumb" style="display:flex;align-items:center;justify-content:center;color:var(--muted)">Add video #9</div>
+          <div class="meta"><div class="title">Work #9</div><div class="tags"><span class="tag">Add tags</span></div></div>
+        </a>
+        <a class="work" href="#" onclick="return false;">
+          <div class="thumb" style="display:flex;align-items:center;justify-content:center;color:var(--muted)">Add video #10</div>
+          <div class="meta"><div class="title">Work #10</div><div class="tags"><span class="tag">Add tags</span></div></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="container">
+      <div class="section-title">
+        <h2 data-lang="en">Services</h2>
+        <h2 data-lang="ru">Услуги</h2>
+        <div class="hint" data-lang="en">Shorts that feel fast, clean, and watchable.</div>
+        <div class="hint" data-lang="ru">Шортсы, которые смотрятся быстро, чисто и до конца.</div>
+      </div>
+
+      <div class="cards3">
+        <div class="svc">
+          <h3 data-lang="en">Short-form editing</h3>
+          <h3 data-lang="ru">Монтаж коротких видео</h3>
+          <p data-lang="en">TikTok / Reels / Shorts built around hooks and retention.</p>
+          <p data-lang="ru">TikTok / Reels / Shorts с упором на хук и удержание.</p>
+        </div>
+
+        <div class="svc">
+          <h3 data-lang="en">Captions & retention</h3>
+          <h3 data-lang="ru">Субтитры и удержание</h3>
+          <p data-lang="en">Readable subtitles, emphasis, structure — made to keep viewers.</p>
+          <p data-lang="ru">Читаемые субтитры, акценты, структура — чтобы досматривали.</p>
+        </div>
+
+        <div class="svc">
+          <h3 data-lang="en">AI-enhanced workflow</h3>
+          <h3 data-lang="ru">AI-технологии</h3>
+          <p data-lang="en">Speed + quality: cleanup, enhancement, automation.</p>
+          <p data-lang="ru">Скорость + качество: чистка, улучшение, автоматизация.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:14px" class="pricing">
+        <div class="pricebox">
+          <div class="tabs" aria-label="Pricing tabs">
+            <button class="tab active" id="tabClient" type="button">Client</button>
+            <button class="tab" id="tabHiring" type="button">Hiring</button>
+          </div>
+          <div style="margin-top:14px" id="pricingClient">
+            <div class="big" data-lang="en">2,000 ₽ per premium short</div>
+            <div class="big" data-lang="ru">2 000 ₽ за хороший short</div>
+            <div class="sub" data-lang="en">Final price depends on complexity & volume.</div>
+            <div class="sub" data-lang="ru">Цена зависит от сложности и объёма.</div>
+          </div>
+          <div style="margin-top:14px; display:none" id="pricingHiring">
+            <div class="big" data-lang="en">Full-time: 80,000 ₽ / month</div>
+            <div class="big" data-lang="ru">Найм: 80 000 ₽ / месяц</div>
+            <div class="sub" data-lang="en">Open to roles (short-form + YouTube).</div>
+            <div class="sub" data-lang="ru">Открыт к ролям (shorts + YouTube).</div>
+          </div>
+        </div>
+
+        <div class="pricebox">
+          <div class="big" data-lang="en">Contact</div>
+          <div class="big" data-lang="ru">Контакты</div>
+          <div class="note"><a class="btn primary" href="https://t.me/tebyaebetdm" target="_blank" rel="noreferrer">Telegram</a> <a class="btn" href="mailto:alex.altukhov.s@gmail.com">Email</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="before-after">
+    <div class="container">
+      <div class="section-title">
+        <h2 data-lang="en">Before / After</h2>
+        <h2 data-lang="ru">До / После</h2>
+        <div class="hint" data-lang="en">Replace placeholders with your “raw vs edited” examples.</div>
+        <div class="hint" data-lang="ru">Заменишь заглушки на примеры “сырьё vs финал”.</div>
+      </div>
+      <div class="ba">
+        <div class="ba-item"><div class="row"><div class="mini">BEFORE (video)</div><div class="mini">AFTER (video)</div></div></div>
+        <div class="ba-item"><div class="row"><div class="mini">BEFORE (video)</div><div class="mini">AFTER (video)</div></div></div>
+        <div class="ba-item"><div class="row"><div class="mini">BEFORE (video)</div><div class="mini">AFTER (video)</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="reviews">
+    <div class="container">
+      <div class="section-title">
+        <h2 data-lang="en">Reviews</h2>
+        <h2 data-lang="ru">Отзывы</h2>
+      </div>
+      <div class="reviews">
+        <div class="review"><div class="img">Screenshot #1</div></div>
+        <div class="review"><div class="img">Screenshot #2</div></div>
+        <div class="review"><div class="img">Screenshot #3</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="section-title">
+        <h2 data-lang="en">Contact</h2>
+        <h2 data-lang="ru">Контакты</h2>
+      </div>
+      <div class="card"><div class="card-inner">
+        <a class="btn primary" href="https://t.me/tebyaebetdm" target="_blank" rel="noreferrer">Telegram</a>
+        <a class="btn" href="mailto:alex.altukhov.s@gmail.com">Email</a>
+      </div></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between">
+      <div>© <span id="year"></span> Alex A</div>
+      <div style="display:flex; gap:10px; align-items:center">
+        <a href="#top">↑ Top</a>
+      </div>
+    </div>
+  </footer>
+
+  
+  
+  <!-- Video modal (desktop preview) -->
+  <div class="vmodal" id="vModal" aria-hidden="true">
+    <div class="vmodal-backdrop" id="vModalBackdrop"></div>
+    <div class="vmodal-inner" role="dialog" aria-label="Video preview">
+      <div class="vmodal-top">
+        <div class="vmodal-title" id="vModalTitle">Preview</div>
+        <button class="btn small" id="vModalClose" type="button" aria-label="Close">✕</button>
+      </div>
+      <div class="vmodal-video">
+        <video id="vModalVideo" controls playsinline preload="metadata"></video>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile floating CTA -->
+  <div class="float-cta" id="floatCta" aria-label="Quick contact">
+    <a class="float-btn primary" href="https://t.me/tebyaebetdm" target="_blank" rel="noreferrer">
+      <span data-lang="en">Get a test edit</span>
+      <span data-lang="ru">Тестовый монтаж</span>
+    </a>
+    <a class="float-btn" href="#contact">
+      <span data-lang="en">Hire me</span>
+      <span data-lang="ru">Нанять</span>
+    </a>
+  </div>
+
 <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+  document.addEventListener('DOMContentLoaded', () => {
+
+    const _yearEl = document.getElementById('year');
+    if(_yearEl) _yearEl.textContent = new Date().getFullYear();
 
     const btnEN = document.getElementById('btnEN');
     const btnRU = document.getElementById('btnRU');
@@ -914,45 +855,29 @@
       btnRU.classList.toggle('active', lang === 'ru');
       localStorage.setItem('lang', lang);
     }
-    btnEN.addEventListener('click', () => setLang('en'));
-    btnRU.addEventListener('click', () => setLang('ru'));
+    btnEN?.addEventListener('click', () => setLang('en'));
+    btnRU?.addEventListener('click', () => setLang('ru'));
     const saved = localStorage.getItem('lang');
     if(saved === 'ru' || saved === 'en') setLang(saved);
 
-    // Pricing tabs (Video / Design / Telegram / Hiring)
-    const tabs = {
-      video: document.getElementById('tabVideo'),
-      design: document.getElementById('tabDesign'),
-      telegram: document.getElementById('tabTelegram'),
-      hiring: document.getElementById('tabHiring'),
-    };
-    const panes = {
-      video: document.getElementById('pricingVideo'),
-      design: document.getElementById('pricingDesign'),
-      telegram: document.getElementById('pricingTelegram'),
-      hiring: document.getElementById('pricingHiring'),
-    };
+    const tabClient = document.getElementById('tabClient');
+    const tabHiring = document.getElementById('tabHiring');
+    const pricingClient = document.getElementById('pricingClient');
+    const pricingHiring = document.getElementById('pricingHiring');
     function setPricing(mode){
-      Object.keys(tabs).forEach(k=>{
-        tabs[k]?.classList.toggle('active', k === mode);
-      });
-      Object.keys(panes).forEach(k=>{
-        if(!panes[k]) return;
-        panes[k].style.display = (k === mode) ? 'block' : 'none';
-      });
+      tabClient.classList.toggle('active', mode === 'client');
+      tabHiring.classList.toggle('active', mode === 'hiring');
+      pricingClient.style.display = mode === 'client' ? 'block' : 'none';
+      pricingHiring.style.display = mode === 'hiring' ? 'block' : 'none';
     }
-    tabs.video?.addEventListener('click', ()=>setPricing('video'));
-    tabs.design?.addEventListener('click', ()=>setPricing('design'));
-    tabs.telegram?.addEventListener('click', ()=>setPricing('telegram'));
-    tabs.hiring?.addEventListener('click', ()=>setPricing('hiring'));
-    setPricing('video');
+    tabClient?.addEventListener('click', () => setPricing('client'));
+    tabHiring?.addEventListener('click', () => setPricing('hiring'));
 
-    // Hover preview (desktop)
     document.querySelectorAll('.work video').forEach(v => {
       v.addEventListener('mouseenter', () => { try { v.play(); } catch(e){} });
       v.addEventListener('mouseleave', () => { try { v.pause(); v.currentTime = 0; } catch(e){} });
     });
-
+  
     // Mobile menu
     const menuBtn = document.getElementById('menuBtn');
     const menuClose = document.getElementById('menuClose');
@@ -1002,25 +927,6 @@
     }
     document.querySelectorAll('.work[data-src]').forEach(card => bindCardPlayback(card, 'video'));
     document.querySelectorAll('.best-card').forEach(card => bindCardPlayback(card, 'video'));
-
-    // Works filter
-    const filterBtns = Array.from(document.querySelectorAll('[data-filter]'));
-    const workCards = Array.from(document.querySelectorAll('#works .work'));
-    function setFilter(filter){
-      filterBtns.forEach(b=>{
-        const active = b.getAttribute('data-filter') === filter;
-        b.classList.toggle('active', active);
-        b.setAttribute('aria-pressed', active ? 'true' : 'false');
-      });
-      workCards.forEach(card=>{
-        const cat = card.getAttribute('data-cat') || 'all';
-        const show = (filter === 'all') || (cat === filter);
-        if(show) card.removeAttribute('hidden');
-        else card.setAttribute('hidden', 'true');
-      });
-    }
-    filterBtns.forEach(b=> b.addEventListener('click', ()=> setFilter(b.getAttribute('data-filter') || 'all')));
-    setFilter('all');
 
     // Floating CTA hide/show (avoid covering contact section)
     const floatCta = document.getElementById('floatCta');
@@ -1113,6 +1019,9 @@
         });
       });
     }
+
+
+  });
 </script>
 </body>
 </html>
