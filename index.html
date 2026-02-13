@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="Alex A (Александр Алтухов) — Short-form Video Editor (TikTok/Reels/Shorts), YouTube, Stream Clips. Captions, hooks, pacing, AI workflow." name="description"/>
+<meta content="Alex A — Video Editor (Shorts / Reels / TikTok)" property="og:title"/>
+<meta content="Short-form video editor. Hooks, captions, pacing. TikTok/Reels/Shorts, YouTube, stream highlights." property="og:description"/>
+<meta content="website" property="og:type"/>
+<meta content="#0b0d10" name="theme-color"/>
+<title>Alex A — Video Editor Portfolio</title>
+<style>
+/* =========================================================
+   NEW VISUAL SYSTEM (inspired by modern editorial portfolios)
+   - keeps your content + video paths
+   - fully restyles layout, cards, typography, interactions
+   ========================================================= */
+
+:root{
+  --bg:#f6f6f4;
+  --bg2:#ffffff;
+  --text:#111216;
+  --muted:rgba(17,18,22,.68);
+  --muted2:rgba(17,18,22,.52);
+  --line:rgba(17,18,22,.10);
+  --line2:rgba(17,18,22,.18);
+
+  --card:rgba(255,255,255,.82);
+  --card2:rgba(255,255,255,.62);
+
+  --accent:#2f5eff;
+  --accent2:#00c2ff;
+
+  --shadow: 0 18px 55px rgba(10,12,18,.12);
+  --shadow2: 0 10px 30px rgba(10,12,18,.10);
+  --shadowIn: inset 0 1px 0 rgba(255,255,255,.85);
+
+  --r:26px;
+  --r2:18px;
+  --max:1180px;
+
+  --ease:cubic-bezier(.2,.8,.2,1);
+  --t:170ms var(--ease);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  color:var(--text);
+  background:
+    radial-gradient(900px 600px at 10% -10%, rgba(47,94,255,.08), transparent 60%),
+    radial-gradient(1100px 700px at 90% 10%, rgba(0,194,255,.07), transparent 60%),
+    linear-gradient(180deg, var(--bg), #f3f3f1 38%, var(--bg2));
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+}
+
+/* subtle grid + noise overlay */
+body:before{
+  content:"";
+  position:fixed; inset:0;
+  pointer-events:none;
+  background-image:
+    linear-gradient(to right, rgba(17,18,22,.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(17,18,22,.035) 1px, transparent 1px);
+  background-size: 64px 64px;
+  opacity:.55;
+  mix-blend-mode:multiply;
+}
+body:after{
+  content:"";
+  position:fixed; inset:-40px;
+  pointer-events:none;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='.26'/%3E%3C/svg%3E");
+  opacity:.18;
+  mix-blend-mode:soft-light;
+}
+
+/* Fonts (Google Fonts) */
+@media (prefers-reduced-motion:no-preference){
+  .reveal{opacity:0; transform:translateY(14px); transition:opacity 520ms var(--ease), transform 520ms var(--ease);}
+  .reveal.in{opacity:1; transform:none;}
+}
+
+a{color:inherit; text-decoration:none}
+a.underline{
+  background-image: linear-gradient(currentColor,currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  transition: background-size var(--t), color var(--t);
+}
+a.underline:hover{ background-size: 100% 1px; }
+
+.container{
+  max-width:var(--max);
+  margin:0 auto;
+  padding:0 22px;
+}
+
+.mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}
+.muted{color:var(--muted)}
+.muted2{color:var(--muted2)}
+
+.topbar{
+  position:sticky; top:0;
+  z-index:60;
+  backdrop-filter: blur(10px);
+  background: rgba(246,246,244,.72);
+  border-bottom:1px solid var(--line);
+}
+.topbar .row{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:16px; padding:14px 0;
+}
+.brand{
+  display:flex; align-items:center; gap:12px;
+}
+.brand .dot{
+  width:10px; height:10px; border-radius:50%;
+  background: radial-gradient(circle at 30% 30%, #fff, #d9d9d9);
+  box-shadow: 0 0 0 2px rgba(17,18,22,.08);
+}
+.brand .name{
+  font-weight:900;
+  letter-spacing:.2px;
+}
+.brand .role{ font-size:12.5px; color:var(--muted); }
+
+nav{
+  display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+}
+nav a{
+  font-size:12.5px;
+  font-weight:850;
+  color:rgba(17,18,22,.78);
+  padding:8px 10px;
+  border-radius:999px;
+  transition: background var(--t), color var(--t);
+}
+nav a:hover{
+  background: rgba(17,18,22,.06);
+  color: rgba(17,18,22,.96);
+}
+
+.actions{
+  display:flex; align-items:center; gap:10px;
+}
+.lang{
+  display:flex; gap:6px;
+  padding:4px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:rgba(255,255,255,.65);
+  box-shadow: var(--shadowIn);
+}
+.lang button{
+  border:0; cursor:pointer;
+  padding:7px 10px;
+  border-radius:999px;
+  background:transparent;
+  font-size:12px; font-weight:900;
+  color:rgba(17,18,22,.72);
+  transition: background var(--t), color var(--t);
+}
+.lang button.active{
+  background: rgba(17,18,22,.92);
+  color:#fff;
+}
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  padding:10px 14px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.74);
+  box-shadow: var(--shadowIn), var(--shadow2);
+  font-weight:950;
+  font-size:12.5px;
+  transition: transform var(--t), background var(--t), border-color var(--t);
+  user-select:none;
+}
+.btn:hover{ transform: translateY(-1px); border-color: var(--line2); }
+.btn:active{ transform: translateY(0); }
+.btn.primary{
+  background: rgba(17,18,22,.95);
+  color:#fff;
+  border-color: rgba(17,18,22,.95);
+}
+.btn.ghost{
+  background:rgba(255,255,255,.35);
+}
+
+.menuBtn{ display:none; }
+
+/* HERO */
+.hero{
+  padding:40px 0 18px;
+}
+.kicker{
+  display:inline-flex;
+  align-items:center; gap:10px;
+  padding:10px 12px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.62);
+  box-shadow: var(--shadowIn);
+  font-weight:850;
+  font-size:12px;
+  color:rgba(17,18,22,.74);
+}
+.kicker .dotSep{
+  width:4px; height:4px; border-radius:50%;
+  background: rgba(17,18,22,.35);
+}
+.heroGrid{
+  display:grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap:18px;
+  margin-top:18px;
+}
+.card{
+  border:1px solid var(--line);
+  border-radius:var(--r);
+  background: rgba(255,255,255,.70);
+  box-shadow: var(--shadowIn), var(--shadow);
+}
+.heroMain{
+  padding:28px;
+  position:relative;
+  overflow:hidden;
+}
+.heroMain:before{
+  content:"";
+  position:absolute; inset:-2px;
+  background:
+    radial-gradient(650px 380px at 20% 0%, rgba(47,94,255,.16), transparent 55%),
+    radial-gradient(520px 360px at 80% 10%, rgba(0,194,255,.14), transparent 58%);
+  opacity:.75;
+  pointer-events:none;
+}
+.heroRow{ position:relative; z-index:1; }
+
+.h1{
+  font-family: "Space Grotesk", Inter, system-ui, sans-serif;
+  font-size:54px;
+  line-height:1.02;
+  letter-spacing:-.02em;
+  margin:14px 0 10px;
+  font-weight:900;
+}
+.lead{
+  margin:0;
+  font-size:15.5px;
+  line-height:1.7;
+  color:var(--muted);
+  font-weight:650;
+  max-width:64ch;
+}
+.ctaBtns{
+  display:flex; gap:10px; flex-wrap:wrap;
+  margin-top:18px;
+}
+.heroFacts{
+  display:flex; gap:10px; flex-wrap:wrap;
+  margin-top:18px;
+}
+.pill{
+  display:flex; gap:8px; align-items:center;
+  padding:10px 12px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background: rgba(255,255,255,.62);
+  box-shadow: var(--shadowIn), var(--shadow2);
+  transition: transform var(--t), box-shadow var(--t);
+}
+.pill:hover{
+  transform: translateY(-1px);
+  box-shadow: var(--shadowIn), 0 16px 38px rgba(10,12,18,.12);
+}
+.pill .k{ font-weight:950; font-size:12px; color:rgba(17,18,22,.66); }
+.pill .v{ font-weight:900; font-size:12.5px; }
+
+.grid{
+  display:grid; gap:14px;
+}
+.cols3{ grid-template-columns:repeat(3, minmax(0,1fr)); }
+.heroRow .grid.cols3{ margin-top:18px; }
+.block{
+  border:1px solid var(--line);
+  border-radius:var(--r2);
+  padding:16px;
+  background: rgba(255,255,255,.62);
+  box-shadow: var(--shadowIn);
+}
+.block .t{
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  color:rgba(17,18,22,.55);
+  font-weight:950;
+}
+.block .b{
+  margin-top:8px;
+  font-weight:900;
+  font-size:14px;
+  line-height:1.4;
+}
+
+.sideStack{ display:grid; gap:14px; align-content:start; }
+.sideBox{
+  padding:18px;
+  border-radius:var(--r);
+  border:1px solid var(--line);
+  background: rgba(255,255,255,.70);
+  box-shadow: var(--shadowIn), var(--shadow2);
+  transition: transform var(--t);
+}
+.sideBox:hover{ transform: translateY(-1px); }
+.sideTitle{
+  font-size:11px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  font-weight:950;
+  color:rgba(17,18,22,.58);
+  margin-bottom:8px;
+}
+.sideText{
+  font-size:14px;
+  line-height:1.65;
+  color:rgba(17,18,22,.86);
+  font-weight:650;
+}
+
+/* SECTIONS */
+section{ padding:56px 0; }
+.head{
+  display:flex; align-items:flex-end; justify-content:space-between; gap:18px;
+  border-top:1px solid var(--line);
+  padding-top:18px;
+  margin-bottom:18px;
+}
+.head h2{
+  font-family:"Space Grotesk", Inter, system-ui, sans-serif;
+  margin:0;
+  font-size:20px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  font-weight:900;
+}
+.head p{
+  margin:0;
+  font-size:12.5px;
+  color:var(--muted);
+  font-weight:650;
+  max-width:52ch;
+  text-align:right;
+}
+
+/* Featured video */
+.featuredWrap{
+  border-radius:var(--r);
+  overflow:hidden;
+  border:1px solid var(--line);
+  background: rgba(255,255,255,.72);
+  box-shadow: var(--shadowIn), var(--shadow);
+}
+.featuredTop{
+  display:flex; justify-content:space-between; gap:12px;
+  padding:14px 16px;
+  border-bottom:1px solid var(--line);
+  background: rgba(255,255,255,.78);
+  font-size:12.5px;
+  font-weight:850;
+  color:rgba(17,18,22,.78);
+}
+.featured .media{ aspect-ratio: 16/9; background: #e9eaee; }
+.featured video{ width:100%; height:100%; display:block; object-fit:cover; }
+
+/* Best clips - rail */
+.row{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:10px; flex-wrap:wrap;
+}
+.bestRail{
+  display:grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(240px, 1fr);
+  gap:14px;
+  overflow:auto;
+  padding-bottom:8px;
+  scroll-snap-type:x mandatory;
+}
+.bestRail::-webkit-scrollbar{ height:8px; }
+.bestRail::-webkit-scrollbar-thumb{ background: rgba(17,18,22,.14); border-radius:999px; }
+.bestCard{
+  scroll-snap-align:start;
+  border:1px solid var(--line);
+  border-radius:var(--r);
+  background: rgba(255,255,255,.74);
+  box-shadow: var(--shadowIn), var(--shadow2);
+  overflow:hidden;
+  position:relative;
+  cursor:pointer;
+  transition: transform var(--t), border-color var(--t);
+}
+.bestCard:hover{ transform: translateY(-2px); border-color: var(--line2); }
+.bestCard .meta{
+  padding:14px 14px 16px;
+  display:grid; gap:8px;
+}
+.bestCard .name{ font-weight:950; font-size:14px; }
+.tags{ display:flex; flex-wrap:wrap; gap:6px; }
+.tag{
+  font-size:11px;
+  font-weight:900;
+  padding:7px 10px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background: rgba(255,255,255,.62);
+  color: rgba(17,18,22,.70);
+}
+.play{
+  position:absolute; inset:12px auto auto 12px;
+  width:34px; height:34px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background: rgba(255,255,255,.80);
+  box-shadow: var(--shadowIn), var(--shadow2);
+  display:flex; align-items:center; justify-content:center;
+  font-weight:1000;
+}
+.bestCard .media{
+  aspect-ratio: 9/16;
+  background: #eef0f6;
+}
+.bestCard video{ width:100%; height:100%; object-fit:cover; display:block; }
+
+/* Filters */
+.filters{
+  display:flex; gap:8px; flex-wrap:wrap;
+}
+.chip{
+  border:1px solid var(--line);
+  background: rgba(255,255,255,.70);
+  box-shadow: var(--shadowIn);
+  padding:9px 12px;
+  border-radius:999px;
+  font-weight:950;
+  font-size:12.5px;
+  cursor:pointer;
+  transition: transform var(--t), border-color var(--t), background var(--t);
+}
+.chip:hover{ transform: translateY(-1px); border-color: var(--line2); }
+.chip.active{
+  background: rgba(17,18,22,.92);
+  border-color: rgba(17,18,22,.92);
+  color:#fff;
+}
+
+/* Works grid */
+.gridWorks{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap:14px;
+}
+.work{
+  border:1px solid var(--line);
+  border-radius:var(--r);
+  background: rgba(255,255,255,.74);
+  box-shadow: var(--shadowIn), var(--shadow2);
+  overflow:hidden;
+  cursor:pointer;
+  transition: transform var(--t), border-color var(--t);
+}
+.work:hover{ transform: translateY(-2px); border-color: var(--line2); }
+.work .media{
+  aspect-ratio: 9/16;
+  background: #eef0f6;
+  position:relative;
+}
+.work .meta{
+  padding:14px 14px 16px;
+  display:grid; gap:8px;
+}
+.work .name{ font-weight:950; font-size:14px; }
+.work .desc{ margin:0; font-size:13px; line-height:1.55; color:var(--muted); font-weight:650; }
+.work video{ width:100%; height:100%; object-fit:cover; display:block; }
+
+/* Pricing snap (wide) */
+.pricingSnap{
+  border:1px solid var(--line);
+  border-radius:var(--r);
+  background: rgba(255,255,255,.74);
+  box-shadow: var(--shadowIn), var(--shadow);
+  padding:18px;
+}
+.pricingSnap .titleRow{
+  display:flex; align-items:baseline; justify-content:space-between;
+  gap:10px; flex-wrap:wrap;
+}
+.pricingSnap .txt{ font-size:13px; line-height:1.6; color:var(--muted); font-weight:650; margin-top:10px; }
+
+/* Footer + floating CTA */
+footer{
+  border-top:1px solid var(--line);
+  padding:22px 0 40px;
+  color:rgba(17,18,22,.70);
+  font-size:12.5px;
+}
+
+.floatCta{
+  position:fixed;
+  left:50%;
+  transform:translateX(-50%);
+  bottom:14px;
+  z-index:70;
+  background: rgba(255,255,255,.86);
+  border:1px solid var(--line);
+  box-shadow: var(--shadowIn), var(--shadow);
+  border-radius:999px;
+  padding:10px 10px;
+  display:flex; gap:10px; align-items:center;
+  backdrop-filter: blur(10px);
+}
+.floatCta .a{ font-weight:950; font-size:12px; padding:9px 12px; border-radius:999px; border:1px solid var(--line); background: rgba(255,255,255,.70); }
+.floatCta .a.primary{ background: rgba(17,18,22,.92); color:#fff; border-color: rgba(17,18,22,.92); }
+.floatCta .a:hover{ transform: translateY(-1px); }
+
+/* Modal */
+.modal{
+  position:fixed; inset:0;
+  display:none;
+  align-items:center; justify-content:center;
+  z-index:90;
+  background: rgba(12,14,18,.55);
+  backdrop-filter: blur(10px);
+  padding:20px;
+}
+.modal.show{ display:flex; }
+.modalBox{
+  width:min(980px, 100%);
+  border-radius:var(--r);
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.26);
+  background: rgba(10,12,18,.86);
+  color:#fff;
+  box-shadow: 0 24px 90px rgba(0,0,0,.35);
+}
+.modalTop{
+  display:flex; justify-content:space-between; align-items:center; gap:12px;
+  padding:12px 14px;
+  border-bottom:1px solid rgba(255,255,255,.14);
+}
+.modalTop .title{
+  font-weight:900; font-size:13px;
+}
+.xbtn{
+  border:1px solid rgba(255,255,255,.18);
+  background: rgba(255,255,255,.06);
+  color:#fff;
+  border-radius:999px;
+  padding:8px 10px;
+  cursor:pointer;
+}
+.modal video{ width:100%; height:auto; display:block; background:#000; }
+
+/* Mobile */
+@media (max-width: 980px){
+  .heroGrid{ grid-template-columns:1fr; }
+  nav{ display:none; }
+  .menuBtn{ display:inline-flex; }
+  .head{ flex-direction:column; align-items:flex-start; }
+  .head p{ text-align:left; }
+  .gridWorks{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+@media (max-width: 620px){
+  .h1{ font-size:42px; }
+  .gridWorks{ grid-template-columns:1fr; }
+  .cols3{ grid-template-columns:1fr; }
+  .floatCta{ width: calc(100% - 24px); justify-content:space-between; }
+}
+
+/* Mobile nav (keep your existing structure) */
+.mobileNav{
+  position:fixed; inset:0;
+  display:none;
+  z-index:80;
+  background: rgba(246,246,244,.92);
+  backdrop-filter: blur(12px);
+}
+.mobileNav.show{ display:block; }
+.mobileNav .inner{
+  max-width: var(--max);
+  margin:0 auto;
+  padding:20px 22px;
+}
+.mobileNav a{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:14px 0;
+  border-bottom:1px solid var(--line);
+  font-weight:900;
+}
+</style>
+
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+</head>
+<body class="lang-en">
+<header class="topbar">
+<div class="container">
+<div class="topbar-inner">
+<div class="brand">
+<div aria-hidden="true" class="dot"></div>
+<div>
+<div class="brand-title">Alex A</div>
+<div class="brand-sub">Short-form • YouTube • Stream clips</div>
+</div>
+</div>
+<nav aria-label="Sections" class="nav">
+<a href="#showreel">Showreel</a>
+<a href="#works">Works</a>
+<a href="#services">Services</a>
+<a href="#before-after">Before/After</a>
+<a href="#reviews">Reviews</a>
+<a href="#contact">Contact</a>
+</nav>
+<div class="actions">
+<button aria-label="Menu" class="btn small" id="menuBtn" type="button">☰</button><div aria-label="Language" class="lang" role="group">
+<button class="active" id="btnEN" type="button">EN</button>
+<button id="btnRU" type="button">RU</button>
+</div>
+<a class="btn primary" href="https://t.me/tebyaebetdm" rel="noreferrer" target="_blank">Telegram</a>
+<a class="btn" href="mailto:alex.altukhov.s@gmail.com">Email</a>
+</div>
+</div>
+</div>
+</header>
+<!-- Mobile drawer -->
+<div aria-hidden="true" class="drawer" id="drawer">
+<div class="drawer-inner">
+<div class="drawer-top">
+<div class="drawer-title">Menu</div>
+<button aria-label="Close" class="btn small" id="menuClose" type="button">✕</button>
+</div>
+<div class="drawer-links">
+<a class="drawer-link" href="#showreel">Showreel</a>
+<a class="drawer-link" href="#works">Works</a>
+<a class="drawer-link" href="#services">Services</a>
+<a class="drawer-link" href="#before-after">Before/After</a>
+<a class="drawer-link" href="#reviews">Reviews</a>
+<a class="drawer-link" href="#contact">Contact</a>
+</div>
+<div class="drawer-cta">
+<a class="btn primary" href="https://t.me/tebyaebetdm" rel="noreferrer" target="_blank">Telegram</a>
+<a class="btn" href="mailto:alex.altukhov.s@gmail.com">Email</a>
+</div>
+</div>
+</div>
+<section class="hero" id="top">
+<div class="container">
+<div class="grid-hero">
+<div class="card">
+<div class="card-inner">
+<div data-lang="en">
+<h1>Short-form Video Editor<br/>for TikTok / Reels / Shorts</h1>
+<p class="lead">Fast pacing, clean captions, strong hooks — built for retention. I also edit YouTube videos and stream highlights. AI-enhanced workflow for speed and quality.</p>
+<div class="row-actions">
+<a class="btn primary" href="https://t.me/tebyaebetdm" rel="noreferrer" target="_blank">Get a test edit</a>
+<a class="btn" href="#works">See works</a>
+</div>
+<div aria-label="Highlights" class="chips">
+<div class="chip"><b>Speed:</b> 1 min final ≈ 20–30 min edit</div>
+<div class="chip"><b>Capacity:</b> up to 6 shorts/day</div>
+<div class="chip"><b>Tools:</b> CapCut • Premiere • AE • DaVinci</div>
+</div>
+<div class="stats">
+<div class="stat"><div class="k">Best for</div><div class="v">Hooks • Captions • Tempo</div></div>
+<div class="stat"><div class="k">Deliverables</div><div class="v">Shorts + subtitles + cover</div></div>
+</div>
+</div>
+<div data-lang="ru">
+<h1>Монтажёр коротких видео<br/>TikTok / Reels / Shorts</h1>
+<p class="lead">Динамика, читаемые субтитры, мощные хуки — для удержания с первых секунд. Также монтирую YouTube и хайлайты со стримов. Использую AI-инструменты для скорости и качества.</p>
+<div class="row-actions">
+<a class="btn primary" href="https://t.me/tebyaebetdm" rel="noreferrer" target="_blank">Сделать тестовый монтаж</a>
+<a class="btn" href="#works">Посмотреть работы</a>
+</div>
+<div aria-label="Highlights" class="chips">
+<div class="chip"><b>Скорость:</b> 1 мин финала ≈ 20–30 мин монтажа</div>
+<div class="chip"><b>Объём:</b> до 6 shorts/день</div>
+<div class="chip"><b>Инструменты:</b> CapCut • Premiere • AE • DaVinci</div>
+</div>
+<div class="stats">
+<div class="stat"><div class="k">Сильное</div><div class="v">Хуки • Сабы • Темп</div></div>
+<div class="stat"><div class="k">Выдаю</div><div class="v">Шортсы + субтитры + обложка</div></div>
+</div>
+</div>
+</div>
+</div>
+<div class="aside">
+<div class="panel">
+<h3 data-lang="en">Availability</h3>
+<h3 data-lang="ru">Доступность</h3>
+<p data-lang="en">Open for clients and full-time roles. Typical turnaround: same day / next day (depending on volume).</p>
+<p data-lang="ru">Открыт для клиентов и найма. Обычно делаю в тот же день / на следующий (зависит от объёма).</p>
+</div>
+<div class="panel">
+<h3 data-lang="en">Pricing</h3>
+<h3 data-lang="ru">Цены</h3>
+<p data-lang="en"><b>2,000 ₽</b> per premium short (client). Full-time: <b>80,000 ₽</b>/month.</p>
+<p data-lang="ru"><b>2 000 ₽</b> за хороший short (клиент). Найм: <b>80 000 ₽</b>/мес.</p>
+</div>
+<div class="panel">
+<h3 data-lang="en">What I need from you</h3>
+<h3 data-lang="ru">Что нужно от вас</h3>
+<p data-lang="en">Reference clips + brief + deadline. I can propose hook variants and caption style.</p>
+<p data-lang="ru">Референсы + ТЗ + дедлайн. Могу предложить варианты хука и стиля субтитров.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="showreel">
+<div class="container">
+<div class="section-title">
+<h2 data-lang="en">Showreel (temporary)</h2>
+<h2 data-lang="ru">Шоурил (временно)</h2>
+<div class="hint" data-lang="en">For now, your first clip is here. When you have a 30s reel, replace the video file.</div>
+<div class="hint" data-lang="ru">Пока тут первый клип. Когда будет 30-сек шоурил — просто заменишь файл.</div>
+</div>
+<div aria-label="Showreel video" class="video">
+<video controls="" playsinline="" preload="metadata" src="assets/videos/koktl.mp4"></video>
+<div class="overlay">
+<div class="badge" data-lang="en">Showreel placeholder</div>
+<div class="badge" data-lang="ru">Заглушка шоурила</div>
+</div>
+</div>
+</div>
+<!-- Best 3 clips (mobile-first) -->
+<div aria-label="Best clips" class="best3">
+<div class="best3-head">
+<h3 data-lang="en">Best clips</h3>
+<h3 data-lang="ru">Лучшие клипы</h3>
+<div class="best3-hint" data-lang="en">Tap to play. Built for retention: hook → pacing → captions.</div>
+<div class="best3-hint" data-lang="ru">Нажми чтобы проиграть. Удержание: хук → темп → сабы.</div>
+</div>
+<div class="best3-grid">
+<div class="best-card">
+<div class="best-thumb">
+<video class="best-video" muted="" playsinline="" preload="metadata" src="assets/videos/koktl.mp4"></video>
+<button aria-label="Play" class="playbtn" type="button">▶</button>
+</div>
+<div class="best-meta">
+<div class="best-title">koktl</div>
+<div class="best-tags"><span class="tag">Hook</span><span class="tag">Captions</span><span class="tag">Pace</span></div>
+</div>
+</div>
+<div class="best-card">
+<div class="best-thumb">
+<video class="best-video" muted="" playsinline="" preload="metadata" src="assets/videos/inst4.mp4"></video>
+<button aria-label="Play" class="playbtn" type="button">▶</button>
+</div>
+<div class="best-meta">
+<div class="best-title">inst4</div>
+<div class="best-tags"><span class="tag">Subtitles</span><span class="tag">Rhythm</span></div>
+</div>
+</div>
+<div class="best-card">
+<div class="best-thumb">
+<video class="best-video" muted="" playsinline="" preload="metadata" src="assets/videos/diz.mp4"></video>
+<button aria-label="Play" class="playbtn" type="button">▶</button>
+</div>
+<div class="best-meta">
+<div class="best-title">diz</div>
+<div class="best-tags"><span class="tag">SFX</span><span class="tag">Timing</span></div>
+</div>
+</div>
+</div>
+<div class="best3-note panel" style="margin-top:12px">
+<p data-lang="en"><b>Mobile tip:</b> If playback starts muted, tap the speaker in the player controls.</p>
+<p data-lang="ru"><b>Совет:</b> Если звук не слышно — включи его в контролах плеера.</p>
+</div>
+</div>
+</section>
+<section id="works">
+<div class="container">
+<div class="section-title">
+<h2 data-lang="en">Works</h2>
+<h2 data-lang="ru">Работы</h2>
+<div class="hint" data-lang="en">Tap to play (mobile) • Click to preview (desktop).</div>
+<div class="hint" data-lang="ru">На телефоне — тап и проигрывание • На ПК — клик для предпросмотра.</div>
+</div>
+<div class="works-grid">
+<div class="work reveal" data-src="assets/videos/koktl.mp4">
+<div class="thumb"><video loop="" muted="" playsinline="" preload="metadata" src="assets/videos/koktl.mp4"></video></div>
+<div class="meta"><div class="title">koktl</div><div class="tags"><span class="tag">Hook</span><span class="tag">Captions</span><span class="tag">Pace</span></div></div>
+</div>
+<div class="work reveal" data-src="assets/videos/inst4.mp4">
+<div class="thumb"><video loop="" muted="" playsinline="" preload="metadata" src="assets/videos/inst4.mp4"></video></div>
+<div class="meta"><div class="title">inst4</div><div class="tags"><span class="tag">Subtitles</span><span class="tag">Rhythm</span></div></div>
+</div>
+<div class="work reveal" data-src="assets/videos/diz.mp4">
+<div class="thumb"><video loop="" muted="" playsinline="" preload="metadata" src="assets/videos/diz.mp4"></video></div>
+<div class="meta"><div class="title">diz</div><div class="tags"><span class="tag">SFX</span><span class="tag">Timing</span></div></div>
+</div>
+<div class="work reveal" data-src="assets/videos/norm.mp4">
+<div class="thumb"><video loop="" muted="" playsinline="" preload="metadata" src="assets/videos/norm.mp4"></video></div>
+<div class="meta"><div class="title">norm</div><div class="tags"><span class="tag">Tempo</span><span class="tag">Flow</span></div></div>
+</div>
+<div class="work reveal" data-src="assets/videos/LOVE.mp4">
+<div class="thumb"><video loop="" muted="" playsinline="" preload="metadata" src="assets/videos/LOVE.mp4"></video></div>
+<div class="meta"><div class="title">LOVE</div><div class="tags"><span class="tag">Highlights</span><span class="tag">Cuts</span></div></div>
+</div>
+<div class="work reveal" data-src="assets/videos/pizza_tt.mp4">
+<div class="thumb"><video loop="" muted="" playsinline="" preload="metadata" src="assets/videos/pizza_tt.mp4"></video></div>
+<div class="meta"><div class="title">pizza_tt</div><div class="tags"><span class="tag">Audio</span><span class="tag">Clean</span></div></div>
+</div>
+<a class="work reveal" href="#" onclick="return false;">
+<div class="thumb" style="display:flex;align-items:center;justify-content:center;color:var(--muted)">Add video #7</div>
+<div class="meta"><div class="title">Work #7</div><div class="tags"><span class="tag">Add tags</span></div></div>
+</a>
+<a class="work reveal" href="#" onclick="return false;">
+<div class="thumb" style="display:flex;align-items:center;justify-content:center;color:var(--muted)">Add video #8</div>
+<div class="meta"><div class="title">Work #8</div><div class="tags"><span class="tag">Add tags</span></div></div>
+</a>
+<a class="work reveal" href="#" onclick="return false;">
+<div class="thumb" style="display:flex;align-items:center;justify-content:center;color:var(--muted)">Add video #9</div>
+<div class="meta"><div class="title">Work #9</div><div class="tags"><span class="tag">Add tags</span></div></div>
+</a>
+<a class="work reveal" href="#" onclick="return false;">
+<div class="thumb" style="display:flex;align-items:center;justify-content:center;color:var(--muted)">Add video #10</div>
+<div class="meta"><div class="title">Work #10</div><div class="tags"><span class="tag">Add tags</span></div></div>
+</a>
+</div>
+</div>
+</section>
+<section id="services">
+<div class="container">
+<div class="section-title">
+<h2 data-lang="en">Services</h2>
+<h2 data-lang="ru">Услуги</h2>
+<div class="hint" data-lang="en">Shorts that feel fast, clean, and watchable.</div>
+<div class="hint" data-lang="ru">Шортсы, которые смотрятся быстро, чисто и до конца.</div>
+</div>
+<div class="cards3">
+<div class="svc">
+<h3 data-lang="en">Short-form editing</h3>
+<h3 data-lang="ru">Монтаж коротких видео</h3>
+<p data-lang="en">TikTok / Reels / Shorts built around hooks and retention.</p>
+<p data-lang="ru">TikTok / Reels / Shorts с упором на хук и удержание.</p>
+</div>
+<div class="svc">
+<h3 data-lang="en">Captions &amp; retention</h3>
+<h3 data-lang="ru">Субтитры и удержание</h3>
+<p data-lang="en">Readable subtitles, emphasis, structure — made to keep viewers.</p>
+<p data-lang="ru">Читаемые субтитры, акценты, структура — чтобы досматривали.</p>
+</div>
+<div class="svc">
+<h3 data-lang="en">AI-enhanced workflow</h3>
+<h3 data-lang="ru">AI-технологии</h3>
+<p data-lang="en">Speed + quality: cleanup, enhancement, automation.</p>
+<p data-lang="ru">Скорость + качество: чистка, улучшение, автоматизация.</p>
+</div>
+</div>
+<div class="pricing" style="margin-top:14px">
+<div class="pricebox">
+<div aria-label="Pricing tabs" class="tabs">
+<button class="tab active" id="tabClient" type="button">Client</button>
+<button class="tab" id="tabHiring" type="button">Hiring</button>
+</div>
+<div id="pricingClient" style="margin-top:14px">
+<div class="big" data-lang="en">2,000 ₽ per premium short</div>
+<div class="big" data-lang="ru">2 000 ₽ за хороший short</div>
+<div class="sub" data-lang="en">Final price depends on complexity &amp; volume.</div>
+<div class="sub" data-lang="ru">Цена зависит от сложности и объёма.</div>
+</div>
+<div id="pricingHiring" style="margin-top:14px; display:none">
+<div class="big" data-lang="en">Full-time: 80,000 ₽ / month</div>
+<div class="big" data-lang="ru">Найм: 80 000 ₽ / месяц</div>
+<div class="sub" data-lang="en">Open to roles (short-form + YouTube).</div>
+<div class="sub" data-lang="ru">Открыт к ролям (shorts + YouTube).</div>
+</div>
+</div>
+<div class="pricebox">
+<div class="big" data-lang="en">Contact</div>
+<div class="big" data-lang="ru">Контакты</div>
+<div class="note"><a class="btn primary" href="https://t.me/tebyaebetdm" rel="noreferrer" target="_blank">Telegram</a> <a class="btn" href="mailto:alex.altukhov.s@gmail.com">Email</a></div>
+</div>
+</div>
+</div>
+</section>
+<section id="before-after">
+<div class="container">
+<div class="section-title">
+<h2 data-lang="en">Before / After</h2>
+<h2 data-lang="ru">До / После</h2>
+<div class="hint" data-lang="en">Replace placeholders with your “raw vs edited” examples.</div>
+<div class="hint" data-lang="ru">Заменишь заглушки на примеры “сырьё vs финал”.</div>
+</div>
+<div class="ba">
+<div class="ba-item"><div class="row"><div class="mini">BEFORE (video)</div><div class="mini">AFTER (video)</div></div></div>
+<div class="ba-item"><div class="row"><div class="mini">BEFORE (video)</div><div class="mini">AFTER (video)</div></div></div>
+<div class="ba-item"><div class="row"><div class="mini">BEFORE (video)</div><div class="mini">AFTER (video)</div></div></div>
+</div>
+</div>
+</section>
+<section id="reviews">
+<div class="container">
+<div class="section-title">
+<h2 data-lang="en">Reviews</h2>
+<h2 data-lang="ru">Отзывы</h2>
+</div>
+<div class="reviews">
+<div class="review"><div class="img">Screenshot #1</div></div>
+<div class="review"><div class="img">Screenshot #2</div></div>
+<div class="review"><div class="img">Screenshot #3</div></div>
+</div>
+</div>
+</section>
+<section id="contact">
+<div class="container">
+<div class="section-title">
+<h2 data-lang="en">Contact</h2>
+<h2 data-lang="ru">Контакты</h2>
+</div>
+<div class="card"><div class="card-inner">
+<a class="btn primary" href="https://t.me/tebyaebetdm" rel="noreferrer" target="_blank">Telegram</a>
+<a class="btn" href="mailto:alex.altukhov.s@gmail.com">Email</a>
+</div></div>
+</div>
+</section>
+<footer>
+<div class="container" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between">
+<div>© <span id="year"></span> Alex A</div>
+<div style="display:flex; gap:10px; align-items:center">
+<a href="#top">↑ Top</a>
+</div>
+</div>
+</footer>
+<!-- Video modal (desktop preview) -->
+<div aria-hidden="true" class="vmodal" id="vModal">
+<div class="vmodal-backdrop" id="vModalBackdrop"></div>
+<div aria-label="Video preview" class="vmodal-inner" role="dialog">
+<div class="vmodal-top">
+<div class="vmodal-title" id="vModalTitle">Preview</div>
+<button aria-label="Close" class="btn small" id="vModalClose" type="button">✕</button>
+</div>
+<div class="vmodal-video">
+<video controls="" id="vModalVideo" playsinline="" preload="metadata"></video>
+</div>
+</div>
+</div>
+<!-- Mobile floating CTA -->
+<div aria-label="Quick contact" class="float-cta" id="floatCta">
+<a class="float-btn primary" href="https://t.me/tebyaebetdm" rel="noreferrer" target="_blank">
+<span data-lang="en">Get a test edit</span>
+<span data-lang="ru">Тестовый монтаж</span>
+</a>
+<a class="float-btn" href="#contact">
+<span data-lang="en">Hire me</span>
+<span data-lang="ru">Нанять</span>
+</a>
+</div>
+<script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const btnEN = document.getElementById('btnEN');
+    const btnRU = document.getElementById('btnRU');
+    function setLang(lang){
+      document.body.classList.toggle('lang-en', lang === 'en');
+      document.body.classList.toggle('lang-ru', lang === 'ru');
+      btnEN.classList.toggle('active', lang === 'en');
+      btnRU.classList.toggle('active', lang === 'ru');
+      localStorage.setItem('lang', lang);
+    }
+    btnEN.addEventListener('click', () => setLang('en'));
+    btnRU.addEventListener('click', () => setLang('ru'));
+    const saved = localStorage.getItem('lang');
+    if(saved === 'ru' || saved === 'en') setLang(saved);
+
+    const tabClient = document.getElementById('tabClient');
+    const tabHiring = document.getElementById('tabHiring');
+    const pricingClient = document.getElementById('pricingClient');
+    const pricingHiring = document.getElementById('pricingHiring');
+    function setPricing(mode){
+      tabClient.classList.toggle('active', mode === 'client');
+      tabHiring.classList.toggle('active', mode === 'hiring');
+      pricingClient.style.display = mode === 'client' ? 'block' : 'none';
+      pricingHiring.style.display = mode === 'hiring' ? 'block' : 'none';
+    }
+    tabClient.addEventListener('click', () => setPricing('client'));
+    tabHiring.addEventListener('click', () => setPricing('hiring'));
+
+    document.querySelectorAll('.work video').forEach(v => {
+      v.addEventListener('mouseenter', () => { try { v.play(); } catch(e){} });
+      v.addEventListener('mouseleave', () => { try { v.pause(); v.currentTime = 0; } catch(e){} });
+    });
+  
+    // Mobile menu
+    const menuBtn = document.getElementById('menuBtn');
+    const menuClose = document.getElementById('menuClose');
+    const drawer = document.getElementById('drawer');
+    function openMenu(){
+      document.body.classList.add('nav-open');
+      drawer?.setAttribute('aria-hidden','false');
+    }
+    function closeMenu(){
+      document.body.classList.remove('nav-open');
+      drawer?.setAttribute('aria-hidden','true');
+    }
+    menuBtn?.addEventListener('click', openMenu);
+    menuClose?.addEventListener('click', closeMenu);
+    drawer?.addEventListener('click', (e)=>{ if(e.target === drawer) closeMenu(); });
+    document.querySelectorAll('.drawer-link').forEach(a=>a.addEventListener('click', closeMenu));
+
+    // Inline video playback (mobile-friendly)
+    function pauseAll(except){
+      document.querySelectorAll('video').forEach(v => {
+        if(v !== except){
+          try{ v.pause(); v.currentTime = 0; }catch(e){}
+          v.closest('.playing')?.classList.remove('playing');
+          if(v.classList.contains('best-video')) v.muted = true;
+          if(v.closest('.work')) v.muted = true;
+        }
+      });
+    }
+    function bindCardPlayback(card, videoSel){
+      const v = card.querySelector(videoSel);
+      const btn = card.querySelector('.playbtn');
+      if(!v || !btn) return;
+
+      v.muted = true;
+      v.playsInline = true;
+
+      function play(){
+        pauseAll(v);
+        card.classList.add('playing');
+        v.controls = true;
+        v.play().catch(()=>{});
+      }
+      btn.addEventListener('click', (e)=>{ e.preventDefault(); e.stopPropagation(); play(); });
+      card.addEventListener('click', ()=>{ if(v.paused) play(); });
+      v.addEventListener('pause', ()=>{ card.classList.remove('playing'); });
+      v.addEventListener('ended', ()=>{ card.classList.remove('playing'); });
+    }
+    document.querySelectorAll('.work[data-src]').forEach(card => bindCardPlayback(card, 'video'));
+    document.querySelectorAll('.best-card').forEach(card => bindCardPlayback(card, 'video'));
+
+    // Floating CTA hide/show (avoid covering contact section)
+    const floatCta = document.getElementById('floatCta');
+    const contactEl = document.getElementById('contact');
+    function updateFloatCta(){
+      if(!floatCta || !contactEl) return;
+      const r = contactEl.getBoundingClientRect();
+      const nearContact = r.top < window.innerHeight * 0.65;
+      floatCta.style.opacity = nearContact ? '0' : '1';
+      floatCta.style.pointerEvents = nearContact ? 'none' : 'auto';
+    }
+    window.addEventListener('scroll', updateFloatCta, {passive:true});
+    window.addEventListener('resize', updateFloatCta);
+    updateFloatCta();
+
+    // Hide CTA when mobile drawer is open
+    const obsBody = new MutationObserver(()=>{
+      if(!floatCta) return;
+      const open = document.body.classList.contains('nav-open');
+      floatCta.style.transform = open ? 'translateY(120%)' : 'translateY(0)';
+    });
+    obsBody.observe(document.body, {attributes:true, attributeFilter:['class']});
+
+    // Mobile header auto-hide on scroll (only on small screens)
+    (function(){
+      const mq = window.matchMedia && window.matchMedia('(max-width: 760px)');
+      if(!mq || !mq.matches) return;
+
+      let lastY = window.scrollY || 0;
+      let ticking = false;
+      function onScroll(){
+        if(ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(()=>{
+          const y = window.scrollY || 0;
+          const dy = y - lastY;
+          if(Math.abs(dy) > 8){
+            if(dy > 0 && y > 80){
+              document.body.classList.add('scroll-down');
+              document.body.classList.remove('scroll-up');
+            } else {
+              document.body.classList.add('scroll-up');
+              document.body.classList.remove('scroll-down');
+            }
+            lastY = y;
+          }
+          ticking = false;
+        });
+      }
+      document.body.classList.add('scroll-up');
+      window.addEventListener('scroll', onScroll, {passive:true});
+    })();
+
+    // Desktop modal preview for Works (mobile keeps inline playback)
+    const vModal = document.getElementById('vModal');
+    const vModalVideo = document.getElementById('vModalVideo');
+    const vModalTitle = document.getElementById('vModalTitle');
+    const vModalClose = document.getElementById('vModalClose');
+    const vModalBackdrop = document.getElementById('vModalBackdrop');
+
+    function openModal(src, title){
+      if(!vModal || !vModalVideo) return;
+      document.body.classList.add('vmodal-open');
+      vModal.setAttribute('aria-hidden','false');
+      vModalVideo.src = src;
+      vModalTitle.textContent = title || 'Preview';
+      vModalVideo.play().catch(()=>{});
+    }
+    function closeModal(){
+      if(!vModal || !vModalVideo) return;
+      document.body.classList.remove('vmodal-open');
+      vModal.setAttribute('aria-hidden','true');
+      try{ vModalVideo.pause(); vModalVideo.currentTime = 0; }catch(e){}
+      vModalVideo.removeAttribute('src');
+      vModalVideo.load();
+    }
+    vModalClose?.addEventListener('click', closeModal);
+    vModalBackdrop?.addEventListener('click', closeModal);
+    window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeModal(); });
+
+    const isCoarse = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+    if(!isCoarse){
+      document.querySelectorAll('.work[data-src]').forEach(card => {
+        card.addEventListener('click', (e)=>{
+          if(e.target && e.target.classList && e.target.classList.contains('playbtn')) return;
+          e.preventDefault();
+          const src = card.getAttribute('data-src');
+          const title = card.querySelector('.title')?.textContent || 'Preview';
+          openModal(src, title);
+        });
+      });
+    }
+
+
+
+/* === Enhancements for new design === */
+(function(){
+  // Reveal on scroll
+  const els = Array.from(document.querySelectorAll(".reveal"));
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+    });
+  }, {threshold:0.12});
+  els.forEach(el=>io.observe(el));
+
+  // Hover preview (desktop only): play muted loop on hover for work cards
+  const canHover = window.matchMedia && window.matchMedia("(hover:hover)").matches;
+  if(canHover){
+    document.querySelectorAll(".work").forEach(card=>{
+      const v = card.querySelector("video");
+      if(!v) return;
+      card.addEventListener("mouseenter", async ()=>{
+        try{
+          if(v.dataset.src && !v.src) loadVideo(v);
+          v.muted = true;
+          await v.play();
+        }catch(_){}
+      });
+      card.addEventListener("mouseleave", ()=>{
+        try{ v.pause(); v.currentTime = 0; }catch(_){}
+      });
+    });
+    document.querySelectorAll("#best .card").forEach(card=>{
+      const v = card.querySelector("video");
+      if(!v) return;
+      card.addEventListener("mouseenter", async ()=>{
+        try{
+          if(v.dataset.src && !v.src) loadVideo(v);
+          v.muted = true;
+          await v.play();
+        }catch(_){}
+      });
+      card.addEventListener("mouseleave", ()=>{
+        try{ v.pause(); v.currentTime = 0; }catch(_){}
+      });
+    });
+  }
+
+  // Make modal autoplay muted (browser-friendly), user can unmute in controls
+  const modalVideo = document.getElementById("modalVideo");
+  if(modalVideo){
+    modalVideo.muted = true;
+    modalVideo.playsInline = true;
+    modalVideo.addEventListener("loadeddata", ()=>{
+      // try autoplay (muted)
+      const p = modalVideo.play();
+      if(p && p.catch) p.catch(()=>{});
+    });
+  }
+})();
+</script>
+</body>
+</html>
