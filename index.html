@@ -1522,19 +1522,6 @@ document.querySelectorAll('.work video').forEach(v => {
       });
     }
 
-
-    /* EMAIL_POPUP */
-    (function(){
-      const EMAIL = "alex.altukhov.s@gmail.com";
-      // Show email in a small native popup for easy copy
-      document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
-        a.addEventListener('click', (e) => {
-          e.preventDefault();
-          window.prompt("Email:", EMAIL);
-        });
-      });
-    })();
-
 </script>
 </body>
 </html>
